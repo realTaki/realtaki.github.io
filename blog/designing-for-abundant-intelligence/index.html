@@ -48,11 +48,14 @@
 
   <div class="post-body">
 
-    <blockquote>
-      <p data-i18n="blog.post.bilingual">🌐 双语长文 · <a href="#english">English</a> &nbsp;|&nbsp; <a href="#chinese">中文</a></p>
-    </blockquote>
+    <div class="post-lang-toggle" role="tablist" aria-label="Article language">
+      <button type="button" data-set-lang="zh" role="tab" data-i18n="blog.post.lang.zh">🇨🇳 中文</button>
+      <button type="button" data-set-lang="both" role="tab" data-i18n="blog.post.lang.both">🌐 双语 Bilingual</button>
+      <button type="button" data-set-lang="en" role="tab" data-i18n="blog.post.lang.en">🇺🇸 English</button>
+    </div>
 
     <!-- ============ ENGLISH ============ -->
+    <div data-lang="en">
     <h2 id="english">English</h2>
 
     <h2>Introduction</h2>
@@ -879,8 +882,10 @@ Isolation</pre>
 
     <hr />
     <hr />
+    </div><!-- /data-lang=en -->
 
     <!-- ============ CHINESE ============ -->
+    <div data-lang="zh">
     <h2 id="chinese">为丰裕智能设计系统：为什么我们不应该围绕今天的大模型局限构建未来</h2>
 
     <h2>引言</h2>
@@ -1685,6 +1690,7 @@ Isolation</pre>
     <blockquote>
       <p><strong>一个数字智能社会的基础设施。</strong></p>
     </blockquote>
+    </div><!-- /data-lang=zh -->
 
   </div>
 

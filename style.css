@@ -376,6 +376,38 @@ img { max-width: 100%; display: block; }
   filter: brightness(1.1); box-shadow: 0 14px 34px rgba(0, 174, 236, 0.42);
 }
 
+/* ── In-article language toggle ──
+   Filters the EN/CN sections of a bilingual post without scrolling.
+   State lives on .post-body as data-article-lang = "zh" | "en" | "both".
+   Default (no attr) = both visible. */
+.post-lang-toggle {
+  display: inline-flex; align-items: center; gap: 2px;
+  margin: 0 0 1.6em; padding: 3px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+.post-lang-toggle button {
+  padding: 7px 16px; border: 0; background: transparent;
+  font-family: inherit; font-size: 13.5px; font-weight: 600;
+  color: var(--c-ink2); cursor: pointer; border-radius: var(--radius-full);
+  transition: color 0.18s var(--ease), background 0.18s var(--ease);
+}
+.post-lang-toggle button:hover { color: var(--c-ink); background: rgba(0, 174, 236, 0.06); }
+.post-lang-toggle button.active {
+  color: #fff;
+  background: linear-gradient(120deg, var(--b-blue-deep), var(--b-blue));
+  box-shadow: 0 2px 8px rgba(0, 174, 236, 0.32);
+}
+
+/* Filter rules — driven by data-article-lang on .post-body */
+.post-body[data-article-lang="zh"] [data-lang="en"],
+.post-body[data-article-lang="en"]  [data-lang="zh"] { display: none; }
+/* data-article-lang="both" (or absent) → both visible */
+
 /* =================================================================
    Section heading (shared)
    ================================================================= */
