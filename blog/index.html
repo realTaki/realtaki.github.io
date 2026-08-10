@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blog · realTaki</title>
+<meta name="description" content="realTaki 的写作：AI、系统设计、Multi-Agent 等主题。中英双语长文。" />
+<meta name="theme-color" content="#00aeec" />
+<link rel="icon" href="https://github.com/realTaki.png" />
+<link rel="stylesheet" href="../style.css" />
+<style>
+  /* ── Blog index page ── */
+  .blog-hero {
+    text-align: center;
+    margin: 56px auto 44px;
+    max-width: 720px;
+  }
+  .blog-hero h1 {
+    font-size: clamp(30px, 4.5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    background: linear-gradient(100deg, var(--b-blue-deep), var(--b-blue) 45%, var(--b-pink) 105%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .blog-hero p {
+    color: var(--c-ink2);
+    font-size: 15px;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* Larger / more breathable cards on the blog list */
+  .blog-grid { gap: 18px; }
+  .blog-grid .card {
+    padding: 22px 24px;
+  }
+  .blog-grid .card-title {
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .blog-grid .card-desc {
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .blog-empty {
+    text-align: center;
+    color: var(--c-ink3);
+    font-size: 13px;
+    margin-top: 48px;
+    padding: 24px;
+    border-radius: var(--radius);
+    background: var(--glass-bg);
+    border: 1px dashed var(--c-line);
+  }
+
+  /* Stagger the rise animation across post cards */
+  .blog-grid .card:nth-child(1) { animation-delay: 0.10s; }
+  .blog-grid .card:nth-child(2) { animation-delay: 0.18s; }
+  .blog-grid .card:nth-child(3) { animation-delay: 0.26s; }
+  .blog-grid .card:nth-child(4) { animation-delay: 0.34s; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .blog-hero, .blog-grid, .blog-empty {
+    animation: rise 0.6s var(--ease) both;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Site Header ===== -->
+<header class="site-head">
+  <div class="container site-head-inner">
+    <a class="site-brand" href="../">
+      <span class="site-brand-dot"></span>
+      <span class="brand-text">realTaki</span>
+    </a>
+    <nav class="site-nav">
+      <a href="../" data-i18n="nav.home">Home</a>
+      <a href="./" class="active" data-i18n="nav.blog">Blog</a>
+      <a href="../investigation/" data-i18n="nav.investigation">Investigation</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <button class="lang-toggle" type="button" data-i18n-attr="aria-label:nav.langToggle">
+        <span class="lang-side" data-lang-side="zh" aria-pressed="true">中</span>
+        <span class="lang-sep" aria-hidden="true"></span>
+        <span class="lang-side" data-lang-side="en" aria-pressed="false">EN</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Page body ===== -->
+<div class="container" style="padding-bottom: 80px;">
+
+  <header class="blog-hero">
+    <h1>📝 Blog</h1>
+    <p>写作即思考 · 关于 AI、系统设计与未来<br />Writing = thinking · On AI, system design, and what comes next.</p>
+  </header>
+
+  <!-- Post list — each card is one post. Add new ones by copying the <a class="card"> block. -->
+  <div class="card-grid blog-grid">
+
+    <a class="card home-card" href="2026-08-09-designing-for-abundant-intelligence.html">
+      <div class="card-title">Designing for Abundant Intelligence</div>
+      <div class="card-desc">不要围绕今天的大模型局限构建未来。中英双语长文，关于 AI 创新、Multi-Agent 协调与未来协议化基础设施。</div>
+      <div class="tags">
+        <span class="tag ghost">📅 2026-08-09</span>
+        <span class="tag">AI</span>
+        <span class="tag">Multi-Agent</span>
+        <span class="tag pink">系统设计</span>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="blog-empty">✨ 持续更新中 — 后续文章会按发布时间倒序追加到这里</p>
+
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="site-foot">
+  <div class="container">© 2026 realTaki · Built with ❤️ &amp; hosted on GitHub Pages</div>
+</footer>
+
+<!-- ===== Back-to-top button (shared) ===== -->
+<button class="totop" type="button" aria-label="Back to top" data-i18n-attr="aria-label:nav.backToTop">↑</button>
+<script>
+  // Back-to-top: show after scrolling, smooth scroll on click.
+  (function () {
+    var btn = document.querySelector('.totop');
+    if (!btn) return;
+    var toggle = function () {
+      btn.classList.toggle('show', window.scrollY > 320);
+    };
+    window.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
+
+</body>
+</html>
