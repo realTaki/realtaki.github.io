@@ -234,6 +234,12 @@
 
       /* ========== BLOG ========== */
       'blog.title':                 'Blog · realTaki',
+      'blog.description':           'Writing by realTaki — AI, system design, engineering notes',
+      'blog.post.bilingual':        '🌐 Bilingual long read · <a href="#english">English</a> &nbsp;|&nbsp; <a href="#chinese">中文</a>',
+      'blog.post.back':             '← Back to home',
+
+      /* ========== BLOG ========== */
+      'blog.title':                 'Blog · realTaki',
       'blog.description':           'Writing on AI, system design, and engineering notes',
       'blog.post.bilingual':        '🌐 Bilingual long read · <a href="#english">English</a> &nbsp;|&nbsp; <a href="#chinese">中文</a>',
       'blog.post.back':             '← Back to home',
