@@ -53,9 +53,9 @@
       /* ========== INVESTIGATION ========== */
       'nav.tabs.aria':              '页面内导航',
       'site.brand':                 '产品调研',
-      'site.brand.aria':            'Agent-Product-Investigation · 首页',
-      'nav.tab.investigation':      '调查',
-      'nav.tab.insights':           '洞察',
+      'site.brand.aria':            'realTaki · 首页',
+      'nav.tab.investigation':      '📊 数据',
+      'nav.tab.insights':           '💡 洞察',
       'lang.toggle.aria':           '切换语言',
       'site.title':                 '产品调研 · 2026 Q3',
 
@@ -229,9 +229,9 @@
       /* ========== INVESTIGATION ========== */
       'nav.tabs.aria':              'Page navigation',
       'site.brand':                 'Agent-Product-Investigation',
-      'site.brand.aria':            'Agent-Product-Investigation · home',
-      'nav.tab.investigation':      'Investigation',
-      'nav.tab.insights':           'Insights',
+      'site.brand.aria':            'realTaki · Home',
+      'nav.tab.investigation':      '📊 Data',
+      'nav.tab.insights':           '💡 Insights',
       'lang.toggle.aria':           'Switch language',
       'site.title':                 'Agent-Product-Investigation · 2026 Q3',
 
