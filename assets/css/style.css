@@ -1,0 +1,177 @@
+:root{
+  --pink:#FB7299;
+  --pink-light:#FF8FAB;
+  --blue:#00A1D6;
+  --text:#18191c;
+  --text-sub:#61666d;
+  --bg:#f6f7f8;
+  --card:#ffffff;
+  --line:#e3e5e7;
+  --code-bg:#f1f2f3;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --text:#e3e5e7;
+    --text-sub:#9499a0;
+    --bg:#17181a;
+    --card:#1f2022;
+    --line:#2f3134;
+    --code-bg:#26282b;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--pink)}
+
+/* ---- banner ---- */
+.banner{
+  height:180px;
+  background:linear-gradient(120deg,var(--pink) 0%,var(--pink-light) 50%,var(--blue) 100%);
+  position:relative;
+}
+.banner.slim{height:110px}
+.banner::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:40px;
+  background:var(--bg);
+  border-radius:60% 60% 0 0 / 100% 100% 0 0;
+}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
+.wrap.narrow{max-width:720px}
+
+/* ---- profile header ---- */
+.profile{
+  display:flex;align-items:center;gap:24px;
+  margin-top:-60px;position:relative;z-index:1;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:24px;
+}
+.avatar{
+  width:104px;height:104px;border-radius:50%;flex-shrink:0;
+  border:3px solid var(--pink);
+  box-shadow:0 0 16px rgba(251,114,153,.45);
+}
+.name{font-size:26px;font-weight:700;letter-spacing:.5px}
+.meta{color:var(--text-sub);font-size:14px;margin-top:6px}
+.bio{margin-top:8px;font-weight:600}
+.tagline{color:var(--text-sub);font-size:13px;margin-top:4px}
+
+/* ---- stat pills ---- */
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0}
+.pill{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:7px 16px;font-size:13px;
+}
+.pill b{color:var(--pink);font-size:15px;margin-left:4px}
+.pill.blue b{color:var(--blue)}
+
+/* ---- sections ---- */
+h2.sec{
+  font-size:19px;margin:40px 0 16px;
+  padding-left:12px;border-left:4px solid var(--pink);
+  line-height:1.2;
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+}
+h2.sec .more{font-size:13px;font-weight:400}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:10px;padding:16px;display:block;color:inherit;
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.card:hover{
+  transform:translateY(-3px);
+  border-color:var(--pink);
+  box-shadow:0 6px 18px rgba(251,114,153,.18);
+  color:inherit;
+}
+.card .t{font-weight:600;font-size:15px}
+.card .d{color:var(--text-sub);font-size:13px;margin-top:6px}
+.tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  font-size:11px;padding:2px 8px;border-radius:4px;
+  background:rgba(0,161,214,.12);color:var(--blue);
+}
+.tag.star{background:rgba(251,114,153,.14);color:var(--pink)}
+.tag.date{background:transparent;color:var(--text-sub);padding-left:0}
+
+/* ---- badges / skills ---- */
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.badge{
+  display:inline-block;padding:6px 14px;border-radius:6px;
+  font-size:13px;font-weight:600;color:#fff;
+}
+.b-pink{background:var(--pink)} .b-blue{background:var(--blue)}
+.b-light{background:var(--pink-light)} .b-dark{background:#181717}
+
+.stats-img{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.stats-img img{max-width:100%;border-radius:8px}
+
+/* ---- contact ---- */
+.contact{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
+.contact a{
+  display:inline-block;padding:9px 18px;border-radius:8px;
+  background:var(--card);border:1px solid var(--line);
+  font-size:14px;font-weight:500;color:var(--text);
+}
+.contact a:hover{border-color:var(--pink);color:var(--pink)}
+
+footer{
+  text-align:center;color:var(--text-sub);font-size:12px;
+  margin-top:50px;padding-top:24px;border-top:1px solid var(--line);
+}
+
+/* ---- post page ---- */
+.post-head{
+  margin-top:-40px;position:relative;z-index:1;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:28px;
+}
+.post-head h1{font-size:28px;line-height:1.35}
+.post-head .m{color:var(--text-sub);font-size:13px;margin-top:10px}
+.back{display:inline-block;margin-top:24px;font-size:14px}
+
+.post-body{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:28px;margin-top:16px;
+  font-size:16px;line-height:1.85;
+}
+.post-body h1,.post-body h2,.post-body h3{margin:1.6em 0 .6em;line-height:1.3}
+.post-body h1{font-size:24px}
+.post-body h2{font-size:20px;padding-left:10px;border-left:4px solid var(--pink)}
+.post-body h3{font-size:17px}
+.post-body p{margin:1em 0}
+.post-body ul,.post-body ol{margin:1em 0 1em 1.4em}
+.post-body li{margin:.4em 0}
+.post-body img{max-width:100%;border-radius:8px}
+.post-body blockquote{
+  margin:1.2em 0;padding:.6em 1em;
+  border-left:4px solid var(--blue);
+  background:var(--code-bg);color:var(--text-sub);border-radius:0 6px 6px 0;
+}
+.post-body code{
+  background:var(--code-bg);padding:2px 6px;border-radius:4px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:88%;
+}
+.post-body pre{
+  background:var(--code-bg);padding:16px;border-radius:8px;
+  overflow-x:auto;margin:1.2em 0;
+}
+.post-body pre code{background:none;padding:0;font-size:14px}
+.post-body table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:15px}
+.post-body th,.post-body td{border:1px solid var(--line);padding:8px 12px;text-align:left}
+.post-body th{background:var(--code-bg);font-weight:600}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2em 0}
+
+@media(max-width:560px){
+  .profile{flex-direction:column;text-align:center;gap:16px}
+  .banner{height:140px}
+  .post-body{padding:20px}
+  .post-head{padding:20px}
+  .post-head h1{font-size:22px}
+}
