@@ -232,6 +232,12 @@
 
       'site.description':           'Coder & Hacker · AI · Autonomous Driving · Federated Learning',
 
+      /* ========== BLOG ========== */
+      'blog.title':                 'Blog · realTaki',
+      'blog.description':           'Writing on AI, system design, and engineering notes',
+      'blog.post.bilingual':        '🌐 Bilingual long read · <a href="#english">English</a> &nbsp;|&nbsp; <a href="#chinese">中文</a>',
+      'blog.post.back':             '← Back to home',
+
       /* ========== INVESTIGATION ========== */
       'nav.tabs.aria':              'Page navigation',
       'site.brand':                 'Agent-Product-Investigation',
