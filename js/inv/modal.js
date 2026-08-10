@@ -301,3 +301,14 @@ window.openArticle = openArticle;
 
 modalBg.addEventListener('click', (e) => { if (e.target === modalBg) closeModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+/* Keyboard activation for insight cards (role="button" + tabindex=0):
+   Enter/Space opens the article when an insight card has focus. */
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const target = e.target;
+  if (target && target.dataset && target.dataset.article) {
+    e.preventDefault();
+    if (typeof openArticle === 'function') openArticle(target.dataset.article);
+  }
+});

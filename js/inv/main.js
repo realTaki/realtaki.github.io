@@ -122,8 +122,12 @@ function applyPage(page) {
     tab.setAttribute('tabindex', match ? '0' : '-1');
   });
   const wantHash = HASH_FOR_PAGE[safe] || safe;
-  if (location.hash.replace(/^#/, '') !== wantHash) {
-    history.replaceState(null, '', '#' + wantHash);
+  // Compare only the path portion; i18n.js may have appended `?lang=…` to the
+  // hash, which must be preserved across tab switches.
+  const currentPath = (location.hash || '').replace(/^#/, '').split('?')[0];
+  if (currentPath !== wantHash) {
+    const query = (location.hash || '').split('?')[1] || '';
+    history.replaceState(null, '', '#' + wantHash + (query ? '?' + query : ''));
   }
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
 }
