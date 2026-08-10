@@ -196,6 +196,24 @@
   .mod-detail h4 { font-size: 18px; font-weight: 700; margin: 0 0 6px; }
   .mod-detail .mod-desc { color: var(--c-ink3); font-size: 13px; margin-bottom: 18px; }
 
+  /* ============ 首张"全部"卡(回到初始状态) ============ */
+  /* 与常规 .mod 同形,但用 dashed 边框 + 略浅灰底,视觉上明确它是"reset" */
+  .mod.mod-all {
+    border-style: dashed;
+    background: #fafafa;
+  }
+  .mod.mod-all:hover {
+    border-style: solid;
+    border-color: var(--b-blue);
+  }
+  .mod.mod-all.active {
+    /* active 时回归常规的深色填充,与其他被选中的 .mod 风格统一 */
+    background: var(--c-ink);
+    border-style: solid;
+    border-color: var(--c-ink);
+    color: white;
+  }
+
   /* ============ 次级类别卡(子筛选,只在选中大类时显示) ============ */
   .sub-modules {
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center;

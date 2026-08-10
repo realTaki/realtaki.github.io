@@ -149,6 +149,27 @@ function renderSubModules() {
   });
 }
 
+// 首张"全部"卡:点击回到初始状态(清空 activeCategory / activeSubCategory)
+const allDiv = document.createElement('div');
+allDiv.className = 'mod mod-all';
+allDiv.dataset.category = 'all';
+allDiv.innerHTML = `
+  <span class="mod-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+  <div class="mod-name">${i18n.t('mod.all.title')}</div>
+  <div class="mod-count">${items.length} ${i18n.t('mod.all.unit')}</div>
+`;
+allDiv.addEventListener('click', () => {
+  activeCategory = 'all';
+  activeSubCategory = 'all';
+  document.querySelectorAll('.mod').forEach(m => {
+    m.classList.toggle('active', m.dataset.category === 'all');
+  });
+  currentPage = 1;
+  renderSubModules();
+  renderAllProducts();
+});
+modulesEl.appendChild(allDiv);
+
 Object.entries(moduleMeta).forEach(([mname, mdata]) => {
   const total = items.filter(i => i.category === mname).length;
   const isAiSec = (mname === 'AI Security');

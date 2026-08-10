@@ -127,6 +127,8 @@
       'mod.aiSec.title':            'AI Security · 专项高亮',
       'mod.aiSec.count':            '{n} 家公司 · 含完整融资数据',
       'mod.badge.new':              'NEW',
+      'mod.all.title':              '全部',
+      'mod.all.unit':               '个工具',
 
       'mod.desc.Agentic Coding':           'AI 写代码 + Coding Agent Harness，2026 最热赛道',
       'mod.desc.Personal AI Assistant':    '个人向 AI 助理，主打多端接入与轻量化',
@@ -310,6 +312,8 @@
       'mod.aiSec.title':            'AI Security · Featured',
       'mod.aiSec.count':            '{n} companies · with full funding data',
       'mod.badge.new':              'NEW',
+      'mod.all.title':              'All',
+      'mod.all.unit':               'tools',
 
       'mod.desc.Agentic Coding':           'AI coding + Coding Agent Harness — hottest track of 2026',
       'mod.desc.Personal AI Assistant':    'Personal AI assistants, multi-platform and lightweight',
