@@ -38,8 +38,8 @@
   });
 
   /* ── In-article language toggle ──
-     Filters the EN / CN sections of a bilingual blog post.
-     State lives on .post-body[data-article-lang] = "zh" | "en" | "both".
+     Filters the EN / CN sections of a bilingual blog post (no scroll).
+     State lives on .post-body[data-article-lang] = "zh" | "en".
      Persisted per-post in localStorage; default follows the site-wide
      language (window.i18n.currentLang()) so switching nav lang flips
      the article body too. */
@@ -48,23 +48,22 @@
   if (!toggle || !postBody) return;
 
   var ARTICLE_LANG_KEY = 'realtaki.article-lang';
-  var SUPPORTED_ARTICLE_LANG = ['zh', 'en', 'both'];
+  var SUPPORTED_ARTICLE_LANG = ['zh', 'en'];
 
   function resolveInitialArticleLang() {
     try {
       var stored = localStorage.getItem(ARTICLE_LANG_KEY);
       if (SUPPORTED_ARTICLE_LANG.indexOf(stored) !== -1) return stored;
     } catch (e) {}
-    // Default follows site-wide lang if available; else "both".
     if (window.i18n && typeof window.i18n.currentLang === 'function') {
       var siteLang = window.i18n.currentLang();
-      if (siteLang === 'en' || siteLang === 'zh') return siteLang;
+      if (SUPPORTED_ARTICLE_LANG.indexOf(siteLang) !== -1) return siteLang;
     }
-    return 'both';
+    return 'zh';
   }
 
   function applyArticleLang(lang) {
-    if (SUPPORTED_ARTICLE_LANG.indexOf(lang) === -1) lang = 'both';
+    if (SUPPORTED_ARTICLE_LANG.indexOf(lang) === -1) lang = 'zh';
     postBody.setAttribute('data-article-lang', lang);
     toggle.querySelectorAll('[data-set-lang]').forEach(function (btn) {
       var match = btn.getAttribute('data-set-lang') === lang;
@@ -78,24 +77,17 @@
     try { localStorage.setItem(ARTICLE_LANG_KEY, lang); } catch (e) {}
   }
 
-  // Wire button clicks.
   toggle.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-set-lang]');
     if (!btn) return;
     setArticleLang(btn.getAttribute('data-set-lang'));
   });
 
-  // Sync to site-wide lang changes: if user is on a single-language view,
-  // mirror the nav switch; if on "both", leave it alone.
+  // When the site-wide nav lang changes, mirror it onto the article body.
   document.addEventListener('lang:changed', function (e) {
     var next = e.detail && e.detail.lang;
-    if (!next) return;
-    var current = postBody.getAttribute('data-article-lang') || 'both';
-    // If user is showing only one language, follow the site toggle.
-    // If they're showing both, leave it (they explicitly opted in).
-    if (current === 'zh' || current === 'en') setArticleLang(next);
+    if (next && SUPPORTED_ARTICLE_LANG.indexOf(next) !== -1) setArticleLang(next);
   });
 
-  // Initial state.
   applyArticleLang(resolveInitialArticleLang());
 })();
