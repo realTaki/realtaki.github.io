@@ -11,6 +11,18 @@
 </head>
 <body>
 
+<nav class="topnav">
+  <a class="brand" href="{{ '/' | relative_url }}">
+    <img src="https://github.com/{{ site.github_username }}.png" alt="">
+    <span>{{ site.title }}</span>
+  </a>
+  <div class="navlinks">
+    <a href="{{ '/' | relative_url }}">🏠 首页</a>
+    <a href="{{ '/#posts' | relative_url }}">📝 文章</a>
+    <a href="https://github.com/{{ site.github_username }}">🐙 GitHub</a>
+  </div>
+</nav>
+
 <div class="banner{% if page.layout == 'post' %} slim{% endif %}"></div>
 
 <div class="wrap{% if page.layout == 'post' %} narrow{% endif %}">

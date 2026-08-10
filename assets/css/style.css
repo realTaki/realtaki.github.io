@@ -42,7 +42,8 @@ a:hover{color:var(--pink)}
 }
 
 .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
-.wrap.narrow{max-width:720px}
+/* 文章页：宽屏放宽到 1040px，窄屏自动收缩 */
+.wrap.narrow{max-width:min(94vw,1040px)}
 
 /* ---- profile header ---- */
 .profile{
@@ -138,8 +139,8 @@ footer{
 
 .post-body{
   background:var(--card);border:1px solid var(--line);
-  border-radius:12px;padding:28px;margin-top:16px;
-  font-size:16px;line-height:1.85;
+  border-radius:12px;padding:40px 48px;margin-top:16px;
+  font-size:17px;line-height:1.9;
 }
 .post-body h1,.post-body h2,.post-body h3{margin:1.6em 0 .6em;line-height:1.3}
 .post-body h1{font-size:24px}
