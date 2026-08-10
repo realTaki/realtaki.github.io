@@ -3,6 +3,7 @@
 
    - Back-to-top button
    - Active nav link highlighting
+   - Bilingual post body filter (JS backup for html[lang] CSS rule)
    ============================================================ */
 (function () {
   'use strict';
@@ -36,6 +37,25 @@
     if (currentPath === linkPath) a.classList.add('active');
   });
 
-  /* (Bilingual post body filtering lives in style.css and follows
-     the <html lang> attribute set by js/i18n.js. No per-page state.) */
+  /* ── Bilingual post body filter ──
+     Mirrors the CSS rule `html[lang] [data-lang]` in JS, so we don't
+     depend on attribute-selector reactivity (some browser states don't
+     repaint when only <html lang> changes). i18n.js sets <html lang>;
+     we explicitly toggle inline display as a belt-and-suspenders. */
+  function applyBilingualFilter(lang) {
+    var active = (lang === 'en') ? 'en' : 'zh';
+    document.querySelectorAll('[data-lang]').forEach(function (el) {
+      el.style.display = (el.getAttribute('data-lang') === active) ? '' : 'none';
+    });
+  }
+  function getCurrentLang() {
+    if (window.i18n && typeof window.i18n.currentLang === 'function') {
+      return window.i18n.currentLang();
+    }
+    return (document.documentElement.lang || '').startsWith('en') ? 'en' : 'zh';
+  }
+  applyBilingualFilter(getCurrentLang());
+  document.addEventListener('lang:changed', function (e) {
+    if (e && e.detail && e.detail.lang) applyBilingualFilter(e.detail.lang);
+  });
 })();
