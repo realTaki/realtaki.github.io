@@ -1,256 +1,132 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>realTaki</title>
-<meta name="description" content="realTaki · Coder&Hacker · AI / 自动驾驶 / 联邦学习">
-<link rel="icon" href="https://github.com/realTaki.png">
-<style>
-  :root{
-    --pink:#FB7299;
-    --pink-light:#FF8FAB;
-    --blue:#00A1D6;
-    --text:#18191c;
-    --text-sub:#61666d;
-    --bg:#f6f7f8;
-    --card:#ffffff;
-    --line:#e3e5e7;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --text:#e3e5e7;
-      --text-sub:#9499a0;
-      --bg:#17181a;
-      --card:#1f2022;
-      --line:#2f3134;
-    }
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-    background:var(--bg);color:var(--text);line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:var(--blue);text-decoration:none}
-  a:hover{color:var(--pink)}
+---
+layout: default
+---
 
-  /* ---- banner ---- */
-  .banner{
-    height:180px;
-    background:linear-gradient(120deg,var(--pink) 0%,var(--pink-light) 50%,var(--blue) 100%);
-    position:relative;
-  }
-  .banner::after{
-    content:"";position:absolute;left:0;right:0;bottom:-1px;height:40px;
-    background:var(--bg);
-    border-radius:60% 60% 0 0 / 100% 100% 0 0;
-  }
-
-  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
-
-  /* ---- profile header ---- */
-  .profile{
-    display:flex;align-items:center;gap:24px;
-    margin-top:-60px;position:relative;z-index:1;
-    background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:24px;
-  }
-  .avatar{
-    width:104px;height:104px;border-radius:50%;flex-shrink:0;
-    border:3px solid var(--pink);
-    box-shadow:0 0 16px rgba(251,114,153,.45);
-  }
-  .name{font-size:26px;font-weight:700;letter-spacing:.5px}
-  .meta{color:var(--text-sub);font-size:14px;margin-top:6px}
-  .bio{margin-top:8px;font-weight:600}
-  .tagline{color:var(--text-sub);font-size:13px;margin-top:4px}
-
-  /* ---- stat pills ---- */
-  .pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0}
-  .pill{
-    background:var(--card);border:1px solid var(--line);
-    border-radius:999px;padding:7px 16px;font-size:13px;
-  }
-  .pill b{color:var(--pink);font-size:15px;margin-left:4px}
-  .pill.blue b{color:var(--blue)}
-
-  /* ---- sections ---- */
-  h2{
-    font-size:19px;margin:40px 0 16px;
-    padding-left:12px;border-left:4px solid var(--pink);
-    line-height:1.2;
-  }
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-  .card{
-    background:var(--card);border:1px solid var(--line);
-    border-radius:10px;padding:16px;
-    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-  }
-  .card:hover{
-    transform:translateY(-3px);
-    border-color:var(--pink);
-    box-shadow:0 6px 18px rgba(251,114,153,.18);
-  }
-  .card .t{font-weight:600;font-size:15px}
-  .card .d{color:var(--text-sub);font-size:13px;margin-top:6px}
-  .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
-  .tag{
-    font-size:11px;padding:2px 8px;border-radius:4px;
-    background:rgba(0,161,214,.12);color:var(--blue);
-  }
-  .tag.star{background:rgba(251,114,153,.14);color:var(--pink)}
-
-  /* ---- badges / skills ---- */
-  .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-  .badge{
-    display:inline-block;padding:6px 14px;border-radius:6px;
-    font-size:13px;font-weight:600;color:#fff;
-  }
-  .b-pink{background:var(--pink)} .b-blue{background:var(--blue)}
-  .b-light{background:var(--pink-light)} .b-dark{background:#181717}
-
-  .stats-img{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
-  .stats-img img{max-width:100%;border-radius:8px}
-
-  /* ---- contact ---- */
-  .contact{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
-  .contact a{
-    display:inline-block;padding:9px 18px;border-radius:8px;
-    background:var(--card);border:1px solid var(--line);
-    font-size:14px;font-weight:500;color:var(--text);
-  }
-  .contact a:hover{border-color:var(--pink);color:var(--pink)}
-
-  footer{
-    text-align:center;color:var(--text-sub);font-size:12px;
-    margin-top:50px;padding-top:24px;border-top:1px solid var(--line);
-  }
-
-  @media(max-width:560px){
-    .profile{flex-direction:column;text-align:center;gap:16px}
-    .banner{height:140px}
-  }
-</style>
-</head>
-<body>
-
-<div class="banner"></div>
-
-<div class="wrap">
-
-  <!-- 个人中心 -->
-  <div class="profile">
-    <img class="avatar" src="https://github.com/realTaki.png" alt="realTaki avatar">
-    <div>
-      <div class="name">realTaki</div>
-      <div class="meta">💎 LV6 正式会员 · ⭐ Pro · 🏷️ AI · 自动驾驶 · 联邦学习</div>
-      <div class="bio">Coder &amp; Hacker.</div>
-      <div class="tagline">🙃 哈。 · 📍 Edmonton, Alberta, CA · 🏢 UAlberta</div>
-    </div>
+<!-- 个人中心 -->
+<div class="profile">
+  <img class="avatar" src="https://github.com/{{ site.github_username }}.png" alt="realTaki avatar">
+  <div>
+    <div class="name">realTaki</div>
+    <div class="meta">💎 LV6 正式会员 · ⭐ Pro · 🏷️ AI · 自动驾驶 · 联邦学习</div>
+    <div class="bio">Coder &amp; Hacker.</div>
+    <div class="tagline">🙃 哈。 · 📍 Edmonton, Alberta, CA · 🏢 UAlberta</div>
   </div>
-
-  <!-- 数据条 -->
-  <div class="pills">
-    <span class="pill">🐙 GitHub 粉丝 <b>25</b></span>
-    <span class="pill blue">🐦 X 粉丝 <b>5209</b></span>
-    <span class="pill">➡️ 关注 <b>12</b></span>
-    <span class="pill blue">📦 仓库 <b>83</b></span>
-  </div>
-
-  <!-- 参与的开源 -->
-  <h2>🎬 我的投稿 · 参与的开源项目</h2>
-  <div class="grid">
-    <a class="card" href="https://github.com/openai/CLIP">
-      <div class="t">⭐ openai/CLIP</div>
-      <div class="d">Contrastive Language-Image Pretraining · 图文对齐预训练模型</div>
-      <div class="tags"><span class="tag">Jupyter</span><span class="tag star">⭐ 34.2k</span><span class="tag">🍴 4k</span></div>
-    </a>
-    <a class="card" href="https://github.com/ApolloAuto/apollo">
-      <div class="t">🚗 ApolloAuto/apollo</div>
-      <div class="d">开放自动驾驶平台 · 百度出品</div>
-      <div class="tags"><span class="tag">C++</span><span class="tag star">⭐ 26.8k</span><span class="tag">🍴 10k</span></div>
-    </a>
-    <a class="card" href="https://github.com/TsinghuaAI/CPM">
-      <div class="t">🤖 TsinghuaAI/CPM</div>
-      <div class="d">清华中文预训练模型初代</div>
-      <div class="tags"><span class="tag star">⭐ 164</span></div>
-    </a>
-    <a class="card" href="https://github.com/FederatedAI/FATE">
-      <div class="t">🔐 FederatedAI/FATE</div>
-      <div class="d">工业级联邦学习框架</div>
-      <div class="tags"><span class="tag">Python</span><span class="tag star">⭐ 6.1k</span><span class="tag">🍴 1.6k</span></div>
-    </a>
-    <a class="card" href="https://github.com/bazelbuild/bazel">
-      <div class="t">🔧 bazelbuild/bazel</div>
-      <div class="d">快 / 可扩展 / 多语言构建系统</div>
-      <div class="tags"><span class="tag">Java</span><span class="tag star">⭐ 25.7k</span><span class="tag">🍴 4.6k</span></div>
-    </a>
-    <a class="card" href="https://github.com/Turing-Project/WriteGPT">
-      <div class="t">📝 Turing-Project/WriteGPT</div>
-      <div class="d">基于 GPT-2.0 的初代创作型 AI · 可扩展 / 可进化</div>
-      <div class="tags"><span class="tag">Python</span><span class="tag star">⭐ 5.3k</span></div>
-    </a>
-  </div>
-
-  <!-- 我的项目 -->
-  <h2>📦 我的项目 · top by stars</h2>
-  <div class="grid">
-    <a class="card" href="https://github.com/realTaki/DevRec">
-      <div class="t">⭐ DevRec</div><div class="d">Python · ⭐ 5</div>
-    </a>
-    <a class="card" href="https://github.com/realTaki/MAGI">
-      <div class="t">⭐ MAGI</div><div class="d">Python · ⭐ 2</div>
-    </a>
-    <a class="card" href="https://github.com/realTaki/FARSEC">
-      <div class="t">⭐ FARSEC</div><div class="d">Python · ⭐ 1</div>
-    </a>
-    <a class="card" href="https://github.com/realTaki/Agent-Product-Investigation">
-      <div class="t">🤖 Agent-Product-Investigation</div><div class="d">JavaScript</div>
-    </a>
-    <a class="card" href="https://github.com/realTaki/Clawboard">
-      <div class="t">⌨️ Clawboard</div><div class="d">TypeScript</div>
-    </a>
-    <a class="card" href="https://github.com/realTaki/FoMON3D">
-      <div class="t">🎮 FoMON3D</div><div class="d">TypeScript</div>
-    </a>
-  </div>
-
-  <!-- 成就墙 -->
-  <h2>🏆 成就墙</h2>
-  <div class="row">
-    <span class="badge b-light">⚡ Quickdraw</span>
-    <span class="badge b-blue">🎯 YOLO</span>
-    <span class="badge b-pink">🦈 Pull Shark ×2</span>
-    <span class="badge b-dark">💎 GitHub Pro</span>
-  </div>
-
-  <!-- 数据中心 -->
-  <h2>📊 数据中心</h2>
-  <div class="stats-img">
-    <img src="https://github-readme-stats.vercel.app/api?username=realTaki&show_icons=true&theme=radical&hide_border=true&title_color=FB7299&icon_color=00A1D6" alt="GitHub stats">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=realTaki&layout=compact&theme=radical&hide_border=true&title_color=FB7299" alt="Top languages">
-  </div>
-
-  <!-- 技术栈 -->
-  <h2>🛠 装备栏 · 技术栈</h2>
-  <div class="row">
-    <img src="https://skillicons.dev/icons?i=python,javascript,typescript,git,linux,docker" alt="skills">
-  </div>
-
-  <!-- 联系方式 -->
-  <h2>📬 联系方式</h2>
-  <div class="contact">
-    <a href="mailto:taki.wang@ualberta.ca">✉️ taki.wang@ualberta.ca</a>
-    <a href="https://x.com/realTaki42">🐦 @realTaki42</a>
-    <a href="https://github.com/realTaki">🐙 github.com/realTaki</a>
-  </div>
-
-  <footer>
-    © 2026 realTaki · Built with ❤️ &amp; hosted on GitHub Pages
-  </footer>
-
 </div>
 
-</body>
-</html>
+<!-- 数据条 -->
+<div class="pills">
+  <span class="pill">🐙 GitHub 粉丝 <b>25</b></span>
+  <span class="pill blue">🐦 X 粉丝 <b>5209</b></span>
+  <span class="pill">➡️ 关注 <b>12</b></span>
+  <span class="pill blue">📦 仓库 <b>83</b></span>
+</div>
+
+<!-- ============ 📝 最新文章 ============ -->
+<h2 class="sec">
+  <span>📝 最新文章</span>
+  {% if site.posts.size > 4 %}<span class="more"><a href="{{ '/feed.xml' | relative_url }}">RSS 订阅</a></span>{% endif %}
+</h2>
+{% if site.posts.size > 0 %}
+<div class="grid">
+  {% for post in site.posts limit: 4 %}
+  <a class="card" href="{{ post.url | relative_url }}">
+    <div class="t">{{ post.title }}</div>
+    <div class="d">{{ post.description | default: post.excerpt | strip_html | truncate: 70 }}</div>
+    <div class="tags">
+      <span class="tag date">📅 {{ post.date | date: "%Y-%m-%d" }}</span>
+      {%- for tag in post.tags limit: 2 %}<span class="tag">{{ tag }}</span>{% endfor %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="card"><div class="d">还没有文章 —— 往 <code>_posts/</code> 里丢一个 Markdown 就会出现在这里。</div></div>
+{% endif %}
+
+<!-- 参与的开源 -->
+<h2 class="sec"><span>🎬 我的投稿 · 参与的开源项目</span></h2>
+<div class="grid">
+  <a class="card" href="https://github.com/openai/CLIP">
+    <div class="t">⭐ openai/CLIP</div>
+    <div class="d">Contrastive Language-Image Pretraining · 图文对齐预训练模型</div>
+    <div class="tags"><span class="tag">Jupyter</span><span class="tag star">⭐ 34.2k</span><span class="tag">🍴 4k</span></div>
+  </a>
+  <a class="card" href="https://github.com/ApolloAuto/apollo">
+    <div class="t">🚗 ApolloAuto/apollo</div>
+    <div class="d">开放自动驾驶平台 · 百度出品</div>
+    <div class="tags"><span class="tag">C++</span><span class="tag star">⭐ 26.8k</span><span class="tag">🍴 10k</span></div>
+  </a>
+  <a class="card" href="https://github.com/TsinghuaAI/CPM">
+    <div class="t">🤖 TsinghuaAI/CPM</div>
+    <div class="d">清华中文预训练模型初代</div>
+    <div class="tags"><span class="tag star">⭐ 164</span></div>
+  </a>
+  <a class="card" href="https://github.com/FederatedAI/FATE">
+    <div class="t">🔐 FederatedAI/FATE</div>
+    <div class="d">工业级联邦学习框架</div>
+    <div class="tags"><span class="tag">Python</span><span class="tag star">⭐ 6.1k</span><span class="tag">🍴 1.6k</span></div>
+  </a>
+  <a class="card" href="https://github.com/bazelbuild/bazel">
+    <div class="t">🔧 bazelbuild/bazel</div>
+    <div class="d">快 / 可扩展 / 多语言构建系统</div>
+    <div class="tags"><span class="tag">Java</span><span class="tag star">⭐ 25.7k</span><span class="tag">🍴 4.6k</span></div>
+  </a>
+  <a class="card" href="https://github.com/Turing-Project/WriteGPT">
+    <div class="t">📝 Turing-Project/WriteGPT</div>
+    <div class="d">基于 GPT-2.0 的初代创作型 AI · 可扩展 / 可进化</div>
+    <div class="tags"><span class="tag">Python</span><span class="tag star">⭐ 5.3k</span></div>
+  </a>
+</div>
+
+<!-- 我的项目 -->
+<h2 class="sec"><span>📦 我的项目 · top by stars</span></h2>
+<div class="grid">
+  <a class="card" href="https://github.com/realTaki/DevRec">
+    <div class="t">⭐ DevRec</div><div class="d">Python · ⭐ 5</div>
+  </a>
+  <a class="card" href="https://github.com/realTaki/MAGI">
+    <div class="t">⭐ MAGI</div><div class="d">Python · ⭐ 2</div>
+  </a>
+  <a class="card" href="https://github.com/realTaki/FARSEC">
+    <div class="t">⭐ FARSEC</div><div class="d">Python · ⭐ 1</div>
+  </a>
+  <a class="card" href="https://github.com/realTaki/Agent-Product-Investigation">
+    <div class="t">🤖 Agent-Product-Investigation</div><div class="d">JavaScript</div>
+  </a>
+  <a class="card" href="https://github.com/realTaki/Clawboard">
+    <div class="t">⌨️ Clawboard</div><div class="d">TypeScript</div>
+  </a>
+  <a class="card" href="https://github.com/realTaki/FoMON3D">
+    <div class="t">🎮 FoMON3D</div><div class="d">TypeScript</div>
+  </a>
+</div>
+
+<!-- 成就墙 -->
+<h2 class="sec"><span>🏆 成就墙</span></h2>
+<div class="row">
+  <span class="badge b-light">⚡ Quickdraw</span>
+  <span class="badge b-blue">🎯 YOLO</span>
+  <span class="badge b-pink">🦈 Pull Shark ×2</span>
+  <span class="badge b-dark">💎 GitHub Pro</span>
+</div>
+
+<!-- 数据中心 -->
+<h2 class="sec"><span>📊 数据中心</span></h2>
+<div class="stats-img">
+  <img src="https://github-readme-stats.vercel.app/api?username=realTaki&show_icons=true&theme=radical&hide_border=true&title_color=FB7299&icon_color=00A1D6" alt="GitHub stats">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=realTaki&layout=compact&theme=radical&hide_border=true&title_color=FB7299" alt="Top languages">
+</div>
+
+<!-- 技术栈 -->
+<h2 class="sec"><span>🛠 装备栏 · 技术栈</span></h2>
+<div class="row">
+  <img src="https://skillicons.dev/icons?i=python,javascript,typescript,git,linux,docker" alt="skills">
+</div>
+
+<!-- 联系方式 -->
+<h2 class="sec"><span>📬 联系方式</span></h2>
+<div class="contact">
+  <a href="mailto:{{ site.email }}">✉️ {{ site.email }}</a>
+  <a href="https://x.com/{{ site.twitter_username }}">🐦 @{{ site.twitter_username }}</a>
+  <a href="https://github.com/{{ site.github_username }}">🐙 github.com/{{ site.github_username }}</a>
+</div>

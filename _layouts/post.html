@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<article>
+  <div class="post-head">
+    <h1>{{ page.title }}</h1>
+    <div class="m">
+      📅 {{ page.date | date: "%Y-%m-%d" }}
+      {%- if page.tags and page.tags.size > 0 %}
+      &nbsp;·&nbsp;
+      {%- for tag in page.tags %} <span class="tag">{{ tag }}</span>{% endfor %}
+      {%- endif %}
+    </div>
+  </div>
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+
+  <a class="back" href="{{ '/' | relative_url }}">← 返回首页</a>
+</article>
