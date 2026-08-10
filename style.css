@@ -376,50 +376,12 @@ img { max-width: 100%; display: block; }
   filter: brightness(1.1); box-shadow: 0 14px 34px rgba(0, 174, 236, 0.42);
 }
 
-/* ── In-article language toggle ──
-   Filters the EN/CN sections of a bilingual post without scrolling.
-   State lives on .post-body as data-article-lang = "zh" | "en".
-   Visual: macOS-style segmented control. Tinted pill background,
-   white surface on the active side, soft elevation. */
-.post-lang-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  margin: 0 0 1.8em;
-  padding: 3px;
-  background: rgba(0, 174, 236, 0.07);
-  border: 1px solid rgba(0, 174, 236, 0.16);
-  border-radius: var(--radius-full);
-  font-size: 13.5px;
-  line-height: 1;
-}
-.post-lang-toggle button {
-  padding: 7px 18px;
-  border: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: 500;
-  color: var(--c-ink2);
-  cursor: pointer;
-  border-radius: var(--radius-full);
-  transition: color 0.22s var(--ease),
-              background 0.22s var(--ease),
-              box-shadow 0.22s var(--ease);
-}
-.post-lang-toggle button:hover { color: var(--b-blue-deep); }
-.post-lang-toggle button.active {
-  background: var(--c-surface);
-  color: var(--b-blue-deep);
-  font-weight: 700;
-  box-shadow:
-    0 1px 2px rgba(0, 134, 201, 0.10),
-    0 0 0 1px rgba(0, 174, 236, 0.18);
-}
-
-/* Filter rules — driven by data-article-lang on .post-body */
-.post-body[data-article-lang="zh"] [data-lang="en"],
-.post-body[data-article-lang="en"]  [data-lang="zh"] { display: none; }
+/* ── Bilingual post body ──
+   The article body contains both EN and CN versions inline. The site-wide
+   lang toggle sets <html lang="zh-CN"> or <html lang="en">, and that same
+   attribute drives which half of the post is visible. No per-page state. */
+html[lang="zh-CN"] [data-lang="en"],
+html[lang="en"]    [data-lang="zh"] { display: none; }
 
 /* =================================================================
    Section heading (shared)
