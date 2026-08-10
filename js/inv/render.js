@@ -50,12 +50,6 @@ function renderStats() {
     productParents:   i18n.t('hero.inv.stat.productsDelta', { n: s.productParentCount }),
     yearSpan:         `${s.yearSpan.first} — ${s.yearSpan.last}`,
     starCount:        () => StarStore ? String(StarStore.getStarred().size) : '0',
-    infraSummary:     () => {
-      const tree = s.subCategoryTree;
-      const withSubs = Object.values(tree).filter(t => t.subs.length > 0);
-      const subCount = withSubs.reduce((n,t) => n + t.subs.length, 0);
-      return i18n.t('sec.infraTree.summary', { cats: s.categoryCount, subs: subCount, total: s.total });
-    },
 
     insight1Title: i18n.t('insight1.title', { first: s.yearSpan.first, to: s.yearSpan.last }),
     insight1Body:  s.fundedCount
@@ -88,118 +82,68 @@ function renderStats() {
 }
 
 /* ============ 全分类树 ============ */
-// 数据全部从 stats.subCategoryTree 现算,顺序按 moduleMeta 声明顺序。
-// 改 data.js(增/删/换 category/subCategory),或调 moduleMeta 顺序,树自动重排。
-// AI Security 跳过——它有自己专门的粉色高亮卡(在模块卡区),不再展开。
-function renderInfraTree() {
-  const root = document.getElementById('infraTree');
-  if (!root) return;
-  const tree = stats.subCategoryTree;
-  const starred = (typeof StarStore !== 'undefined') ? StarStore.getStarred() : new Set();
-
-  // 顶部"⭐ 星标"分组:按 starred 名字取 items
-  const starredItems = items.filter(it => starred.has(it.name));
-  const isEn = i18n && i18n.currentLang() === 'en';
-  const starredTitle  = i18n.t('tree.starredTitle');
-  const starredDesc   = i18n.t('tree.starredDesc');
-  const itemCountFmt  = (n) => i18n.t('tree.itemCount', { n });
-  const starOffLabel  = i18n.t('tree.starOff');
-  const starOnLabel   = i18n.t('tree.starOn');
-  const starredHtml = starredItems.length ? `
-    <div class="infra-group starred-group open" data-group="__starred">
-      <div class="infra-group-head">
-        <span class="infra-group-icon starred-icon">⭐</span>
-        <div>
-          <div class="infra-group-name">${starredTitle}</div>
-          <div class="infra-group-desc">${starredDesc}</div>
-        </div>
-        <span class="infra-group-count">${itemCountFmt(starredItems.length)}</span>
-        <svg class="infra-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
-      </div>
-      <div class="infra-subs starred-subs">
-        ${starredItems.map(it => `
-          <span class="infra-item starred-item" data-co="${it.name}" title="${(i18n.descFor(it) || '').replace(/"/g,'&quot;')}">
-            <button class="star-btn active" data-star="${it.name}" title="${starOffLabel}" aria-label="${starOffLabel}">★</button>
-            ${it.name}
-          </span>
-        `).join('')}
-      </div>
-    </div>
-  ` : '';
-
-  const groupsHtml = Object.keys(tree).filter(k => k !== 'AI Security').map(key => {
-    const node = tree[key];
-    const meta = moduleMeta[key] || {};
-    // resolve desc: prefer i18n key, fallback to literal string, fallback to ''
-    const groupDesc = (typeof i18n !== 'undefined' && i18n.t)
-      ? (i18n.t('mod.desc.' + key, '') || meta.desc || '')
-      : (meta.desc || '');
-    const subsHtml = node.subs.map(sub => {
-      const list = node.bySub[sub] || [];
-      const itemsHtml = list.map(it => {
-        const ghStars = it.stars ? `<span class="star">★${it.stars}</span>` : '';
-        const userStarred = starred.has(it.name);
-        const starBtn = userStarred
-          ? `<button class="star-btn active" data-star="${it.name}" title="${starOffLabel}" aria-label="${starOffLabel}">★</button>`
-          : `<button class="star-btn" data-star="${it.name}" title="${starOnLabel}" aria-label="${starOnLabel}">☆</button>`;
-        return `<span class="infra-item${userStarred ? ' is-starred' : ''}" data-co="${it.name}" title="${(i18n.descFor(it) || '').replace(/"/g,'&quot;')}">${starBtn}${it.name}${ghStars}</span>`;
-      }).join('');
-      return `<div class="infra-sub">
-        <div class="infra-sub-head">
-          <span class="infra-sub-name">${sub}</span>
-          <span class="infra-sub-count">${itemCountFmt(list.length)}</span>
-        </div>
-        <div class="infra-items">${itemsHtml || '<span class="infra-sub-count">—</span>'}</div>
-      </div>`;
-    }).join('');
-    return `<div class="infra-group" data-group="${key}">
-      <div class="infra-group-head">
-        <span class="infra-group-icon">${meta.icon || ''}</span>
-        <div>
-          <div class="infra-group-name">${key}</div>
-          <div class="infra-group-desc">${groupDesc}</div>
-        </div>
-        <span class="infra-group-count">${itemCountFmt(node.total)}</span>
-        <svg class="infra-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
-      </div>
-      <div class="infra-subs">${subsHtml}</div>
-    </div>`;
-  }).join('');
-
-  root.innerHTML = starredHtml + groupsHtml;
-
-  // 折叠/展开
-  root.querySelectorAll('.infra-group-head').forEach(h => {
-    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
-  });
-  // 点击子项(点名字) → 跳到主表 + 搜索
-  root.querySelectorAll('.infra-item').forEach(el => {
-    el.addEventListener('click', (e) => {
-      // 点星标按钮不触发跳转
-      if (e.target.classList.contains('star-btn')) return;
-      e.stopPropagation();
-      if (typeof apSearch !== 'undefined' && apSearch) {
-        apSearch.value = el.dataset.co;
-        currentPage = 1;
-        renderAllProducts();
-        apSearch.closest('section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-  // 分类树里点星标按钮 → 切换
-  root.querySelectorAll('.star-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (typeof StarStore !== 'undefined') StarStore.toggleStar(btn.dataset.star);
-    });
-  });
-}
+// 旧版独立的"分类树"区已并入"所有产品"模块卡,选中大类后会展开次级类别卡。
+// 函数保留为空 stub,防止 main.js 在 lang/star 联动中误触发不存在函数;
+// 后续如果 main.js 清理掉 renderInfraTree 引用,可以整体删除。
+function renderInfraTree() { /* no-op: 分类树已合并到模块卡区 */ }
 
 /* ============ ALL PRODUCTS — 模块卡 + 列表合并 ============ */
 // 模块卡:点击切换 activeCategory 筛选器,后台与下方列表共享同一 items[]
 // AI Security 单独渲染:特化卡(粉色) + 公司标签内联展开
+// 选中大类后,搜索框下方会展开次级类别卡(activeSubCategory),可继续缩小范围
 let activeCategory = 'all';
+let activeSubCategory = 'all';
 const modulesEl = document.getElementById('modules');
+const subModulesEl = document.getElementById('subModules');
+
+/* 渲染次级类别卡:仅在选中某个大类(非 AI Security,只有一个子类别)时显示 */
+function renderSubModules() {
+  if (!subModulesEl) return;
+  if (activeCategory === 'all' || activeCategory === 'AI Security') {
+    subModulesEl.hidden = true;
+    subModulesEl.innerHTML = '';
+    return;
+  }
+  // 当前大类的子类别 + 在该子类别下的项目数
+  const inCat = items.filter(i => i.category === activeCategory);
+  const subSet = [];
+  const seen = new Set();
+  for (const it of inCat) {
+    if (it.subCategory && !seen.has(it.subCategory)) {
+      seen.add(it.subCategory);
+      subSet.push(it.subCategory);
+    }
+  }
+  if (subSet.length === 0) {
+    subModulesEl.hidden = true;
+    subModulesEl.innerHTML = '';
+    return;
+  }
+  const allActive = (activeSubCategory === 'all');
+  const labelAll = i18n.t('filter.all');
+  const chips = [
+    `<span class="sub-mod sub-mod-all${allActive ? ' active' : ''}" data-sub="all">${labelAll} <span class="sub-mod-count">${inCat.length}</span></span>`,
+    ...subSet.map(s => {
+      const cnt = inCat.filter(i => i.subCategory === s).length;
+      const isActive = (activeSubCategory === s);
+      const name = subCatDisplay[s] || s;
+      return `<span class="sub-mod${isActive ? ' active' : ''}" data-sub="${name.replace(/"/g,'&quot;')}">${name} <span class="sub-mod-count">${cnt}</span></span>`;
+    })
+  ].join('');
+  subModulesEl.innerHTML = `<span class="sub-modules-label">${i18n.t('filter.subLabel')}</span>${chips}`;
+  subModulesEl.hidden = false;
+
+  // 点击:相同子类别再点一次 → 回到 all(只保留大类过滤)
+  subModulesEl.querySelectorAll('.sub-mod').forEach(el => {
+    el.addEventListener('click', () => {
+      const next = el.dataset.sub;
+      activeSubCategory = (activeSubCategory === next) ? 'all' : next;
+      currentPage = 1;
+      renderSubModules();
+      renderAllProducts();
+    });
+  });
+}
 
 Object.entries(moduleMeta).forEach(([mname, mdata]) => {
   const total = items.filter(i => i.category === mname).length;
@@ -246,10 +190,13 @@ Object.entries(moduleMeta).forEach(([mname, mdata]) => {
   // 卡片点击 → 切换 category 筛选(同其他模块卡)
   div.addEventListener('click', () => {
     activeCategory = (activeCategory === mname) ? 'all' : mname;
+    // 切换大类时重置次级类别,避免和新大类的子类别错配
+    activeSubCategory = 'all';
     document.querySelectorAll('.mod').forEach(m => {
       m.classList.toggle('active', m.dataset.category === activeCategory);
     });
     currentPage = 1;
+    renderSubModules();
     renderAllProducts();
   });
   modulesEl.appendChild(div);
@@ -310,6 +257,7 @@ function renderAllProducts() {
   const filtered = items
     .filter(item => {
       if (activeCategory !== 'all' && item.category !== activeCategory) return false;
+      if (activeSubCategory !== 'all' && item.subCategory !== activeSubCategory) return false;
       if (activeApType !== 'all' && item.type !== activeApType) return false;
       if (activeStarOnly && !starred.has(item.name)) return false;
       if (q && !productMatches(item, q)) return false;

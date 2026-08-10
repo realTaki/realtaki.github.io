@@ -92,6 +92,7 @@
       'filter.both':                '混合',
       'filter.star':                '⭐ 已星标',
       'filter.starTitle':           '只看已星标的项目',
+      'filter.subLabel':            '次级分类：',
 
       'th.name':                    '名称',
       'th.type':                    '类型',
@@ -272,6 +273,7 @@
       'filter.os':                  'Open Source',
       'filter.co':                  'Company',
       'filter.both':                'Hybrid',
+      'filter.subLabel':            'Sub-category:',
       'filter.star':                '⭐ Starred',
       'filter.starTitle':           'Show starred items only',
 

@@ -10,12 +10,12 @@
 // 整页就废了。这里把"必需函数"集中检查,缺失就打印一条明确诊断,跳过对应初始化。
 // 静态 HTML / data-i18n 仍然能渲染,只是动态内容(表格 / 分类树 / 洞察卡)会缺席。
 const _missing = [];
-['renderStats','renderAllProducts','renderInfraTree','renderPager']
+['renderStats','renderAllProducts','renderSubModules','renderPager']
   .forEach(fn => { if (typeof window[fn] !== 'function') _missing.push(fn + '()'); });
 if (_missing.length) {
   console.error('[main.js] missing render functions:', _missing.join(', '),
     '\n         → 上游 js/render.js 大概率没加载成功(检查 DevTools Network 标签)。');
-  console.error('[main.js] 页面会以"静态 HTML + 中/英切换(静态部分)"呈现,表格 / 分类树 / 洞察卡等动态内容不会渲染。');
+  console.error('[main.js] 页面会以"静态 HTML + 中/英切换(静态部分)"呈现,表格 / 次级类别卡 / 洞察卡等动态内容不会渲染。');
 }
 
 /* ============== 1. HERO / INSIGHTS 统计 ============== */
@@ -24,8 +24,8 @@ if (typeof renderStats === 'function') renderStats();
 /* ============== 2. 全产品表格 + 事件绑定 ============== */
 if (typeof renderAllProducts === 'function') renderAllProducts();
 
-/* ============== 2.5 Model Infra 三层结构树 ============== */
-if (typeof renderInfraTree === 'function') renderInfraTree();
+/* ============== 2.5 次级类别卡(选中大类时展开) ============== */
+if (typeof renderSubModules === 'function') renderSubModules();
 
 // 事件绑定仅在 render.js 正常加载时才有意义(它定义了 apSearch / currentPage 等)。
 if (typeof renderAllProducts === 'function') {
@@ -70,8 +70,8 @@ if (typeof renderAllProducts === 'function') {
   });
 }
 
-/* ============== 星标联动:状态变更 → 重渲染表格 + 分类树 + 统计 ============== */
-// 来自 js/star.js 的 stars:changed 事件,任意位置(表格 / 分类树)切换后
+/* ============== 星标联动:状态变更 → 重渲染表格 + 统计 ============== */
+// 来自 js/star.js 的 stars:changed 事件,任意位置切换星标后
 // 自动同步所有视图,无需各自手动调 re-render。
 document.addEventListener('stars:changed', () => {
   // 同步顶部"⭐ 已星标 (n)"计数
@@ -79,18 +79,17 @@ document.addEventListener('stars:changed', () => {
   if (cntEl && typeof StarStore !== 'undefined') {
     cntEl.textContent = String(StarStore.getStarred().size);
   }
-  // 表格 + 分类树都重渲染(保持筛选/页码不变)——只在 render.js 在线时调用
+  // 表格重渲染(保持筛选/页码不变)——只在 render.js 在线时调用
   if (typeof renderAllProducts === 'function') renderAllProducts();
-  if (typeof renderInfraTree === 'function') renderInfraTree();
 });
 
 /* ============== 语言切换联动:lang:changed → 重渲染所有视图 ============== */
 // 来自 js/i18n.js 的 lang:changed 事件,切换语言后自动同步所有动态内容。
-// 表格描述、洞察卡、统计 delta、分类树、模态都跟着新语言走。
+// 表格描述、洞察卡、统计 delta、模态、次级类别卡都跟着新语言走。
 document.addEventListener('lang:changed', () => {
   // 静态 data-i18n 节点已由 i18n.setLang() 处理;这里只重渲染动态视图。
   if (typeof renderStats === 'function') renderStats();
-  if (typeof renderInfraTree === 'function') renderInfraTree();
+  if (typeof renderSubModules === 'function') renderSubModules();
   if (typeof renderAllProducts === 'function') renderAllProducts();
   // 如果模态打开,关闭它(避免半英文半中文;用户重新点开时用新语言展示)
   if (typeof closeModal === 'function' && document.getElementById('modalBg').classList.contains('active')) {

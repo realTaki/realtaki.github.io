@@ -196,6 +196,48 @@
   .mod-detail h4 { font-size: 18px; font-weight: 700; margin: 0 0 6px; }
   .mod-detail .mod-desc { color: var(--c-ink3); font-size: 13px; margin-bottom: 18px; }
 
+  /* ============ 次级类别卡(子筛选,只在选中大类时显示) ============ */
+  .sub-modules {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin-top: 12px; padding: 12px 16px;
+    background: #fafafa; border: 1px solid var(--c-line);
+    border-radius: 14px;
+  }
+  .sub-modules[hidden] { display: none !important; }
+  .sub-modules-label {
+    font-size: 12px; font-weight: 600; color: var(--c-ink3);
+    margin-right: 4px; letter-spacing: 0.04em;
+  }
+  .sub-mod {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    background: white; border: 1px solid var(--c-line);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+    color: var(--c-ink2); cursor: pointer;
+    transition: all 0.15s;
+  }
+  .sub-mod:hover {
+    border-color: var(--b-blue); color: var(--b-blue);
+    transform: translateY(-1px);
+  }
+  .sub-mod.active {
+    background: var(--primary-soft); border-color: var(--b-blue);
+    color: var(--b-blue-deep); font-weight: 600;
+  }
+  .sub-mod-all {
+    border-style: dashed; color: var(--c-ink3);
+  }
+  .sub-mod-all.active {
+    background: var(--c-ink); border-color: var(--c-ink); color: white;
+    border-style: solid;
+  }
+  .sub-mod-count {
+    font-size: 11px; color: var(--c-ink3);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .sub-mod.active .sub-mod-count { color: inherit; }
+
   .tool-list { display: flex; flex-direction: column; gap: 6px; }
   .tool-tag {
     display: flex; align-items: center; justify-content: space-between;
@@ -754,6 +796,8 @@
       <button class="filter-btn" data-apType="both" data-i18n="filter.both">混合</button>
       <button class="filter-btn star-filter-btn" data-apStar="1" title="只看已星标的项目" data-i18n-attr="title:filter.starTitle">⭐ <span data-i18n="filter.star">已星标</span> (<span data-stat="starCount">0</span>)</button>
     </div>
+    <!-- 次级类别卡:仅在选中某一大类时显示 -->
+    <div class="sub-modules" id="subModules" hidden></div>
     <div class="table-wrap" style="margin-top:14px;">
       <table class="ap-table">
         <thead>
@@ -773,17 +817,6 @@
       </table>
     </div>
     <div id="apPager" class="ap-pager"></div>
-  </div>
-</section>
-
-<!-- MODEL INFRA 三层结构树 -->
-<section>
-  <div class="container">
-    <div class="sec-head">
-      <h2><span class="sec-num">02</span><span data-i18n="sec.infraTree.h2">分类树 · 12 大类 → 子分类</span></h2>
-      <span class="sub" data-stat="infraSummary"></span>
-    </div>
-    <div class="infra-tree" id="infraTree"></div>
   </div>
 </section>
 </main>
