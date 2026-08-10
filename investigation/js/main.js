@@ -112,7 +112,7 @@ function applyPage(page) {
   document.querySelectorAll('.page').forEach(el => {
     el.hidden = el.dataset.page !== safe;
   });
-  document.querySelectorAll('.site-tab').forEach(tab => {
+  document.querySelectorAll('.page-switch').forEach(tab => {
     const match = tab.dataset.page === safe;
     tab.setAttribute('aria-selected', match ? 'true' : 'false');
     tab.setAttribute('tabindex', match ? '0' : '-1');
@@ -124,7 +124,7 @@ function applyPage(page) {
 }
 
 function bindTabs() {
-  document.querySelectorAll('.site-tab').forEach(tab => {
+  document.querySelectorAll('.page-switch').forEach(tab => {
     tab.addEventListener('click', (e) => {
       const page = tab.dataset.page;
       if (!PAGES.includes(page)) return;
