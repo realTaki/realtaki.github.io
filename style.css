@@ -81,7 +81,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── Container ── */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: var(--container-max, 1200px); margin: 0 auto; padding: 0 24px; }
 @media (max-width: 640px) { .container { padding: 0 16px; } }
 
 /* =================================================================

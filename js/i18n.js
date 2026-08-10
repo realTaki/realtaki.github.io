@@ -412,13 +412,14 @@
 
       try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
 
-      // Mirror to URL hash (preserves investigation page route e.g. #data?lang=en)
+      // Mirror to URL hash (preserves investigation page route e.g. #data?lang=en;
+      // root URL renders as #?lang=en so the lang param stays parseable)
       try {
         const raw = (location.hash || '').replace(/^#/, '');
         const [path, query] = raw.split('?');
         const params = new URLSearchParams(query || '');
         params.set('lang', next);
-        const newHash = '#' + (path || '') + (path ? '?' : '') + params.toString();
+        const newHash = '#' + (path || '') + '?' + params.toString();
         if (location.hash !== newHash && (path || next !== 'zh')) {
           history.replaceState(null, '', newHash);
         }
