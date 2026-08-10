@@ -5,52 +5,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Agent Product Investigation · realTaki</title>
 <meta name="description" content="Agent Infrastructure Landscape 2026 — interactive data visualization" />
-<meta name="theme-color" content="#3b82f6" />
+<meta name="theme-color" content="#00aeec" />
 <link rel="icon" href="https://github.com/realTaki.png" />
 <link rel="stylesheet" href="../style.css" />
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
 <style>
+  /* ── Investigation page variables — aliased from shared tokens ── */
   :root {
-    --bg: #fafafa; --surface: #ffffff; --line: #e7e7e8; --line-soft: #f1f1f2;
-    --ink: #14171e; --ink-2: #3a4256; --ink-3: #71717a;
-    --primary: #3b82f6; --primary-soft: #eff6ff; --primary-strong: #1d4ed8;
-    --accent: #f59e0b; --warn: #f43f5e; --info: #3b82f6; --violet: #8b5cf6;
-    /* depth */
-    --shadow-sm: 0 1px 2px rgba(20, 23, 30, 0.04), 0 1px 3px rgba(20, 23, 30, 0.04);
-    --shadow-md: 0 4px 12px rgba(20, 23, 30, 0.06), 0 2px 4px rgba(20, 23, 30, 0.04);
-    --shadow-lg: 0 16px 40px rgba(20, 23, 30, 0.10), 0 4px 12px rgba(20, 23, 30, 0.06);
-    --shadow-glow: 0 8px 28px rgba(59, 130, 246, 0.18);
-    --grad-primary: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    --grad-hero: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(59, 130, 246, 0.08), transparent 70%);
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --bg: var(--c-bg, #eef4f9);
+    --surface: var(--c-surface, #ffffff);
+    --line: var(--c-line);
+    --line-soft: var(--c-line-soft);
+    --ink: var(--c-ink);
+    --ink-2: var(--c-ink2);
+    --ink-3: var(--c-ink3);
+    --primary: var(--b-blue);
+    --primary-soft: rgba(0, 174, 236, 0.08);
+    --primary-strong: var(--b-blue-deep);
+    --accent: #f59e0b;
+    --warn: #f43f5e;
+    --info: var(--b-blue);
+    --violet: #8b5cf6;
+    --shadow-sm: var(--shadow-sm);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-glow: 0 8px 28px rgba(0, 174, 236, 0.22);
+    --grad-primary: linear-gradient(135deg, var(--b-blue) 0%, var(--b-blue-deep) 100%);
+    --grad-hero: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0, 174, 236, 0.08), transparent 70%);
+    --ease-out: var(--ease);
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+
   body {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
-                 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
     color: var(--ink);
     background-color: var(--bg);
     background-image: var(--grad-hero);
     background-repeat: no-repeat;
-    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    line-height: 1.55;
   }
-  /* smoother scrollbars in webkit */
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; border: 2px solid var(--bg); }
-  ::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
-  .mono { font-family: 'JetBrains Mono', monospace; }
 
   .container { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
   @media (max-width: 768px) { .container { padding: 0 18px; } }
 
   .hero { padding: 64px 0 80px; border-bottom: 1px solid var(--line);
     background:
-      radial-gradient(ellipse 60% 80% at 100% 0%, rgba(59, 130, 246, 0.06), transparent 60%),
-      radial-gradient(ellipse 50% 60% at 0% 20%, rgba(59, 130, 246, 0.04), transparent 60%),
+      radial-gradient(ellipse 60% 80% at 100% 0%, rgba(0, 174, 236, 0.06), transparent 60%),
+      radial-gradient(ellipse 50% 60% at 0% 20%, rgba(0, 174, 236, 0.04), transparent 60%),
       linear-gradient(180deg, #ffffff 0%, #fafafa 100%); }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
