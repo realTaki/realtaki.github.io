@@ -664,13 +664,6 @@
   /* nav separator + current-site indicator (investigation-specific overrides) */
   .tab-sep { display: inline-block; width: 1px; height: 20px; background: var(--line); margin: 0 4px; align-self: center; }
   .site-tab.current, .site-tab.current:hover { color: var(--primary-strong); background: var(--primary-soft); font-weight: 600; }
-  .site-tab.page-switch[aria-selected="true"] {
-    color: var(--primary-strong); background: var(--primary-soft);
-  }
-  .site-tab.page-switch[aria-selected="true"]::after {
-    content: ""; position: absolute; left: 14px; right: 14px; bottom: 2px;
-    height: 2px; border-radius: 2px; background: var(--primary);
-  }
 
   /* ============ MODEL INFRA 三层树 ============ */
   .infra-tree { display: grid; gap: 14px; }
