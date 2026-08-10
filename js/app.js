@@ -22,14 +22,17 @@
 
   /* ── Active nav ── */
   var currentPath = location.pathname.replace(/\/$/, '') || '/';
+  // Pre-build a base URL so we can resolve relative hrefs (e.g. './' from /blog/index.html).
+  var baseHref = document.querySelector('base[href]') ? document.querySelector('base[href]').href
+                 : location.href.substring(0, location.href.lastIndexOf('/') + 1);
   document.querySelectorAll('.site-nav a').forEach(function (a) {
     var href = a.getAttribute('href');
-    if (!href) return;
-    // Resolve relative paths for matching
-    var linkPath = href.replace(/\/$/, '') || '/';
-    if (href.startsWith('/')) {
-      // absolute path: exact match
-      if (currentPath === linkPath) a.classList.add('active');
-    }
+    if (!href || href.startsWith('#') || href.startsWith('mailto:')) return;
+    // Resolve to an absolute path, then normalize (strip trailing slash, drop .html).
+    var resolved;
+    try { resolved = new URL(href, baseHref).pathname; }
+    catch (e) { return; }
+    var linkPath = resolved.replace(/\/$/, '').replace(/\.html$/, '') || '/';
+    if (currentPath === linkPath) a.classList.add('active');
   });
 })();
