@@ -50,6 +50,12 @@
 
       'site.description':           'Coder & Hacker · AI · 自动驾驶 · 联邦学习',
 
+      /* ========== BLOG ========== */
+      'blog.title':                 '博客 · realTaki',
+      'blog.description':           'realTaki 的写作:AI · 系统设计 · 工程随笔',
+      'blog.post.bilingual':        '🌐 双语长文 · <a href="#english">English</a> &nbsp;|&nbsp; <a href="#chinese">中文</a>',
+      'blog.post.back':             '← 返回首页',
+
       /* ========== INVESTIGATION ========== */
       'nav.tabs.aria':              '页面内导航',
       'site.brand':                 '产品调研',
