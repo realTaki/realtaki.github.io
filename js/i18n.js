@@ -55,7 +55,7 @@
       'blog.title':                 '博客 · realTaki',
       'blog.description':           'realTaki 的写作:AI · 系统设计 · 工程随笔',
       'blog.post.bilingual':        '🌐 双语长文 · <a href="#english">English</a> &nbsp;|&nbsp; <a href="#chinese">中文</a>',
-      'blog.post.lang.zh':          '�🇳 中文',
+      'blog.post.lang.zh':          '🇨🇳 中文',
       'blog.post.lang.both':        '🌐 双语',
       'blog.post.lang.en':          '🇺🇸 English',
       'blog.post.back':             '← 返回首页',
