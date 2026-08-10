@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="170" viewBox="0 0 495 170" fill="none" role="img" aria-label="realTaki's top languages">
+  <style>
+    .header { font: 600 18px 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #FB7299; }
+    .lang   { font: 600 13px 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #ffffff; }
+    .pct    { font: 400 12px 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #a9b7c6; }
+    .note   { font: 400 10px 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #6b7385; }
+  </style>
+
+  <rect x="0.5" y="0.5" rx="4.5" height="99%" width="99%" fill="#141321" stroke="#FB7299" stroke-opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="25" y="35" class="header">Top Languages</text>
+
+  <!-- Bar background -->
+  <g transform="translate(25,50)">
+    <!-- Python 38.4% -->
+    <rect x="0"   y="0" width="170.5" height="8" fill="#3572A5"/>
+    <!-- TypeScript 22.1% -->
+    <rect x="170.5" y="0" width="98.2" height="8" fill="#3178c6"/>
+    <!-- JavaScript 14.6% -->
+    <rect x="268.7" y="0" width="64.9" height="8" fill="#f1e05a"/>
+    <!-- C++ 9.3% -->
+    <rect x="333.6" y="0" width="41.3" height="8" fill="#f34b7d"/>
+    <!-- Go 6.8% -->
+    <rect x="374.9" y="0" width="30.2" height="8" fill="#00ADD8"/>
+    <!-- Other 8.8% -->
+    <rect x="405.1" y="0" width="39.9" height="8" fill="#a9b7c6"/>
+  </g>
+
+  <!-- Legend rows -->
+  <g transform="translate(25,80)">
+    <rect x="0" y="0" width="10" height="10" fill="#3572A5"/>
+    <text x="18" y="9" class="lang">Python</text>
+    <text x="105" y="9" class="pct">38.40%</text>
+  </g>
+
+  <g transform="translate(180,80)">
+    <rect x="0" y="0" width="10" height="10" fill="#3178c6"/>
+    <text x="18" y="9" class="lang">TypeScript</text>
+    <text x="120" y="9" class="pct">22.10%</text>
+  </g>
+
+  <g transform="translate(335,80)">
+    <rect x="0" y="0" width="10" height="10" fill="#f1e05a"/>
+    <text x="18" y="9" class="lang">JavaScript</text>
+    <text x="125" y="9" class="pct">14.60%</text>
+  </g>
+
+  <g transform="translate(25,105)">
+    <rect x="0" y="0" width="10" height="10" fill="#f34b7d"/>
+    <text x="18" y="9" class="lang">C++</text>
+    <text x="80" y="9" class="pct">9.30%</text>
+  </g>
+
+  <g transform="translate(180,105)">
+    <rect x="0" y="0" width="10" height="10" fill="#00ADD8"/>
+    <text x="18" y="9" class="lang">Go</text>
+    <text x="55" y="9" class="pct">6.80%</text>
+  </g>
+
+  <g transform="translate(335,105)">
+    <rect x="0" y="0" width="10" height="10" fill="#a9b7c6"/>
+    <text x="18" y="9" class="lang">Other</text>
+    <text x="75" y="9" class="pct">8.80%</text>
+  </g>
+
+  <!-- Footer note -->
+  <text x="25" y="153" class="note">Note: 数字为示例静态占位 — 真实占比以 GitHub 仓库统计为准</text>
+</svg>

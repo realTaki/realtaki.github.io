@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" fill="none" role="img" aria-label="realTaki's GitHub stats">
+  <style>
+    .header { font: 600 18px 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #FB7299; }
+    .stat   { font: 600 14px 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #ffffff; }
+    .label  { font: 400 13px 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #a9b7c6; }
+    .note   { font: 400 10px 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #6b7385; }
+    .icon   { fill: #00A1D6; }
+  </style>
+
+  <rect x="0.5" y="0.5" rx="4.5" height="99%" width="99%" fill="#141321" stroke="#FB7299" stroke-opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="25" y="35" class="header">realTaki's GitHub Stats</text>
+
+  <!-- Star icon + label -->
+  <g transform="translate(25,60)">
+    <path class="icon" d="M8 0L10.06 5.27L15.5 5.39L11.13 8.81L12.74 14.25L8 11.27L3.26 14.25L4.87 8.81L0.5 5.39L5.94 5.27Z" transform="scale(1.1)"/>
+    <text x="22" y="13" class="label">Stars</text>
+    <text x="80" y="13" class="stat">128</text>
+  </g>
+
+  <!-- Fork icon + label -->
+  <g transform="translate(180,60)">
+    <path class="icon" d="M2.5 1.5C3.32843 1.5 4 2.17157 4 3C4 3.82843 3.32843 4.5 2.5 4.5C1.67157 4.5 1 3.82843 1 3C1 2.17157 1.67157 1.5 2.5 1.5ZM1 5.5H4V8H1V5.5ZM5 1.5H8V4.5H5V1.5ZM5 5.5H8V8H5V5.5Z" transform="translate(2,2)"/>
+    <text x="22" y="13" class="label">Forks</text>
+    <text x="80" y="13" class="stat">36</text>
+  </g>
+
+  <!-- PR icon + label -->
+  <g transform="translate(335,60)">
+    <circle class="icon" cx="6" cy="6" r="3" fill="none" stroke="#00A1D6" stroke-width="1.4"/>
+    <path class="icon" d="M9 6H13M13 6L11 4M13 6L11 8" stroke="#00A1D6" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <text x="22" y="13" class="label">PRs</text>
+    <text x="80" y="13" class="stat">47</text>
+  </g>
+
+  <!-- Commit icon + label -->
+  <g transform="translate(25,95)">
+    <circle class="icon" cx="6" cy="6" r="5" fill="none" stroke="#00A1D6" stroke-width="1.4"/>
+    <circle class="icon" cx="6" cy="6" r="1.6"/>
+    <text x="22" y="13" class="label">Commits (2026)</text>
+    <text x="160" y="13" class="stat">512</text>
+  </g>
+
+  <!-- Issues icon + label -->
+  <g transform="translate(25,125)">
+    <circle class="icon" cx="6" cy="6" r="5" fill="none" stroke="#00A1D6" stroke-width="1.4"/>
+    <circle class="icon" cx="6" cy="6" r="2"/>
+    <text x="22" y="13" class="label">Issues</text>
+    <text x="80" y="13" class="stat">12</text>
+  </g>
+
+  <!-- Review icon + label -->
+  <g transform="translate(180,125)">
+    <path class="icon" d="M2 3H14M2 7H14M2 11H10" stroke="#00A1D6" stroke-width="1.4" stroke-linecap="round"/>
+    <text x="22" y="13" class="label">Reviewed</text>
+    <text x="110" y="13" class="stat">89</text>
+  </g>
+
+  <!-- Repo icon + label -->
+  <g transform="translate(335,125)">
+    <path class="icon" d="M2 2H14V14H10V10H6V14H2V2Z" fill="none" stroke="#00A1D6" stroke-width="1.4" stroke-linejoin="round"/>
+    <text x="22" y="13" class="label">Repos</text>
+    <text x="80" y="13" class="stat">24</text>
+  </g>
+
+  <!-- Footer note -->
+  <text x="25" y="178" class="note">Note: 数字为示例静态占位 — 如需实时数据请部署自己的 github-readme-stats 实例</text>
+</svg>
