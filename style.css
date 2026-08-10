@@ -155,9 +155,34 @@ img { max-width: 100%; display: block; }
   background: var(--c-line); margin: 0 6px; align-self: center;
 }
 
+/* ── Language toggle (shared, site-wide) ── */
+.lang-toggle {
+  display: inline-flex; align-items: center;
+  margin-left: 6px; padding: 0;
+  background: var(--c-line-soft); border: 1px solid var(--c-line);
+  border-radius: var(--radius-full); overflow: hidden;
+  font-family: inherit; cursor: pointer;
+  flex-shrink: 0;
+}
+.lang-toggle .lang-side {
+  padding: 5px 10px; font-size: 12px; font-weight: 500;
+  color: var(--c-ink3); background: transparent; border: 0;
+  cursor: pointer; transition: color 0.15s, background 0.15s;
+  line-height: 1;
+}
+.lang-toggle .lang-side:hover { color: var(--c-ink); }
+.lang-toggle .lang-side.active {
+  background: var(--c-surface); color: var(--b-blue-deep);
+  font-weight: 700; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.lang-toggle .lang-sep {
+  width: 1px; height: 14px; background: var(--c-line);
+}
+
 @media (max-width: 520px) {
   .site-brand span.brand-text { display: none; }
   .site-nav a { padding: 5px 10px; font-size: 12px; }
+  .lang-toggle .lang-side { padding: 4px 8px; font-size: 11px; }
 }
 
 /* =================================================================
