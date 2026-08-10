@@ -661,32 +661,16 @@
     .site-tab { padding: 7px 10px; font-size: 12px; }
   }
 
-  /* language toggle: pill with two halves, active side bolded */
-  .lang-toggle {
-    display: inline-flex; align-items: center;
-    margin-left: 8px; padding: 0;
-    background: var(--line-soft); border: 1px solid var(--line);
-    border-radius: 999px; overflow: hidden;
-    font-family: inherit; cursor: pointer;
-  }
-  .lang-toggle .lang-side {
-    padding: 6px 12px; font-size: 12px; font-weight: 500;
-    color: var(--ink-3); background: transparent; border: 0;
-    cursor: pointer; transition: color 0.15s, background 0.15s;
-    line-height: 1;
-  }
-  .lang-toggle .lang-side:hover { color: var(--ink); }
-  .lang-toggle .lang-side.active {
-    background: var(--surface); color: var(--primary-strong);
-    font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  }
-  .lang-toggle .lang-sep {
-    width: 1px; height: 14px; background: var(--line);
-  }
-
-  /* nav separator + current-site indicator */
+  /* nav separator + current-site indicator (investigation-specific overrides) */
   .tab-sep { display: inline-block; width: 1px; height: 20px; background: var(--line); margin: 0 4px; align-self: center; }
   .site-tab.current, .site-tab.current:hover { color: var(--primary-strong); background: var(--primary-soft); font-weight: 600; }
+  .site-tab.page-switch[aria-selected="true"] {
+    color: var(--primary-strong); background: var(--primary-soft);
+  }
+  .site-tab.page-switch[aria-selected="true"]::after {
+    content: ""; position: absolute; left: 14px; right: 14px; bottom: 2px;
+    height: 2px; border-radius: 2px; background: var(--primary);
+  }
 
   /* ============ MODEL INFRA 三层树 ============ */
   .infra-tree { display: grid; gap: 14px; }
@@ -927,8 +911,9 @@
   </div>
 </div>
 <!-- 单一数据源: js/data.js。其余模块按依赖顺序加载。
-     全部为 classic script，可直接双击 index.html 打开，无需本地服务器。 -->
-<script src="js/i18n.js" onerror="console.error('[load fail] js/i18n.js')"></script>
+     全部为 classic script，可直接双击 index.html 打开，无需本地服务器。
+     i18n 引擎由站点级 /js/i18n.js 提供。 -->
+<script src="../js/i18n.js" onerror="console.error('[load fail] ../js/i18n.js')"></script>
 <script src="js/data.js" onerror="console.error('[load fail] js/data.js')"></script>
 <script src="js/derived.js" onerror="console.error('[load fail] js/derived.js')"></script>
 <script src="js/star.js" onerror="console.error('[load fail] js/star.js')"></script>
