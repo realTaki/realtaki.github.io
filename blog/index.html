@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Blog · realTaki</title>
-<meta name="description" content="realTaki 的写作：AI、系统设计、Multi-Agent 等主题。中英双语长文。" />
+<title data-i18n="blog.title">Blog · realTaki</title>
+<meta name="description" content="realTaki 的写作：AI、系统设计、Multi-Agent 等主题。中英双语长文。" data-i18n-attr="content:blog.description" />
 <meta name="theme-color" content="#00aeec" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="stylesheet" href="../style.css" />
@@ -122,26 +122,14 @@
 
 <!-- ===== Footer ===== -->
 <footer class="site-foot">
-  <div class="container">© 2026 realTaki · Built with ❤️ &amp; hosted on GitHub Pages</div>
+  <div class="container" data-i18n="footer.copyright">© 2026 realTaki · Built with ❤️ &amp; hosted on GitHub Pages</div>
 </footer>
 
 <!-- ===== Back-to-top button (shared) ===== -->
-<button class="totop" type="button" aria-label="Back to top" data-i18n-attr="aria-label:nav.backToTop">↑</button>
-<script>
-  // Back-to-top: show after scrolling, smooth scroll on click.
-  (function () {
-    var btn = document.querySelector('.totop');
-    if (!btn) return;
-    var toggle = function () {
-      btn.classList.toggle('show', window.scrollY > 320);
-    };
-    window.addEventListener('scroll', toggle, { passive: true });
-    toggle();
-    btn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  })();
-</script>
+<button class="totop" id="totop" type="button" aria-label="Back to top" data-i18n-attr="aria-label:nav.backToTop">↑</button>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/app.js"></script>
 
 </body>
 </html>

@@ -26,6 +26,7 @@
       'nav.blog':                   '博客',
       'nav.investigation':          '调研',
       'nav.langToggle':             '切换语言',
+      'nav.backToTop':              '回到顶部',
 
       'footer.copyright':           '© 2026 realTaki · Built with ❤️ & hosted on GitHub Pages',
       'footer.nav':                 '首页 · 博客 · 调研',
@@ -209,6 +210,7 @@
       'nav.blog':                   'Blog',
       'nav.investigation':          'Investigation',
       'nav.langToggle':             'Switch language',
+      'nav.backToTop':              'Back to top',
 
       'footer.copyright':           '© 2026 realTaki · Built with ❤️ & hosted on GitHub Pages',
       'footer.nav':                 'Home · Blog · Investigation',
@@ -231,12 +233,6 @@
       'home.contact.gh':            '🐙 github.com/realTaki',
 
       'site.description':           'Coder & Hacker · AI · Autonomous Driving · Federated Learning',
-
-      /* ========== BLOG ========== */
-      'blog.title':                 'Blog · realTaki',
-      'blog.description':           'Writing by realTaki — AI, system design, engineering notes',
-      'blog.post.bilingual':        '🌐 Bilingual long read · <a href="#english">English</a> &nbsp;|&nbsp; <a href="#chinese">中文</a>',
-      'blog.post.back':             '← Back to home',
 
       /* ========== BLOG ========== */
       'blog.title':                 'Blog · realTaki',
