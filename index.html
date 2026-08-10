@@ -3,13 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>realTaki</title>
-<meta name="description" content="Coder & Hacker · AI · 自动驾驶 · 联邦学习" />
+<title data-i18n="home.title">realTaki</title>
+<meta name="description" content="Coder & Hacker · AI · 自动驾驶 · 联邦学习" data-i18n-attr="content:site.description" />
 <meta name="theme-color" content="#00aeec" />
 <link rel="icon" href="https://github.com/realTaki.png" />
 <link rel="stylesheet" href="style.css" />
 <style>
-  /* ── Homepage background ── */
   body {
     background: #eef4f9;
     background-image:
@@ -19,8 +18,6 @@
       radial-gradient(34rem 24rem at 8%  78%,  rgba(0, 134, 201, 0.12), transparent 68%);
     background-attachment: fixed;
   }
-
-  /* ── Banner ── */
   .banner {
     position: relative; height: 190px;
     background: linear-gradient(115deg, var(--b-blue-deep) 0%, var(--b-blue) 38%, var(--b-blue-soft) 66%, var(--b-pink-soft) 100%);
@@ -41,7 +38,6 @@
     border-radius: 58% 58% 0 0 / 100% 100% 0 0;
   }
 
-  /* ── Profile card ── */
   .profile {
     display: flex; align-items: center; gap: 28px;
     margin-top: -66px; position: relative; z-index: 1;
@@ -64,7 +60,6 @@
   .bio { margin-top: 9px; font-weight: 700; font-size: 16px; }
   .tagline { color: var(--c-ink3); font-size: 13px; margin-top: 5px; }
 
-  /* ── Stats pills ── */
   .pills { display: flex; flex-wrap: wrap; gap: 11px; justify-content: center; margin: 28px 0 6px; }
   .pill {
     padding: 8px 18px; border-radius: var(--radius-full);
@@ -80,7 +75,6 @@
   .pill b { color: var(--b-blue); font-size: 15.5px; font-weight: 800; margin-left: 5px; }
   .pill.alt b { color: var(--b-pink); }
 
-  /* ── Homepage section headings ── */
   h2.home-sec {
     position: relative;
     font-size: 21px; font-weight: 800; letter-spacing: 0.3px;
@@ -94,11 +88,7 @@
     background: linear-gradient(180deg, var(--b-blue), var(--b-pink));
     box-shadow: 0 0 12px rgba(0, 174, 236, 0.55);
   }
-  h2.home-sec .more { font-size: 13px; font-weight: 600; }
-  h2.home-sec .more a { color: var(--c-ink3); transition: color 0.15s; }
-  h2.home-sec .more a:hover { color: var(--b-blue); }
 
-  /* ── Homepage cards (override shared .card with glass) ── */
   .card-grid { gap: 16px; }
   .card.home-card {
     background: var(--glass-bg);
@@ -114,7 +104,6 @@
   }
   .card.home-card .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
 
-  /* ── Stats images ── */
   .stats-img { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
   .stats-img img {
     max-width: 100%; border-radius: var(--radius);
@@ -123,7 +112,6 @@
   }
   .stats-img img:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 
-  /* ── Animations ── */
   @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
   .profile, .pills, h2.home-sec, .card-grid, .badge-row, .stats-img, .contact-row {
     animation: rise 0.6s var(--ease) both;
@@ -141,7 +129,6 @@
 </head>
 <body>
 
-<!-- ===== Site Header ===== -->
 <header class="site-head">
   <div class="container site-head-inner">
     <a class="site-brand" href="/">
@@ -149,31 +136,33 @@
       <span class="brand-text">realTaki</span>
     </a>
     <nav class="site-nav">
-      <a href="/" class="active">Home</a>
-      <a href="/blog/">Blog</a>
-      <a href="/investigation/">Investigation</a>
+      <a href="/" class="active" data-i18n="nav.home">Home</a>
+      <a href="/blog/" data-i18n="nav.blog">Blog</a>
+      <a href="/investigation/" data-i18n="nav.investigation">Investigation</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <button class="lang-toggle" type="button" data-i18n-attr="aria-label:nav.langToggle">
+        <span class="lang-side" data-lang-side="zh" aria-pressed="true">中</span>
+        <span class="lang-sep" aria-hidden="true"></span>
+        <span class="lang-side" data-lang-side="en" aria-pressed="false">EN</span>
+      </button>
     </nav>
   </div>
 </header>
 
-<!-- ===== Banner ===== -->
 <div class="banner"></div>
 
-<!-- ===== Content ===== -->
 <div class="container" style="padding-bottom:70px;">
 
-  <!-- Profile -->
   <div class="profile glass-strong">
     <img class="avatar" src="https://github.com/realTaki.png" alt="realTaki avatar" />
     <div>
       <div class="name">realTaki</div>
-      <div class="meta-line">💎 LV6 正式会员 · ⭐ Pro · 🏷️ AI · 自动驾驶 · 联邦学习</div>
-      <div class="bio">Coder &amp; Hacker.</div>
-      <div class="tagline">🙃 哈。 · 📍 Edmonton, Alberta, CA · 🏢 UAlberta</div>
+      <div class="meta-line" data-i18n="home.meta">💎 LV6 正式会员 · ⭐ Pro · 🏷️ AI · 自动驾驶 · 联邦学习</div>
+      <div class="bio" data-i18n="home.bio">Coder &amp; Hacker.</div>
+      <div class="tagline" data-i18n="home.tagline">🙃 哈。 · 📍 Edmonton, Alberta, CA · 🏢 UAlberta</div>
     </div>
   </div>
 
-  <!-- Stats pills -->
   <div class="pills">
     <span class="pill">🐙 GitHub 粉丝 <b>25</b></span>
     <span class="pill alt">🐦 X 粉丝 <b>5209</b></span>
@@ -181,12 +170,11 @@
     <span class="pill alt">📦 仓库 <b>83</b></span>
   </div>
 
-  <!-- Latest posts -->
-  <h2 class="home-sec" id="posts"><span>📝 最新文章</span></h2>
+  <h2 class="home-sec" data-i18n="home.posts">📝 最新文章</h2>
   <div class="card-grid">
     <a class="card home-card" href="/blog/2026-08-09-designing-for-abundant-intelligence/">
-      <div class="card-title">Designing for Abundant Intelligence</div>
-      <div class="card-desc">不要围绕今天的大模型局限构建未来。中英双语长文。</div>
+      <div class="card-title" data-i18n="home.postTitle">Designing for Abundant Intelligence</div>
+      <div class="card-desc" data-i18n="home.postDesc">不要围绕今天的大模型局限构建未来。中英双语长文。</div>
       <div class="tags">
         <span class="tag ghost">📅 2026-08-09</span>
         <span class="tag">AI</span>
@@ -196,66 +184,27 @@
     </a>
   </div>
 
-  <!-- Open source contributions -->
-  <h2 class="home-sec"><span>🎬 我的投稿 · 参与的开源项目</span></h2>
+  <h2 class="home-sec" data-i18n="home.contrib">🎬 我的投稿 · 参与的开源项目</h2>
   <div class="card-grid">
-    <a class="card home-card" href="https://github.com/openai/CLIP">
-      <div class="card-title">⭐ openai/CLIP</div>
-      <div class="card-desc">Contrastive Language-Image Pretraining · 图文对齐预训练模型</div>
-      <div class="tags"><span class="tag">Jupyter</span><span class="tag pink">⭐ 34.2k</span><span class="tag">🍴 4k</span></div>
-    </a>
-    <a class="card home-card" href="https://github.com/ApolloAuto/apollo">
-      <div class="card-title">🚗 ApolloAuto/apollo</div>
-      <div class="card-desc">开放自动驾驶平台 · 百度出品</div>
-      <div class="tags"><span class="tag">C++</span><span class="tag pink">⭐ 26.8k</span><span class="tag">🍴 10k</span></div>
-    </a>
-    <a class="card home-card" href="https://github.com/TsinghuaAI/CPM">
-      <div class="card-title">🤖 TsinghuaAI/CPM</div>
-      <div class="card-desc">清华中文预训练模型初代</div>
-      <div class="tags"><span class="tag pink">⭐ 164</span></div>
-    </a>
-    <a class="card home-card" href="https://github.com/FederatedAI/FATE">
-      <div class="card-title">🔐 FederatedAI/FATE</div>
-      <div class="card-desc">工业级联邦学习框架</div>
-      <div class="tags"><span class="tag">Python</span><span class="tag pink">⭐ 6.1k</span><span class="tag">🍴 1.6k</span></div>
-    </a>
-    <a class="card home-card" href="https://github.com/bazelbuild/bazel">
-      <div class="card-title">🔧 bazelbuild/bazel</div>
-      <div class="card-desc">快 / 可扩展 / 多语言构建系统</div>
-      <div class="tags"><span class="tag">Java</span><span class="tag pink">⭐ 25.7k</span><span class="tag">🍴 4.6k</span></div>
-    </a>
-    <a class="card home-card" href="https://github.com/Turing-Project/WriteGPT">
-      <div class="card-title">📝 Turing-Project/WriteGPT</div>
-      <div class="card-desc">基于 GPT-2.0 的初代创作型 AI · 可扩展 / 可进化</div>
-      <div class="tags"><span class="tag">Python</span><span class="tag pink">⭐ 5.3k</span></div>
-    </a>
+    <a class="card home-card" href="https://github.com/openai/CLIP"><div class="card-title">⭐ openai/CLIP</div><div class="card-desc">Contrastive Language-Image Pretraining · 图文对齐预训练模型</div><div class="tags"><span class="tag">Jupyter</span><span class="tag pink">⭐ 34.2k</span><span class="tag">🍴 4k</span></div></a>
+    <a class="card home-card" href="https://github.com/ApolloAuto/apollo"><div class="card-title">🚗 ApolloAuto/apollo</div><div class="card-desc">开放自动驾驶平台 · 百度出品</div><div class="tags"><span class="tag">C++</span><span class="tag pink">⭐ 26.8k</span><span class="tag">🍴 10k</span></div></a>
+    <a class="card home-card" href="https://github.com/TsinghuaAI/CPM"><div class="card-title">🤖 TsinghuaAI/CPM</div><div class="card-desc">清华中文预训练模型初代</div><div class="tags"><span class="tag pink">⭐ 164</span></div></a>
+    <a class="card home-card" href="https://github.com/FederatedAI/FATE"><div class="card-title">🔐 FederatedAI/FATE</div><div class="card-desc">工业级联邦学习框架</div><div class="tags"><span class="tag">Python</span><span class="tag pink">⭐ 6.1k</span><span class="tag">🍴 1.6k</span></div></a>
+    <a class="card home-card" href="https://github.com/bazelbuild/bazel"><div class="card-title">🔧 bazelbuild/bazel</div><div class="card-desc">快 / 可扩展 / 多语言构建系统</div><div class="tags"><span class="tag">Java</span><span class="tag pink">⭐ 25.7k</span><span class="tag">🍴 4.6k</span></div></a>
+    <a class="card home-card" href="https://github.com/Turing-Project/WriteGPT"><div class="card-title">📝 Turing-Project/WriteGPT</div><div class="card-desc">基于 GPT-2.0 的初代创作型 AI · 可扩展 / 可进化</div><div class="tags"><span class="tag">Python</span><span class="tag pink">⭐ 5.3k</span></div></a>
   </div>
 
-  <!-- My projects -->
-  <h2 class="home-sec"><span>📦 我的项目 · top by stars</span></h2>
+  <h2 class="home-sec" data-i18n="home.projects">📦 我的项目 · top by stars</h2>
   <div class="card-grid">
-    <a class="card home-card" href="https://github.com/realTaki/DevRec">
-      <div class="card-title">⭐ DevRec</div><div class="card-desc">Python · ⭐ 5</div>
-    </a>
-    <a class="card home-card" href="https://github.com/realTaki/MAGI">
-      <div class="card-title">⭐ MAGI</div><div class="card-desc">Python · ⭐ 2</div>
-    </a>
-    <a class="card home-card" href="https://github.com/realTaki/FARSEC">
-      <div class="card-title">⭐ FARSEC</div><div class="card-desc">Python · ⭐ 1</div>
-    </a>
-    <a class="card home-card" href="https://github.com/realTaki/Agent-Product-Investigation">
-      <div class="card-title">🤖 Agent-Product-Investigation</div><div class="card-desc">JavaScript</div>
-    </a>
-    <a class="card home-card" href="https://github.com/realTaki/Clawboard">
-      <div class="card-title">⌨️ Clawboard</div><div class="card-desc">TypeScript</div>
-    </a>
-    <a class="card home-card" href="https://github.com/realTaki/FoMON3D">
-      <div class="card-title">🎮 FoMON3D</div><div class="card-desc">TypeScript</div>
-    </a>
+    <a class="card home-card" href="https://github.com/realTaki/DevRec"><div class="card-title">⭐ DevRec</div><div class="card-desc">Python · ⭐ 5</div></a>
+    <a class="card home-card" href="https://github.com/realTaki/MAGI"><div class="card-title">⭐ MAGI</div><div class="card-desc">Python · ⭐ 2</div></a>
+    <a class="card home-card" href="https://github.com/realTaki/FARSEC"><div class="card-title">⭐ FARSEC</div><div class="card-desc">Python · ⭐ 1</div></a>
+    <a class="card home-card" href="https://github.com/realTaki/Agent-Product-Investigation"><div class="card-title">🤖 Agent-Product-Investigation</div><div class="card-desc">JavaScript</div></a>
+    <a class="card home-card" href="https://github.com/realTaki/Clawboard"><div class="card-title">⌨️ Clawboard</div><div class="card-desc">TypeScript</div></a>
+    <a class="card home-card" href="https://github.com/realTaki/FoMON3D"><div class="card-title">🎮 FoMON3D</div><div class="card-desc">TypeScript</div></a>
   </div>
 
-  <!-- Achievements -->
-  <h2 class="home-sec"><span>🏆 成就墙</span></h2>
+  <h2 class="home-sec" data-i18n="home.achievements">🏆 成就墙</h2>
   <div class="badge-row">
     <span class="badge light">⚡ Quickdraw</span>
     <span class="badge blue">🎯 YOLO</span>
@@ -263,49 +212,36 @@
     <span class="badge dark">💎 GitHub Pro</span>
   </div>
 
-  <!-- Stats -->
-  <h2 class="home-sec"><span>📊 数据中心</span></h2>
+  <h2 class="home-sec" data-i18n="home.stats">📊 数据中心</h2>
   <div class="stats-img">
-    <img src="assets/github-stats.svg" alt="GitHub stats" />
-    <img src="assets/top-langs.svg" alt="Top languages" />
+    <img src="https://github-readme-stats.vercel.app/api?username=realTaki&show_icons=true&theme=radical&hide_border=true&title_color=FB7299&icon_color=00A1D6" alt="GitHub stats" />
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=realTaki&layout=compact&theme=radical&hide_border=true&title_color=FB7299" alt="Top languages" />
   </div>
 
-  <!-- Tech stack -->
-  <h2 class="home-sec"><span>🛠 装备栏 · 技术栈</span></h2>
+  <h2 class="home-sec" data-i18n="home.tech">🛠 装备栏 · 技术栈</h2>
   <div class="badge-row">
     <img src="https://skillicons.dev/icons?i=python,javascript,typescript,git,linux,docker" alt="skills" />
   </div>
 
-  <!-- Contact -->
-  <h2 class="home-sec"><span>📬 联系方式</span></h2>
+  <h2 class="home-sec" data-i18n="home.contact">📬 联系方式</h2>
   <div class="contact-row">
-    <a class="contact-btn glass" href="mailto:taki.wang@ualberta.ca">✉️ taki.wang@ualberta.ca</a>
-    <a class="contact-btn glass" href="https://x.com/realTaki42">🐦 @realTaki42</a>
-    <a class="contact-btn glass" href="https://github.com/realTaki">🐙 github.com/realTaki</a>
+    <a class="contact-btn glass" href="mailto:taki.wang@ualberta.ca" data-i18n="home.contact.email">✉️ taki.wang@ualberta.ca</a>
+    <a class="contact-btn glass" href="https://x.com/realTaki42" data-i18n="home.contact.x">🐦 @realTaki42</a>
+    <a class="contact-btn glass" href="https://github.com/realTaki" data-i18n="home.contact.gh">🐙 github.com/realTaki</a>
   </div>
 
 </div>
 
-<!-- ===== Footer ===== -->
 <footer class="site-foot">
-  <div class="container">
+  <div class="container" data-i18n="footer.copyright">
     © 2026 realTaki · Built with ❤️ &amp; hosted on GitHub Pages
   </div>
 </footer>
 
 <button class="totop" id="totop" aria-label="回到顶部">↑</button>
 
-<script>
-(function(){
-  var top = document.getElementById('totop');
-  function onScroll(){
-    top.classList.toggle('show', (window.scrollY || document.documentElement.scrollTop) > 400);
-  }
-  top.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-</script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 </html>
