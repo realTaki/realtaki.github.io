@@ -96,19 +96,23 @@ let activeSubCategory = 'all';
 const modulesEl = document.getElementById('modules');
 const subModulesEl = document.getElementById('subModules');
 
-/* 渲染次级类别卡:仅在选中某个大类(非 AI Security,只有一个子类别)时显示 */
+/* 渲染次级类别卡:
+   - 默认(activeCategory === 'all'):展示全部唯一子类别,辅助快速定位
+   - 选中某大类:只展示该大类的子类别,数字按大类内统计
+   - AI Security:不展示(只有一个子类别,且卡内已直接列公司标签) */
 function renderSubModules() {
   if (!subModulesEl) return;
-  if (activeCategory === 'all' || activeCategory === 'AI Security') {
+  if (activeCategory === 'AI Security') {
     subModulesEl.hidden = true;
     subModulesEl.innerHTML = '';
     return;
   }
-  // 当前大类的子类别 + 在该子类别下的项目数
-  const inCat = items.filter(i => i.category === activeCategory);
+  const inScope = (activeCategory === 'all')
+    ? items
+    : items.filter(i => i.category === activeCategory);
   const subSet = [];
   const seen = new Set();
-  for (const it of inCat) {
+  for (const it of inScope) {
     if (it.subCategory && !seen.has(it.subCategory)) {
       seen.add(it.subCategory);
       subSet.push(it.subCategory);
@@ -122,9 +126,9 @@ function renderSubModules() {
   const allActive = (activeSubCategory === 'all');
   const labelAll = i18n.t('filter.all');
   const chips = [
-    `<span class="sub-mod sub-mod-all${allActive ? ' active' : ''}" data-sub="all">${labelAll} <span class="sub-mod-count">${inCat.length}</span></span>`,
+    `<span class="sub-mod sub-mod-all${allActive ? ' active' : ''}" data-sub="all">${labelAll} <span class="sub-mod-count">${inScope.length}</span></span>`,
     ...subSet.map(s => {
-      const cnt = inCat.filter(i => i.subCategory === s).length;
+      const cnt = inScope.filter(i => i.subCategory === s).length;
       const isActive = (activeSubCategory === s);
       const name = subCatDisplay[s] || s;
       return `<span class="sub-mod${isActive ? ' active' : ''}" data-sub="${name.replace(/"/g,'&quot;')}">${name} <span class="sub-mod-count">${cnt}</span></span>`;
