@@ -175,6 +175,12 @@ img { max-width: 100%; display: block; }
   background: var(--c-surface); color: var(--b-blue-deep);
   font-weight: 700; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
+.lang-toggle .lang-side.active:first-child {
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+}
+.lang-toggle .lang-side.active:last-child {
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+}
 .lang-toggle .lang-sep {
   width: 1px; height: 14px; background: var(--c-line);
 }

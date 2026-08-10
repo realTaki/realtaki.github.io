@@ -412,7 +412,7 @@
 
       try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
 
-      // Mirror to URL hash (preserves investigation page route e.g. #investigation?lang=en)
+      // Mirror to URL hash (preserves investigation page route e.g. #data?lang=en)
       try {
         const raw = (location.hash || '').replace(/^#/, '');
         const [path, query] = raw.split('?');

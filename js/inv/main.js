@@ -100,11 +100,15 @@ document.addEventListener('lang:changed', () => {
 
 /* ============== 3. 页面导航 (Investigation / Insights) ============== */
 // Lightweight hash-based two-tab switcher.
+// URL hash is decoupled from internal page id: '#data' -> investigation page,
+// '#insights' -> insights page. Keeps the URL clean (avoids "/investigation/#investigation").
 const PAGES = ['investigation', 'insights'];
+const HASH_FOR_PAGE = { investigation: 'data', insights: 'insights' };
+const PAGE_FOR_HASH = { data: 'investigation', insights: 'insights' };
 
 function getRouteFromHash() {
   const raw = (location.hash || '').replace(/^#/, '').toLowerCase();
-  return PAGES.includes(raw) ? raw : 'investigation';
+  return PAGE_FOR_HASH[raw] || 'investigation';
 }
 
 function applyPage(page) {
@@ -117,8 +121,9 @@ function applyPage(page) {
     tab.setAttribute('aria-selected', match ? 'true' : 'false');
     tab.setAttribute('tabindex', match ? '0' : '-1');
   });
-  if (location.hash.replace(/^#/, '') !== safe) {
-    history.replaceState(null, '', '#' + safe);
+  const wantHash = HASH_FOR_PAGE[safe] || safe;
+  if (location.hash.replace(/^#/, '') !== wantHash) {
+    history.replaceState(null, '', '#' + wantHash);
   }
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
 }
