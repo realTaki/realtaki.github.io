@@ -422,6 +422,8 @@
       const changed = (next !== _lang);
       _lang = next;
 
+      console.log('[i18n] setLang →', next, '| changed:', changed, '| html.lang was:', document.documentElement.lang);
+
       try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
 
       // Mirror to URL hash (preserves investigation page route e.g. #data?lang=en;
@@ -438,6 +440,7 @@
       } catch (e) {}
 
       document.documentElement.lang = (next === 'en') ? 'en' : 'zh-CN';
+      console.log('[i18n] html.lang set to:', document.documentElement.lang);
 
       // Title
       try {
