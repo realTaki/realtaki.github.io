@@ -5,38 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>realTaki</title>
 <meta name="description" content="Coder & Hacker · AI · 自动驾驶 · 联邦学习" />
-<meta name="theme-color" content="#3b82f6" />
+<meta name="theme-color" content="#00aeec" />
 <link rel="icon" href="https://github.com/realTaki.png" />
 <link rel="stylesheet" href="style.css" />
 <style>
-  /* ============================================================
-     Homepage styles — blue/pink B站-inspired personal brand
-     ============================================================ */
-
-  :root {
-    --hp-blue:        #00aeec;
-    --hp-blue-deep:   #0086c9;
-    --hp-blue-soft:   #59d0ff;
-    --hp-pink:        #fb7299;
-    --hp-pink-soft:   #ffa0bc;
-    --hp-glass:       rgba(255,255,255,0.60);
-    --hp-glass-brd:   rgba(180,205,225,0.45);
-  }
-
+  /* ── Homepage background ── */
   body {
     background: #eef4f9;
     background-image:
-      radial-gradient(46rem 30rem at 12% -8%,  rgba(0,174,236,0.30), transparent 60%),
-      radial-gradient(40rem 26rem at 92% 4%,   rgba(89,208,255,0.26), transparent 62%),
-      radial-gradient(38rem 26rem at 78% 92%,  rgba(251,114,153,0.16), transparent 64%),
-      radial-gradient(34rem 24rem at 8%  78%,  rgba(0,134,201,0.14),  transparent 66%);
+      radial-gradient(46rem 30rem at 12% -8%,  rgba(0, 174, 236, 0.28), transparent 62%),
+      radial-gradient(40rem 26rem at 92% 4%,   rgba(89, 208, 255, 0.24), transparent 64%),
+      radial-gradient(38rem 26rem at 78% 92%,  rgba(251, 114, 153, 0.14), transparent 66%),
+      radial-gradient(34rem 24rem at 8%  78%,  rgba(0, 134, 201, 0.12), transparent 68%);
     background-attachment: fixed;
   }
 
-  /* ===== Banner ===== */
+  /* ── Banner ── */
   .banner {
     position: relative; height: 190px;
-    background: linear-gradient(115deg, var(--hp-blue-deep) 0%, var(--hp-blue) 38%, var(--hp-blue-soft) 66%, var(--hp-pink-soft) 100%);
+    background: linear-gradient(115deg, var(--b-blue-deep) 0%, var(--b-blue) 38%, var(--b-blue-soft) 66%, var(--b-pink-soft) 100%);
     background-size: 220% 220%;
     animation: banner-drift 18s ease-in-out infinite;
   }
@@ -46,7 +33,7 @@
   }
   .banner::before {
     content: ""; position: absolute; inset: 0;
-    background: radial-gradient(70% 130% at 50% -30%, rgba(255,255,255,0.42), transparent 70%);
+    background: radial-gradient(70% 130% at 50% -30%, rgba(255, 255, 255, 0.42), transparent 70%);
   }
   .banner::after {
     content: ""; position: absolute; left: -2%; right: -2%; bottom: -1px; height: 46px;
@@ -54,195 +41,107 @@
     border-radius: 58% 58% 0 0 / 100% 100% 0 0;
   }
 
-  /* ===== Glass card mixin ===== */
-  .glass {
-    background: var(--hp-glass);
-    backdrop-filter: blur(18px) saturate(180%);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.80);
-    box-shadow: 0 8px 28px rgba(31,84,120,0.10);
-  }
-
-  /* ===== Profile card ===== */
+  /* ── Profile card ── */
   .profile {
     display: flex; align-items: center; gap: 28px;
     margin-top: -66px; position: relative; z-index: 1;
     border-radius: var(--radius-lg); padding: 30px 34px;
-    box-shadow: 0 18px 48px rgba(31,84,120,0.16);
+    box-shadow: var(--shadow-lg);
   }
   .avatar {
     width: 112px; height: 112px; border-radius: 50%; flex-shrink: 0;
-    border: 3px solid rgba(255,255,255,0.9);
-    box-shadow: 0 0 0 3px var(--hp-blue), 0 10px 30px rgba(0,174,236,0.42);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 3px var(--b-blue), 0 10px 30px rgba(0, 174, 236, 0.42);
     transition: transform 0.4s var(--ease);
   }
   .avatar:hover { transform: scale(1.05) rotate(-4deg); }
   .name {
     font-size: 30px; font-weight: 800; letter-spacing: 0.4px; line-height: 1.2;
-    background: linear-gradient(100deg, var(--hp-blue-deep), var(--hp-blue) 45%, var(--hp-pink) 105%);
+    background: linear-gradient(100deg, var(--b-blue-deep), var(--b-blue) 45%, var(--b-pink) 105%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .meta-line { color: var(--c-ink2); font-size: 14px; margin-top: 8px; }
   .bio { margin-top: 9px; font-weight: 700; font-size: 16px; }
   .tagline { color: var(--c-ink3); font-size: 13px; margin-top: 5px; }
 
-  /* ===== Pills ===== */
+  /* ── Stats pills ── */
   .pills { display: flex; flex-wrap: wrap; gap: 11px; justify-content: center; margin: 28px 0 6px; }
   .pill {
-    background: var(--hp-glass); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,0.80);
-    border-radius: var(--radius-full); padding: 8px 18px;
+    padding: 8px 18px; border-radius: var(--radius-full);
     font-size: 13.5px; font-weight: 500;
-    box-shadow: 0 2px 8px rgba(31,84,120,0.06);
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-sm);
     transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
   }
-  .pill:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(31,84,120,0.10); }
-  .pill b { color: var(--hp-blue); font-size: 15.5px; font-weight: 800; margin-left: 5px; }
-  .pill.blue b { color: var(--hp-pink); }
+  .pill:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .pill b { color: var(--b-blue); font-size: 15.5px; font-weight: 800; margin-left: 5px; }
+  .pill.alt b { color: var(--b-pink); }
 
-  /* ===== Section headings ===== */
-  h2.sec {
+  /* ── Homepage section headings ── */
+  h2.home-sec {
     position: relative;
     font-size: 21px; font-weight: 800; letter-spacing: 0.3px;
     margin: 56px 0 22px; padding-left: 16px;
     line-height: 1.3; scroll-margin-top: 80px;
     display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
   }
-  h2.sec::before {
+  h2.home-sec::before {
     content: ""; position: absolute; left: 0; top: 0.18em; bottom: 0.18em; width: 5px;
     border-radius: var(--radius-full);
-    background: linear-gradient(var(--hp-blue), var(--hp-pink));
-    box-shadow: 0 0 12px rgba(0,174,236,0.55);
+    background: linear-gradient(180deg, var(--b-blue), var(--b-pink));
+    box-shadow: 0 0 12px rgba(0, 174, 236, 0.55);
   }
-  h2.sec .more { font-size: 13px; font-weight: 600; }
-  h2.sec .more a { color: var(--c-ink3); transition: color 0.15s; }
-  h2.sec .more a:hover { color: var(--hp-blue); }
+  h2.home-sec .more { font-size: 13px; font-weight: 600; }
+  h2.home-sec .more a { color: var(--c-ink3); transition: color 0.15s; }
+  h2.home-sec .more a:hover { color: var(--b-blue); }
 
-  /* ===== Card grid ===== */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); gap: 16px; }
-  .card {
-    position: relative; overflow: hidden;
-    border-radius: var(--radius); padding: 18px 20px;
-    display: block; color: inherit;
-    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+  /* ── Homepage cards (override shared .card with glass) ── */
+  .card-grid { gap: 16px; }
+  .card.home-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
   }
-  .card::before {
-    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
-    background: linear-gradient(90deg, var(--hp-blue), var(--hp-blue-soft), var(--hp-pink));
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.38s var(--ease);
+  .card.home-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(0, 174, 236, 0.50);
   }
-  .card:hover::before { transform: scaleX(1); }
-  .card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(0,174,236,0.55);
-    box-shadow: 0 18px 48px rgba(31,84,120,0.16);
-    color: inherit;
-  }
-  .card .t { font-weight: 700; font-size: 15.5px; letter-spacing: 0.2px; }
-  .card:hover .t { color: var(--hp-blue); }
-  .card .d { color: var(--c-ink2); font-size: 13px; margin-top: 7px; line-height: 1.6; }
+  .card.home-card .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
 
-  .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag-card {
-    font-size: 11.5px; font-weight: 600; padding: 3px 10px; border-radius: var(--radius-full);
-    background: rgba(0,174,236,0.13); color: var(--hp-blue-deep);
-    border: 1px solid rgba(0,174,236,0.20);
-  }
-  .tag-card.star {
-    background: rgba(251,114,153,0.14); color: var(--hp-pink);
-    border-color: rgba(251,114,153,0.24);
-  }
-  .tag-card.date { background: transparent; border-color: transparent; color: var(--c-ink3); padding-left: 0; }
-
-  /* ===== Badges / skills ===== */
-  .row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
-  .badge {
-    display: inline-block; padding: 9px 20px; border-radius: var(--radius-full);
-    font-size: 13.5px; font-weight: 700; color: #fff; letter-spacing: 0.3px;
-    border: 1px solid rgba(255,255,255,0.28);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-  }
-  .badge:hover { transform: translateY(-4px) scale(1.04); }
-  .b-blue  { background: linear-gradient(120deg, var(--hp-blue-deep), var(--hp-blue));        box-shadow: 0 8px 24px rgba(0,174,236,0.28); }
-  .b-light { background: linear-gradient(120deg, var(--hp-blue), var(--hp-blue-soft));        box-shadow: 0 8px 22px rgba(89,208,255,0.34); }
-  .b-pink  { background: linear-gradient(120deg, var(--hp-pink), var(--hp-pink-soft));        box-shadow: 0 8px 22px rgba(251,114,153,0.34); }
-  .b-dark  { background: linear-gradient(120deg, #20262c, #39424c);                           box-shadow: 0 8px 22px rgba(0,0,0,0.28); }
-
+  /* ── Stats images ── */
   .stats-img { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
   .stats-img img {
     max-width: 100%; border-radius: var(--radius);
-    box-shadow: 0 8px 28px rgba(31,84,120,0.10);
+    box-shadow: var(--shadow-md);
     transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
   }
-  .stats-img img:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(31,84,120,0.16); }
+  .stats-img img:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 
-  /* ===== Contact buttons ===== */
-  .contact { display: flex; flex-wrap: wrap; gap: 13px; justify-content: center; margin-top: 10px; }
-  .contact a {
-    position: relative; overflow: hidden;
-    padding: 11px 24px; border-radius: var(--radius-full);
-    font-size: 14.5px; font-weight: 600; color: var(--c-ink);
-    box-shadow: 0 2px 8px rgba(31,84,120,0.06);
-    transition: transform 0.26s var(--ease), box-shadow 0.26s var(--ease), color 0.26s var(--ease);
-  }
-  .contact a::after {
-    content: ""; position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(120deg, var(--hp-blue), var(--hp-blue-soft));
-    opacity: 0; transition: opacity 0.28s var(--ease);
-  }
-  .contact a:hover {
-    color: #fff; transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,174,236,0.28);
-    border-color: transparent;
-  }
-  .contact a:hover::after { opacity: 1; }
-
-  /* ===== Footer override ===== */
-  .site-foot { border-top-color: rgba(180,205,225,0.45); }
-
-  /* ===== Animation ===== */
+  /* ── Animations ── */
   @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-  .profile, .pills, h2.sec, .grid, .row, .stats-img, .contact {
+  .profile, .pills, h2.home-sec, .card-grid, .badge-row, .stats-img, .contact-row {
     animation: rise 0.6s var(--ease) both;
   }
   .pills { animation-delay: 0.05s; }
-  h2.sec { animation-delay: 0.08s; }
-  .grid  { animation-delay: 0.10s; }
-
-  /* ===== Back to top ===== */
-  .totop {
-    position: fixed; right: 26px; bottom: 26px; z-index: 90;
-    width: 46px; height: 46px; border-radius: 50%;
-    display: grid; place-items: center; font-size: 19px; color: var(--hp-blue);
-    background: rgba(255,255,255,0.80);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.80);
-    box-shadow: 0 8px 28px rgba(31,84,120,0.10);
-    cursor: pointer;
-    opacity: 0; visibility: hidden; transform: translateY(14px);
-    transition: all 0.3s var(--ease);
-  }
-  .totop.show { opacity: 1; visibility: visible; transform: translateY(0); }
-  .totop:hover {
-    color: #fff; background: linear-gradient(120deg, var(--hp-blue), var(--hp-blue-soft));
-    transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,174,236,0.42);
-  }
+  h2.home-sec { animation-delay: 0.08s; }
+  .card-grid  { animation-delay: 0.10s; }
 
   @media (max-width: 640px) {
     .profile { flex-direction: column; text-align: center; gap: 18px; padding: 24px 20px; margin-top: -54px; }
     .banner { height: 150px; }
     .name { font-size: 25px; }
-    .totop { right: 16px; bottom: 16px; width: 42px; height: 42px; }
-    .site-nav a { padding: 5px 10px; font-size: 12px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== Site Header (shared) ===== -->
+<!-- ===== Site Header ===== -->
 <header class="site-head">
   <div class="container site-head-inner">
     <a class="site-brand" href="/">
@@ -261,10 +160,10 @@
 <div class="banner"></div>
 
 <!-- ===== Content ===== -->
-<div class="container wrap" style="padding-bottom:70px;">
+<div class="container" style="padding-bottom:70px;">
 
   <!-- Profile -->
-  <div class="profile glass">
+  <div class="profile glass-strong">
     <img class="avatar" src="https://github.com/realTaki.png" alt="realTaki avatar" />
     <div>
       <div class="name">realTaki</div>
@@ -277,117 +176,117 @@
   <!-- Stats pills -->
   <div class="pills">
     <span class="pill">🐙 GitHub 粉丝 <b>25</b></span>
-    <span class="pill blue">🐦 X 粉丝 <b>5209</b></span>
+    <span class="pill alt">🐦 X 粉丝 <b>5209</b></span>
     <span class="pill">➡️ 关注 <b>12</b></span>
-    <span class="pill blue">📦 仓库 <b>83</b></span>
+    <span class="pill alt">📦 仓库 <b>83</b></span>
   </div>
 
   <!-- Latest posts -->
-  <h2 class="sec" id="posts"><span>📝 最新文章</span></h2>
-  <div class="grid">
-    <a class="card glass" href="/blog/2026-08-09-designing-for-abundant-intelligence/">
-      <div class="t">Designing for Abundant Intelligence</div>
-      <div class="d">不要围绕今天的大模型局限构建未来。中英双语长文。</div>
+  <h2 class="home-sec" id="posts"><span>📝 最新文章</span></h2>
+  <div class="card-grid">
+    <a class="card home-card" href="/blog/2026-08-09-designing-for-abundant-intelligence/">
+      <div class="card-title">Designing for Abundant Intelligence</div>
+      <div class="card-desc">不要围绕今天的大模型局限构建未来。中英双语长文。</div>
       <div class="tags">
-        <span class="tag-card date">📅 2026-08-09</span>
-        <span class="tag-card">AI</span>
-        <span class="tag-card">Multi-Agent</span>
-        <span class="tag-card">系统设计</span>
+        <span class="tag ghost">📅 2026-08-09</span>
+        <span class="tag">AI</span>
+        <span class="tag">Multi-Agent</span>
+        <span class="tag">系统设计</span>
       </div>
     </a>
   </div>
 
   <!-- Open source contributions -->
-  <h2 class="sec"><span>🎬 我的投稿 · 参与的开源项目</span></h2>
-  <div class="grid">
-    <a class="card glass" href="https://github.com/openai/CLIP">
-      <div class="t">⭐ openai/CLIP</div>
-      <div class="d">Contrastive Language-Image Pretraining · 图文对齐预训练模型</div>
-      <div class="tags"><span class="tag-card">Jupyter</span><span class="tag-card star">⭐ 34.2k</span><span class="tag-card">🍴 4k</span></div>
+  <h2 class="home-sec"><span>🎬 我的投稿 · 参与的开源项目</span></h2>
+  <div class="card-grid">
+    <a class="card home-card" href="https://github.com/openai/CLIP">
+      <div class="card-title">⭐ openai/CLIP</div>
+      <div class="card-desc">Contrastive Language-Image Pretraining · 图文对齐预训练模型</div>
+      <div class="tags"><span class="tag">Jupyter</span><span class="tag pink">⭐ 34.2k</span><span class="tag">🍴 4k</span></div>
     </a>
-    <a class="card glass" href="https://github.com/ApolloAuto/apollo">
-      <div class="t">🚗 ApolloAuto/apollo</div>
-      <div class="d">开放自动驾驶平台 · 百度出品</div>
-      <div class="tags"><span class="tag-card">C++</span><span class="tag-card star">⭐ 26.8k</span><span class="tag-card">🍴 10k</span></div>
+    <a class="card home-card" href="https://github.com/ApolloAuto/apollo">
+      <div class="card-title">🚗 ApolloAuto/apollo</div>
+      <div class="card-desc">开放自动驾驶平台 · 百度出品</div>
+      <div class="tags"><span class="tag">C++</span><span class="tag pink">⭐ 26.8k</span><span class="tag">🍴 10k</span></div>
     </a>
-    <a class="card glass" href="https://github.com/TsinghuaAI/CPM">
-      <div class="t">🤖 TsinghuaAI/CPM</div>
-      <div class="d">清华中文预训练模型初代</div>
-      <div class="tags"><span class="tag-card star">⭐ 164</span></div>
+    <a class="card home-card" href="https://github.com/TsinghuaAI/CPM">
+      <div class="card-title">🤖 TsinghuaAI/CPM</div>
+      <div class="card-desc">清华中文预训练模型初代</div>
+      <div class="tags"><span class="tag pink">⭐ 164</span></div>
     </a>
-    <a class="card glass" href="https://github.com/FederatedAI/FATE">
-      <div class="t">🔐 FederatedAI/FATE</div>
-      <div class="d">工业级联邦学习框架</div>
-      <div class="tags"><span class="tag-card">Python</span><span class="tag-card star">⭐ 6.1k</span><span class="tag-card">🍴 1.6k</span></div>
+    <a class="card home-card" href="https://github.com/FederatedAI/FATE">
+      <div class="card-title">🔐 FederatedAI/FATE</div>
+      <div class="card-desc">工业级联邦学习框架</div>
+      <div class="tags"><span class="tag">Python</span><span class="tag pink">⭐ 6.1k</span><span class="tag">🍴 1.6k</span></div>
     </a>
-    <a class="card glass" href="https://github.com/bazelbuild/bazel">
-      <div class="t">🔧 bazelbuild/bazel</div>
-      <div class="d">快 / 可扩展 / 多语言构建系统</div>
-      <div class="tags"><span class="tag-card">Java</span><span class="tag-card star">⭐ 25.7k</span><span class="tag-card">🍴 4.6k</span></div>
+    <a class="card home-card" href="https://github.com/bazelbuild/bazel">
+      <div class="card-title">🔧 bazelbuild/bazel</div>
+      <div class="card-desc">快 / 可扩展 / 多语言构建系统</div>
+      <div class="tags"><span class="tag">Java</span><span class="tag pink">⭐ 25.7k</span><span class="tag">🍴 4.6k</span></div>
     </a>
-    <a class="card glass" href="https://github.com/Turing-Project/WriteGPT">
-      <div class="t">📝 Turing-Project/WriteGPT</div>
-      <div class="d">基于 GPT-2.0 的初代创作型 AI · 可扩展 / 可进化</div>
-      <div class="tags"><span class="tag-card">Python</span><span class="tag-card star">⭐ 5.3k</span></div>
+    <a class="card home-card" href="https://github.com/Turing-Project/WriteGPT">
+      <div class="card-title">📝 Turing-Project/WriteGPT</div>
+      <div class="card-desc">基于 GPT-2.0 的初代创作型 AI · 可扩展 / 可进化</div>
+      <div class="tags"><span class="tag">Python</span><span class="tag pink">⭐ 5.3k</span></div>
     </a>
   </div>
 
   <!-- My projects -->
-  <h2 class="sec"><span>📦 我的项目 · top by stars</span></h2>
-  <div class="grid">
-    <a class="card glass" href="https://github.com/realTaki/DevRec">
-      <div class="t">⭐ DevRec</div><div class="d">Python · ⭐ 5</div>
+  <h2 class="home-sec"><span>📦 我的项目 · top by stars</span></h2>
+  <div class="card-grid">
+    <a class="card home-card" href="https://github.com/realTaki/DevRec">
+      <div class="card-title">⭐ DevRec</div><div class="card-desc">Python · ⭐ 5</div>
     </a>
-    <a class="card glass" href="https://github.com/realTaki/MAGI">
-      <div class="t">⭐ MAGI</div><div class="d">Python · ⭐ 2</div>
+    <a class="card home-card" href="https://github.com/realTaki/MAGI">
+      <div class="card-title">⭐ MAGI</div><div class="card-desc">Python · ⭐ 2</div>
     </a>
-    <a class="card glass" href="https://github.com/realTaki/FARSEC">
-      <div class="t">⭐ FARSEC</div><div class="d">Python · ⭐ 1</div>
+    <a class="card home-card" href="https://github.com/realTaki/FARSEC">
+      <div class="card-title">⭐ FARSEC</div><div class="card-desc">Python · ⭐ 1</div>
     </a>
-    <a class="card glass" href="https://github.com/realTaki/Agent-Product-Investigation">
-      <div class="t">🤖 Agent-Product-Investigation</div><div class="d">JavaScript</div>
+    <a class="card home-card" href="https://github.com/realTaki/Agent-Product-Investigation">
+      <div class="card-title">🤖 Agent-Product-Investigation</div><div class="card-desc">JavaScript</div>
     </a>
-    <a class="card glass" href="https://github.com/realTaki/Clawboard">
-      <div class="t">⌨️ Clawboard</div><div class="d">TypeScript</div>
+    <a class="card home-card" href="https://github.com/realTaki/Clawboard">
+      <div class="card-title">⌨️ Clawboard</div><div class="card-desc">TypeScript</div>
     </a>
-    <a class="card glass" href="https://github.com/realTaki/FoMON3D">
-      <div class="t">🎮 FoMON3D</div><div class="d">TypeScript</div>
+    <a class="card home-card" href="https://github.com/realTaki/FoMON3D">
+      <div class="card-title">🎮 FoMON3D</div><div class="card-desc">TypeScript</div>
     </a>
   </div>
 
   <!-- Achievements -->
-  <h2 class="sec"><span>🏆 成就墙</span></h2>
-  <div class="row">
-    <span class="badge b-light">⚡ Quickdraw</span>
-    <span class="badge b-blue">🎯 YOLO</span>
-    <span class="badge b-pink">🦈 Pull Shark ×2</span>
-    <span class="badge b-dark">💎 GitHub Pro</span>
+  <h2 class="home-sec"><span>🏆 成就墙</span></h2>
+  <div class="badge-row">
+    <span class="badge light">⚡ Quickdraw</span>
+    <span class="badge blue">🎯 YOLO</span>
+    <span class="badge pink">🦈 Pull Shark ×2</span>
+    <span class="badge dark">💎 GitHub Pro</span>
   </div>
 
   <!-- Stats -->
-  <h2 class="sec"><span>📊 数据中心</span></h2>
+  <h2 class="home-sec"><span>📊 数据中心</span></h2>
   <div class="stats-img">
     <img src="https://github-readme-stats.vercel.app/api?username=realTaki&show_icons=true&theme=radical&hide_border=true&title_color=FB7299&icon_color=00A1D6" alt="GitHub stats" />
     <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=realTaki&layout=compact&theme=radical&hide_border=true&title_color=FB7299" alt="Top languages" />
   </div>
 
   <!-- Tech stack -->
-  <h2 class="sec"><span>🛠 装备栏 · 技术栈</span></h2>
-  <div class="row">
+  <h2 class="home-sec"><span>🛠 装备栏 · 技术栈</span></h2>
+  <div class="badge-row">
     <img src="https://skillicons.dev/icons?i=python,javascript,typescript,git,linux,docker" alt="skills" />
   </div>
 
   <!-- Contact -->
-  <h2 class="sec"><span>📬 联系方式</span></h2>
-  <div class="contact">
-    <a class="glass" href="mailto:taki.wang@ualberta.ca">✉️ taki.wang@ualberta.ca</a>
-    <a class="glass" href="https://x.com/realTaki42">🐦 @realTaki42</a>
-    <a class="glass" href="https://github.com/realTaki">🐙 github.com/realTaki</a>
+  <h2 class="home-sec"><span>📬 联系方式</span></h2>
+  <div class="contact-row">
+    <a class="contact-btn glass" href="mailto:taki.wang@ualberta.ca">✉️ taki.wang@ualberta.ca</a>
+    <a class="contact-btn glass" href="https://x.com/realTaki42">🐦 @realTaki42</a>
+    <a class="contact-btn glass" href="https://github.com/realTaki">🐙 github.com/realTaki</a>
   </div>
 
 </div>
 
-<!-- ===== Footer (shared) ===== -->
+<!-- ===== Footer ===== -->
 <footer class="site-foot">
   <div class="container">
     © 2026 realTaki · Built with ❤️ &amp; hosted on GitHub Pages
@@ -400,8 +299,7 @@
 (function(){
   var top = document.getElementById('totop');
   function onScroll(){
-    var y = window.scrollY || document.documentElement.scrollTop;
-    top.classList.toggle('show', y > 400);
+    top.classList.toggle('show', (window.scrollY || document.documentElement.scrollTop) > 400);
   }
   top.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
   window.addEventListener('scroll', onScroll, { passive: true });
