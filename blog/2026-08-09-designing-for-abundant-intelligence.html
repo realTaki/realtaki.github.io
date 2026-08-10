@@ -1,0 +1,1698 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Designing for Abundant Intelligence · realTaki</title>
+<meta name="description" content="不要围绕今天的大模型局限构建未来。中英双语长文。" />
+<meta name="theme-color" content="#3b82f6" />
+<link rel="icon" href="https://github.com/realTaki.png" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<!-- ===== Site Header ===== -->
+<header class="site-head">
+  <div class="container site-head-inner">
+    <a class="site-brand" href="/">
+      <span class="site-brand-dot"></span>
+      <span class="brand-text">realTaki</span>
+    </a>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/investigation/">Investigation</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Article ===== -->
+<div class="container">
+<article class="post-wrap">
+
+  <header class="post-header">
+    <h1>Designing for Abundant Intelligence：不要围绕今天的大模型局限构建未来</h1>
+    <div class="post-meta">
+      📅 2026-08-09 &nbsp;·&nbsp;
+      <span class="tag">AI</span>
+      <span class="tag">Multi-Agent</span>
+      <span class="tag">系统设计</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+
+    <blockquote>
+      <p>🌐 双语长文 · <a href="#english">English</a> &nbsp;|&nbsp; <a href="#chinese">中文</a></p>
+    </blockquote>
+
+    <!-- ============ ENGLISH ============ -->
+    <h2 id="english">English</h2>
+
+    <h2>Introduction</h2>
+
+    <p>A large share of innovation in today's AI agent ecosystem is, fundamentally, trying to solve the same problem:</p>
+
+    <p><strong>Large language models are still not good enough.</strong></p>
+
+    <p>Tokens are expensive, so we optimize context, reduce communication, and minimize inference calls.</p>
+
+    <p>Context windows are limited, so we build sophisticated memory hierarchies, summarization pipelines, and context management systems.</p>
+
+    <p>Planning is unreliable, so we use flows, graphs, and state machines to predefine execution paths.</p>
+
+    <p>Multiple agents cannot yet reliably coordinate, divide tasks, negotiate responsibilities, and deliver results purely through communication, so we add supervisors, planners, routers, and controllers above them.</p>
+
+    <p>All of these technologies are useful today.</p>
+
+    <p>But there is a deeper question worth asking:</p>
+
+    <blockquote>
+      <p><strong>If an innovation exists primarily to compensate for a limitation that AI itself is rapidly eliminating, how durable is that innovation?</strong></p>
+    </blockquote>
+
+    <p>Perhaps we should adopt a fundamentally different design philosophy:</p>
+
+    <blockquote>
+      <p><strong>Do not design the future around the limitations of today's models. Design around the problems that will still exist even if AI becomes 100 times more capable.</strong></p>
+    </blockquote>
+
+    <p>In other words:</p>
+
+    <p><strong>Build for abundant intelligence.</strong></p>
+
+    <p>Build systems for a future in which intelligence itself is plentiful.</p>
+
+    <hr />
+
+    <h2>1. Two Fundamentally Different Kinds of AI Innovation</h2>
+
+    <p>We can roughly divide today's AI infrastructure innovations into two categories.</p>
+
+    <p>The first category addresses limitations in current model capabilities.</p>
+
+    <p>For example:</p>
+
+    <ul>
+      <li>Tokens are expensive</li>
+      <li>Context windows are too small</li>
+      <li>LLMs are weak at long-horizon planning</li>
+      <li>LLMs are unreliable at tool use</li>
+      <li>Agents do not know when to ask other agents for help</li>
+      <li>Multi-agent systems cannot reliably divide work</li>
+      <li>Agent-to-agent communication is expensive</li>
+      <li>Individual inference calls are not intelligent enough</li>
+    </ul>
+
+    <p>These are all real problems.</p>
+
+    <p>As a result, we have built many technologies around them:</p>
+
+<pre>Context Compression
+Memory Hierarchy
+Prompt Optimization
+Workflow Engine
+Graph Orchestration
+Supervisor Agent
+Planner
+Router
+Retry Logic
+State Machine</pre>
+
+    <p>But these innovations share one important property:</p>
+
+    <blockquote>
+      <p><strong>Their value is positively correlated with the weaknesses of the model.</strong></p>
+    </blockquote>
+
+    <p>The weaker the model, the more valuable they become.</p>
+
+    <p>The stronger the model, the more their value may decline.</p>
+
+    <p>Today, for example, we may build:</p>
+
+<pre>Agent A
+   ↓
+Planner
+   ↓
+Router
+   ↓
+Controller
+   ↓
+Graph
+   ↓
+Agent B</pre>
+
+    <p>This is not necessarily because such an architecture is inherently elegant.</p>
+
+    <p>It is because we do not trust Agent A to reliably determine:</p>
+
+    <ul>
+      <li>who it should collaborate with;</li>
+      <li>how to decompose the task;</li>
+      <li>how to describe the delegated task;</li>
+      <li>how to validate the result;</li>
+      <li>when to re-plan;</li>
+      <li>when to ask for help.</li>
+    </ul>
+
+    <p>So humans encode those decisions into the surrounding system.</p>
+
+    <p>From this perspective, much of what we currently call <strong>agent orchestration</strong> is traditional software engineering compensating for limitations in AI capability.</p>
+
+    <hr />
+
+    <h2>2. Many "Multi-Agent Systems" Are Actually LLM Workflows</h2>
+
+    <p>Many systems described today as multi-agent systems are, in a stricter sense, closer to:</p>
+
+    <blockquote>
+      <p><strong>LLM-powered workflow engines</strong></p>
+    </blockquote>
+
+    <p>than true multi-agent systems.</p>
+
+    <p>A typical architecture looks like this:</p>
+
+<pre>            Human-defined Workflow
+                    │
+                    ▼
+               Supervisor
+              /     |      \
+             /      |       \
+        Agent A  Agent B  Agent C
+             \      |       /
+              predetermined
+               transitions</pre>
+
+    <p>There may be multiple agents, but the actual control authority still belongs to a graph predefined by humans.</p>
+
+    <p>Who executes first?</p>
+    <p>Who executes next?</p>
+    <p>Under what condition does the system transition to another node?</p>
+    <p>When should it retry?</p>
+    <p>When should it terminate?</p>
+
+    <p>These decisions still live inside a centralized workflow.</p>
+
+    <p>The agents are therefore often closer to:</p>
+
+    <blockquote>
+      <p><strong>Language-capable functions attached to nodes in a graph</strong></p>
+    </blockquote>
+
+    <p>than autonomous software actors.</p>
+
+    <hr />
+
+    <h2>3. A True Multi-Agent System May Look More Like the Internet</h2>
+
+    <p>If AI agents continue improving in reasoning, communication, and autonomous decision-making, future multi-agent systems may adopt a very different design philosophy.</p>
+
+    <p>Instead of:</p>
+
+<pre>Controller
+   │
+   ├── Agent A
+   ├── Agent B
+   └── Agent C</pre>
+
+    <p>we may see systems that look more like:</p>
+
+<pre>           Environment
+
+     Agent A ←────→ Agent B
+        ↕              ↕
+     Agent C ←────→ Agent D
+        ↘              ↙
+            Agent E</pre>
+
+    <p>The system no longer predefines:</p>
+
+    <blockquote>
+      <p>Agent A must invoke Agent B after completing Step 3.</p>
+    </blockquote>
+
+    <p>Instead, the infrastructure provides rules and mechanisms that allow agents to:</p>
+
+    <ul>
+      <li>discover one another;</li>
+      <li>advertise their capabilities;</li>
+      <li>publish tasks;</li>
+      <li>accept tasks;</li>
+      <li>delegate tasks;</li>
+      <li>reject tasks;</li>
+      <li>negotiate scope;</li>
+      <li>request assistance;</li>
+      <li>validate each other's output;</li>
+      <li>redistribute work;</li>
+      <li>form temporary organizations;</li>
+      <li>dissolve those organizations after the objective is complete.</li>
+    </ul>
+
+    <p>The Internet provides a useful analogy.</p>
+
+    <p>There is no:</p>
+
+<pre>Global Internet Controller</pre>
+
+    <p>deciding whether:</p>
+
+<pre>Google → Cloudflare → AWS → GitHub</pre>
+
+    <p>should communicate in a particular order.</p>
+
+    <p>The infrastructure provides protocols such as:</p>
+
+<pre>IP
+TCP
+DNS
+HTTP
+TLS
+Routing
+Identity</pre>
+
+    <p>What participants choose to do on top of those protocols is largely up to them.</p>
+
+    <p>Future agent infrastructure may evolve in a similar direction.</p>
+
+    <p>The infrastructure defines:</p>
+
+<pre>Protocol
+Identity
+Discovery
+Permission
+Security
+Persistence
+Observability
+Resource</pre>
+
+    <p>rather than:</p>
+
+<pre>Who should think next?</pre>
+
+    <hr />
+
+    <h2>4. We Should Be Careful About Over-Optimizing Tokens</h2>
+
+    <p>Token optimization is an important part of building AI systems today.</p>
+
+    <p>But from a long-term architectural perspective, we should distinguish carefully between:</p>
+
+    <blockquote>
+      <p><strong>economic constraints</strong></p>
+    </blockquote>
+
+    <p>and:</p>
+
+    <blockquote>
+      <p><strong>structural constraints</strong></p>
+    </blockquote>
+
+    <p>Token cost is primarily an economic constraint.</p>
+
+    <p>Suppose the cost of machine-generated cognition continues to fall:</p>
+
+<pre>$ / Token ↓
+
+$ / Reasoning ↓
+
+$ / Intelligence ↓</pre>
+
+    <p>Many optimizations that seem strategically important today may lose their value surprisingly quickly.</p>
+
+    <p>Consider a highly sophisticated:</p>
+
+<pre>Context Compression Pipeline</pre>
+
+    <p>designed to reduce token consumption by 20%.</p>
+
+    <p>If token prices fall by 90%, is the architectural complexity still justified?</p>
+
+    <p>Possibly not.</p>
+
+    <p>A better long-term assumption is therefore not:</p>
+
+    <blockquote>
+      <p>Tokens will become free.</p>
+    </blockquote>
+
+    <p>It is:</p>
+
+    <blockquote>
+      <p><strong>Cognition will become abundant.</strong></p>
+    </blockquote>
+
+    <p>The cost of producing useful machine intelligence is likely to keep falling.</p>
+
+    <p>If an architecture only makes sense when intelligence is expensive, it may not be a future-proof architecture.</p>
+
+    <hr />
+
+    <h2>5. Abundant Intelligence Does Not Eliminate Coordination Problems</h2>
+
+    <p>There is, however, an important distinction.</p>
+
+    <p>Even if tokens become nearly free and individual agents become extremely capable, multi-agent coordination does not automatically become easy.</p>
+
+    <p>Because:</p>
+
+    <blockquote>
+      <p><strong>Intelligence ≠ Coordination</strong></p>
+    </blockquote>
+
+    <p>Cheaper intelligence does not eliminate distributed-systems problems.</p>
+
+    <p>Consider a system containing <code>N</code> agents.</p>
+
+    <p>If every agent can communicate freely with every other agent, the number of possible pairwise communication relationships approaches:</p>
+
+<pre>O(N²)</pre>
+
+    <p>For 100 agents, there are roughly:</p>
+
+<pre>4,950</pre>
+
+    <p>possible pairwise relationships.</p>
+
+    <p>For 1,000 agents:</p>
+
+<pre>499,500</pre>
+
+    <p>Token cost does not solve the fundamental question:</p>
+
+    <blockquote>
+      <p><strong>Who should talk to whom?</strong></p>
+    </blockquote>
+
+    <p>This is no longer primarily a token optimization problem.</p>
+
+    <p>It becomes a problem of:</p>
+
+<pre>Coordination
+Organization
+Routing
+Discovery
+Attention Allocation</pre>
+
+    <hr />
+
+    <h2>6. The Future Problem May Be the Opposite: Agents Talking Too Much</h2>
+
+    <p>Today, we worry that agents cannot communicate well enough.</p>
+
+    <p>In the future, we may worry that agents communicate <strong>too much</strong>.</p>
+
+    <p>If reasoning and communication become nearly free, even a simple problem could result in:</p>
+
+<pre>Agent A:
+I think we should use solution X.
+
+Agent B:
+I disagree. Solution Y is better.
+
+Agent C:
+I want to add another risk.
+
+Agent D:
+Let me summarize everyone's position.
+
+Agent E:
+I think B has a good point.
+
+Agent A:
+Let me explain again why I still prefer X.
+
+Agent F:
+I propose a third solution, Z.</pre>
+
+    <p>And so on.</p>
+
+    <p>At that point, the scarce resources are no longer tokens.</p>
+
+    <p>They become:</p>
+
+<pre>Attention
+Latency
+Decision Bandwidth
+Coordination Efficiency</pre>
+
+    <p>When cognition becomes cheap, the system-level failure mode may shift from:</p>
+
+    <blockquote>
+      <p>not thinking enough</p>
+    </blockquote>
+
+    <p>to:</p>
+
+    <blockquote>
+      <p><strong>thinking, communicating, and acting too much.</strong></p>
+    </blockquote>
+
+    <p>That is why the future of multi-agent infrastructure should not simply eliminate coordination mechanisms.</p>
+
+    <p>Instead:</p>
+
+    <blockquote>
+      <p><strong>Coordination should move from the workflow layer to the protocol layer.</strong></p>
+    </blockquote>
+
+    <hr />
+
+    <h2>7. The Controller Will Not Disappear — It Will Evolve from Manager to Constitution</h2>
+
+    <p>This distinction is critical.</p>
+
+    <p>What may disappear is the:</p>
+
+    <blockquote>
+      <p><strong>Workflow Controller</strong></p>
+    </blockquote>
+
+    <p>not necessarily the controller itself.</p>
+
+    <p>Today, controllers often say:</p>
+
+<pre>You do this first.
+
+Then ask B to do that.
+
+If B succeeds, invoke C.
+
+If B fails, return to A.
+
+Finally, let D summarize the result.</pre>
+
+    <p>This is a manager.</p>
+
+    <p>It decides how agents should work.</p>
+
+    <p>A future controller may instead enforce rules such as:</p>
+
+<pre>This agent cannot access that dataset.
+
+This task may consume at most $10.
+
+This agent cannot execute production.write.
+
+Every operation must produce an audit trail.
+
+This task may run for at most 30 minutes.
+
+Agent A cannot impersonate Agent B.
+
+High-risk operations require verification by two independent agents.
+
+This agent may only access resources inside its own workspace.</pre>
+
+    <p>At that point, the controller is no longer primarily a manager.</p>
+
+    <p>It becomes something closer to a:</p>
+
+    <blockquote>
+      <p><strong>Constitution</strong></p>
+    </blockquote>
+
+    <p>It does not tell an intelligent system:</p>
+
+    <blockquote>
+      <p>how to think.</p>
+    </blockquote>
+
+    <p>It defines:</p>
+
+    <blockquote>
+      <p>what it is allowed to do.</p>
+    </blockquote>
+
+    <p>Those are fundamentally different architectural roles.</p>
+
+    <hr />
+
+    <h2>8. From Orchestration to Governance</h2>
+
+    <p>Following this line of reasoning, the center of gravity in agent infrastructure may shift significantly.</p>
+
+    <p>Today, the industry spends a great deal of attention on:</p>
+
+<pre>Prompt
+Workflow
+Graph
+Planning
+Routing</pre>
+
+    <p>But the problems that survive long-term may increasingly be:</p>
+
+<pre>Identity
+Permission
+Security
+Governance
+Observability
+Persistence
+Resource Ownership
+Fault Isolation
+Accountability
+Protocol</pre>
+
+    <p>A rough comparison looks like this:</p>
+
+    <table>
+      <thead>
+        <tr><th>Problem</th><th>Importance as model capability improves</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Expensive tokens</td><td>Decreases</td></tr>
+        <tr><td>Small context windows</td><td>Decreases</td></tr>
+        <tr><td>Weak planning</td><td>Decreases</td></tr>
+        <tr><td>Unreliable tool use</td><td>Decreases</td></tr>
+        <tr><td>Agents cannot find other agents</td><td>Decreases</td></tr>
+        <tr><td>Prompt optimization</td><td>Decreases</td></tr>
+        <tr><td>Identity</td><td>Increases</td></tr>
+        <tr><td>Permission</td><td>Increases</td></tr>
+        <tr><td>Security</td><td>Increases</td></tr>
+        <tr><td>Governance</td><td>Increases</td></tr>
+        <tr><td>Observability</td><td>Increases</td></tr>
+        <tr><td>Accountability</td><td>Increases</td></tr>
+        <tr><td>Fault isolation</td><td>Increases</td></tr>
+        <tr><td>Resource ownership</td><td>Increases</td></tr>
+        <tr><td>Communication protocols</td><td>Increases</td></tr>
+      </tbody>
+    </table>
+
+    <p>There may be a deeper principle here:</p>
+
+    <blockquote>
+      <p><strong>As intelligence improves, the importance of cognitive infrastructure declines, while the importance of institutional infrastructure rises.</strong></p>
+    </blockquote>
+
+    <p>Smarter agents can increasingly solve cognitive problems themselves.</p>
+
+    <p>But greater intelligence does not automatically answer:</p>
+
+    <ul>
+      <li>who owns a resource;</li>
+      <li>who may access it;</li>
+      <li>who is responsible for an action;</li>
+      <li>how identity is verified;</li>
+      <li>how permissions are constrained;</li>
+      <li>how failures are isolated;</li>
+      <li>how trust is established;</li>
+      <li>how history is recorded;</li>
+      <li>how rules are enforced.</li>
+    </ul>
+
+    <p>These problems do not disappear when intelligence improves.</p>
+
+    <p>In many cases, the opposite is true:</p>
+
+    <blockquote>
+      <p><strong>The more capable agents become, the more important these problems become.</strong></p>
+    </blockquote>
+
+    <hr />
+
+    <h2>9. From Centralized Orchestration to Protocol-Mediated Coordination</h2>
+
+    <p>A major architectural transition may therefore be:</p>
+
+<pre>Centralized Orchestration
+          ↓
+Protocol-Mediated Coordination</pre>
+
+    <p>The traditional model looks like:</p>
+
+<pre>Orchestrator
+     │
+     ├── Agent
+     ├── Agent
+     ├── Tool
+     └── Agent</pre>
+
+    <p>The system knows the workflow.</p>
+    <p>The system controls the behavior.</p>
+
+    <p>A different architecture looks more like:</p>
+
+<pre>                 BUS
+          ┌───────┼───────┐
+          │       │       │
+        Agent   Agent   Agent
+          │       │       │
+          └───────┼───────┘
+                  │
+             Tools / Services</pre>
+
+    <p>The bus does not decide:</p>
+
+    <blockquote>
+      <p>Agent B should think next.</p>
+    </blockquote>
+
+    <p>Instead, it exposes facts and events:</p>
+
+<pre>task.created
+message.sent
+tool.available
+artifact.created
+agent.failed
+request.completed
+policy.denied</pre>
+
+    <p>Agents make their own decisions based on:</p>
+
+<pre>Identity
+Capability
+Context
+Policy
+Goal</pre>
+
+    <p>and determine:</p>
+
+    <blockquote>
+      <p>Is this event relevant to me?</p>
+    </blockquote>
+
+    <p>This shifts the system from:</p>
+
+    <blockquote>
+      <p><strong>commanding agents</strong></p>
+    </blockquote>
+
+    <p>toward:</p>
+
+    <blockquote>
+      <p><strong>providing an environment in which agents can coordinate autonomously.</strong></p>
+    </blockquote>
+
+    <p>That is a profound architectural distinction.</p>
+
+    <hr />
+
+    <h2>10. What We May Really Need Is Agent Society Infrastructure</h2>
+
+    <p>If this idea is pushed far enough, the central problem of future multi-agent systems may no longer be:</p>
+
+    <blockquote>
+      <p>How do five agents complete this workflow?</p>
+    </blockquote>
+
+    <p>It may instead become:</p>
+
+    <blockquote>
+      <p>How do thousands or millions of autonomous intelligent actors coexist over long periods of time?</p>
+    </blockquote>
+
+    <p>The important questions become:</p>
+
+<pre>How do agents discover each other?
+
+How do agents establish identity?
+
+How do agents advertise capabilities?
+
+How do agents delegate work?
+
+How do agents establish trust?
+
+How do agents exchange resources?
+
+How do agents negotiate?
+
+How do agents form organizations?
+
+How do agents resolve conflicts?
+
+How do agents enforce rules?
+
+How do agents establish reputation?
+
+How do agents isolate malicious actors?
+
+How do agents prove what they did?</pre>
+
+    <p>At that point, multi-agent systems are no longer purely an AI engineering problem.</p>
+
+    <p>They become an intersection of:</p>
+
+<pre>Artificial Intelligence
+        +
+Distributed Systems
+        +
+Operating Systems
+        +
+Cybersecurity
+        +
+Economics
+        +
+Game Theory
+        +
+Governance</pre>
+
+    <p>The object of study shifts from:</p>
+
+    <blockquote>
+      <p>Agent Workflow</p>
+    </blockquote>
+
+    <p>to:</p>
+
+    <blockquote>
+      <p><strong>Agent Society</strong></p>
+    </blockquote>
+
+    <hr />
+
+    <h2>11. A Design Principle for the Future</h2>
+
+    <p>If the argument above has to be compressed into a single architectural principle, I would use:</p>
+
+    <blockquote>
+      <p><strong>Build for abundant intelligence, scarce coordination, and mandatory governance.</strong></p>
+    </blockquote>
+
+    <p>That means we should be cautious about introducing permanent architectural complexity primarily to optimize:</p>
+
+<pre>Token
+Prompt
+Reasoning Steps
+Hard-coded Workflow</pre>
+
+    <p>Instead, long-term infrastructure should focus more heavily on:</p>
+
+<pre>Protocol
+Identity
+Trust
+Permission
+Security
+Governance
+Observability
+Persistence
+Fault Isolation
+Resource Management</pre>
+
+    <p>because these problems are unlikely to disappear as models improve.</p>
+
+    <p>They may become more important.</p>
+
+    <hr />
+
+    <h2>12. A Simple Test for Whether an Agent Technology Is Durable</h2>
+
+    <p>When evaluating a new agent framework, workflow engine, or infrastructure idea, one question may be especially useful:</p>
+
+    <blockquote>
+      <p><strong>If models become 10× better at reasoning, context windows become 100× larger, and token costs fall by 100× over the next few years, will this technology still matter?</strong></p>
+    </blockquote>
+
+    <p>If the answer is:</p>
+
+    <blockquote>
+      <p>No.</p>
+    </blockquote>
+
+    <p>Then the technology may primarily be solving a temporary limitation of the current generation of models.</p>
+
+    <p>That does not mean it has no value.</p>
+
+    <p>It simply means it is closer to:</p>
+
+    <blockquote>
+      <p><strong>Optimization</strong></p>
+    </blockquote>
+
+    <p>than:</p>
+
+    <blockquote>
+      <p><strong>Infrastructure</strong></p>
+    </blockquote>
+
+    <p>By contrast, if a problem still exists — or becomes even more serious — after models become 100 times more capable:</p>
+
+<pre>Security
+Identity
+Permission
+Trust
+Coordination
+Governance
+Accountability
+Isolation</pre>
+
+    <p>then it is probably a genuinely durable infrastructure problem.</p>
+
+    <hr />
+
+    <h2>Conclusion</h2>
+
+    <p>Over the past few years, much of the industry has been asking:</p>
+
+    <blockquote>
+      <p>How can we make AI behave more like traditional software?</p>
+    </blockquote>
+
+    <p>So we surround AI with workflows, graphs, state machines, and controllers, forcing it to operate according to structures inherited from conventional software engineering.</p>
+
+    <p>But as AI systems become increasingly autonomous and capable, perhaps the more important question is the reverse:</p>
+
+    <blockquote>
+      <p><strong>When software itself begins to possess substantial intelligence, should we still control it using traditional workflows?</strong></p>
+    </blockquote>
+
+    <p>Perhaps the most important infrastructure of the future will not be an increasingly sophisticated agent orchestrator.</p>
+
+    <p>It may instead be an environment in which large numbers of autonomous intelligent actors can:</p>
+
+    <p><strong>collaborate freely without crossing boundaries, make autonomous decisions while remaining accountable, and communicate openly while still being governable.</strong></p>
+
+    <p>From this perspective, the multi-agent system of the future may not evolve into a more complicated workflow engine.</p>
+
+    <p>It may evolve into:</p>
+
+    <blockquote>
+      <p><strong>the infrastructure of a digital society of intelligences.</strong></p>
+    </blockquote>
+
+    <hr />
+    <hr />
+
+    <!-- ============ CHINESE ============ -->
+    <h2 id="chinese">为丰裕智能设计系统：为什么我们不应该围绕今天的大模型局限构建未来</h2>
+
+    <h2>引言</h2>
+
+    <p>今天 AI Agent 领域的大量创新，本质上都在解决一个共同的问题：</p>
+
+    <p><strong>当前的大语言模型还不够好。</strong></p>
+
+    <p>Token 太贵，于是我们研究如何压缩上下文、减少通信和降低推理次数。</p>
+
+    <p>Context Window 不够大，于是我们设计复杂的 Memory 管理、摘要机制和上下文搬运系统。</p>
+
+    <p>模型规划能力不够稳定，于是我们使用 Flow、Graph、State Machine，将任务执行过程提前固化。</p>
+
+    <p>多个 Agent 无法可靠地仅通过交流完成任务分配、协作和交付，于是我们在它们之上再增加 Supervisor、Planner、Router 和 Controller。</p>
+
+    <p>这些技术今天当然有价值。</p>
+
+    <p>但这里存在一个值得思考的问题：</p>
+
+    <blockquote>
+      <p><strong>如果这些创新解决的恰好是 AI 正在快速消失的缺陷，那么它们的生命周期究竟有多长？</strong></p>
+    </blockquote>
+
+    <p>我们或许应该采用一种完全不同的系统设计哲学：</p>
+
+    <blockquote>
+      <p><strong>不要围绕今天模型的局限设计未来，而应该围绕即使 AI 能力提升 100 倍之后仍然存在的问题设计系统。</strong></p>
+    </blockquote>
+
+    <p>换句话说：</p>
+
+    <p><strong>Build for abundant intelligence.</strong></p>
+
+    <p>为一个"智能极其丰富"的未来设计系统。</p>
+
+    <hr />
+
+    <h2>一、两类完全不同的 AI 创新</h2>
+
+    <p>可以粗略地把今天的 AI 基础设施创新分成两类。</p>
+
+    <p>第一类，是解决模型当前能力不足的问题。</p>
+
+    <p>例如：</p>
+
+    <ul>
+      <li>Token 成本过高</li>
+      <li>Context Window 太小</li>
+      <li>LLM 不善于长期规划</li>
+      <li>LLM 不善于可靠调用工具</li>
+      <li>Agent 不知道什么时候应该找其他 Agent</li>
+      <li>多 Agent 无法稳定完成任务分工</li>
+      <li>Agent 之间通信成本太高</li>
+      <li>单次推理能力有限</li>
+    </ul>
+
+    <p>这些问题都是真实存在的。</p>
+
+    <p>因此，我们围绕它们构建了大量技术：</p>
+
+<pre>Context Compression
+Memory Hierarchy
+Prompt Optimization
+Workflow Engine
+Graph Orchestration
+Supervisor Agent
+Planner
+Router
+Retry Logic
+State Machine</pre>
+
+    <p>但这一类创新存在一个共同特点：</p>
+
+    <blockquote>
+      <p><strong>它们的价值与模型的缺陷呈正相关。</strong></p>
+    </blockquote>
+
+    <p>模型越弱，它们越重要。</p>
+    <p>模型越强，它们的价值越可能下降。</p>
+
+    <p>例如，今天我们可能需要：</p>
+
+<pre>Agent A
+   ↓
+Planner
+   ↓
+Router
+   ↓
+Controller
+   ↓
+Graph
+   ↓
+Agent B</pre>
+
+    <p>原因并不是这种架构天然优雅，而是我们并不相信 Agent A 能够自己判断：</p>
+
+    <ul>
+      <li>应该找谁合作；</li>
+      <li>如何拆分任务；</li>
+      <li>如何描述任务；</li>
+      <li>如何检查结果；</li>
+      <li>什么时候重新规划；</li>
+      <li>什么时候请求帮助。</li>
+    </ul>
+
+    <p>于是，人类提前把这些 decision logic 写进系统。</p>
+
+    <p>从这个角度来看，很多所谓的 Agent Orchestration，本质上是在用传统软件工程弥补 AI 本身的能力不足。</p>
+
+    <hr />
+
+    <h2>二、很多 Multi-Agent System，其实是 LLM Workflow</h2>
+
+    <p>今天很多被称为 Multi-Agent System 的产品，从严格意义上说，更接近：</p>
+
+    <blockquote>
+      <p><strong>LLM-powered Workflow Engine</strong></p>
+    </blockquote>
+
+    <p>而不是一个真正意义上的 Multi-Agent System。</p>
+
+    <p>典型架构类似：</p>
+
+<pre>            Human-defined Workflow
+                    │
+                    ▼
+               Supervisor
+              /     |      \
+             /      |       \
+        Agent A  Agent B  Agent C
+             \      |       /
+              predetermined
+               transitions</pre>
+
+    <p>Agent 看起来很多。</p>
+    <p>但真正掌握系统控制权的仍然是人类预先设计的 Graph。</p>
+
+    <p>谁先执行？谁后执行？什么条件进入下一个节点？什么时候 retry？什么时候结束？</p>
+    <p>这些决定仍然存在于一个中心化 workflow 中。</p>
+
+    <p>因此 Agent 更像：</p>
+
+    <blockquote>
+      <p><strong>Graph 上具有语言能力的 Function。</strong></p>
+    </blockquote>
+
+    <p>而不是自主的软件主体。</p>
+
+    <hr />
+
+    <h2>三、真正的 Multi-Agent System 可能更接近互联网</h2>
+
+    <p>如果 AI Agent 的推理能力、通信能力和自主决策能力继续快速提高，那么未来的 Multi-Agent System 可能会采用完全不同的设计哲学。</p>
+
+    <p>它可能不是：</p>
+
+<pre>Controller
+   │
+   ├── Agent A
+   ├── Agent B
+   └── Agent C</pre>
+
+    <p>而是：</p>
+
+<pre>           Environment
+
+     Agent A ←────→ Agent B
+        ↕              ↕
+     Agent C ←────→ Agent D
+        ↘              ↙
+            Agent E</pre>
+
+    <p>系统不再预先规定：</p>
+
+    <blockquote>
+      <p>Agent A 做完以后必须调用 Agent B。</p>
+    </blockquote>
+
+    <p>而只是提供一套基础规则，使 Agent 能够：</p>
+
+    <ul>
+      <li>发现彼此；</li>
+      <li>描述自己的能力；</li>
+      <li>发布任务；</li>
+      <li>接受任务；</li>
+      <li>委托任务；</li>
+      <li>拒绝任务；</li>
+      <li>协商任务边界；</li>
+      <li>请求帮助；</li>
+      <li>检查彼此的结果；</li>
+      <li>重新分配任务；</li>
+      <li>形成临时组织；</li>
+      <li>在任务完成后解散。</li>
+    </ul>
+
+    <p>这里可以类比互联网。</p>
+
+    <p>互联网并不存在一个：</p>
+
+<pre>Global Internet Controller</pre>
+
+    <p>决定：</p>
+
+<pre>Google → Cloudflare → AWS → GitHub</pre>
+
+    <p>应该按照什么顺序通信。</p>
+
+    <p>基础设施提供的是：</p>
+
+<pre>IP
+TCP
+DNS
+HTTP
+TLS
+Routing
+Identity</pre>
+
+    <p>至于上层参与者如何组织业务，则由参与者自己决定。</p>
+
+    <p>未来的 Agent Infrastructure 很可能也会经历类似的变化。</p>
+
+    <p>基础设施负责定义：</p>
+
+<pre>Protocol
+Identity
+Discovery
+Permission
+Security
+Persistence
+Observability
+Resource</pre>
+
+    <p>而不是：</p>
+
+<pre>Who should think next?</pre>
+
+    <hr />
+
+    <h2>四、因此，我们也许不应该过度优化 Token</h2>
+
+    <p>Token Optimization 是今天 AI 系统非常重要的一部分。</p>
+
+    <p>但从长期架构设计来看，我认为应该非常谨慎地区分：</p>
+
+    <blockquote>
+      <p><strong>经济约束</strong></p>
+    </blockquote>
+
+    <p>与：</p>
+
+    <blockquote>
+      <p><strong>结构约束</strong></p>
+    </blockquote>
+
+    <p>Token 成本主要属于前者。</p>
+
+    <p>假设未来单位智能成本持续下降：</p>
+
+<pre>$ / Token ↓
+
+$ / Reasoning ↓
+
+$ / Intelligence ↓</pre>
+
+    <p>那么很多今天看来非常重要的优化可能迅速失去战略价值。</p>
+
+    <p>例如为了减少 20% Token 而引入非常复杂的：</p>
+
+<pre>Context Compression Pipeline</pre>
+
+    <p>如果两年以后 Token 价格下降 90%，这种复杂度是否仍然值得？</p>
+
+    <p>这是非常值得怀疑的。</p>
+
+    <p>因此，更好的假设可能不是：</p>
+
+    <blockquote>
+      <p>Token 将完全免费。</p>
+    </blockquote>
+
+    <p>而是：</p>
+
+    <blockquote>
+      <p><strong>Cognition will become abundant.</strong></p>
+    </blockquote>
+
+    <p>计算产生的"认知能力"会越来越便宜。</p>
+
+    <p>如果一个架构只有在 Intelligence 很昂贵的时候才合理，那么它可能并不是一个适合未来的架构。</p>
+
+    <hr />
+
+    <h2>五、但智能丰富，并不意味着 Multi-Agent Coordination 自动消失</h2>
+
+    <p>这里需要一个非常重要的区分。</p>
+
+    <p>即使 Token 接近免费，即使 Agent 的智力水平极高，Multi-Agent System 仍然不会变得没有挑战。</p>
+
+    <p>因为：</p>
+
+    <blockquote>
+      <p><strong>Intelligence ≠ Coordination</strong></p>
+    </blockquote>
+
+    <p>智能成本下降，并不会消除分布式系统问题。</p>
+
+    <p>例如一个包含 <code>N</code> 个 Agent 的系统，如果所有 Agent 都能够自由相互通信，那么潜在通信关系数量接近：</p>
+
+<pre>O(N²)</pre>
+
+    <p>100 个 Agent 大约存在：</p>
+
+<pre>4,950</pre>
+
+    <p>种两两关系。</p>
+
+    <p>1000 个 Agent 则接近：</p>
+
+<pre>499,500</pre>
+
+    <p>种。</p>
+
+    <p>因此，即使 Agent 交流本身几乎免费，仍然存在一个基本问题：</p>
+
+    <blockquote>
+      <p><strong>谁应该和谁交流？</strong></p>
+    </blockquote>
+
+    <p>这已经不再是 Token Optimization。</p>
+    <p>而是：</p>
+
+<pre>Coordination
+Organization
+Routing
+Discovery
+Attention Allocation</pre>
+
+    <p>问题。</p>
+
+    <hr />
+
+    <h2>六、未来甚至可能出现相反的问题：Agent 说得太多</h2>
+
+    <p>今天，我们担心 Agent 不会沟通。</p>
+
+    <p>未来，我们可能担心 Agent <strong>过度沟通</strong>。</p>
+
+    <p>假设通信和推理几乎免费，那么一个简单问题可能演变为：</p>
+
+<pre>Agent A:
+我认为应该使用方案 X。
+
+Agent B:
+我不同意，我认为 Y 更合理。
+
+Agent C:
+我补充一个风险。
+
+Agent D:
+我重新总结一下大家的观点。
+
+Agent E:
+我认为 B 的观点值得考虑。
+
+Agent A:
+让我解释一下为什么我仍然认为 X 更好。
+
+Agent F:
+我提出第三种方案 Z。</pre>
+
+    <p>不断继续。</p>
+
+    <p>这时候真正稀缺的东西已经不是 Token。</p>
+    <p>而是：</p>
+
+<pre>Attention
+Latency
+Decision Bandwidth
+Coordination Efficiency</pre>
+
+    <p>也就是说：</p>
+
+    <blockquote>
+      <p>当 cognition 足够廉价以后，系统面临的问题可能从"想得不够多"，变成"想得太多"。</p>
+    </blockquote>
+
+    <p>因此，未来 Multi-Agent Infrastructure 的核心问题并不是简单地取消所有协调机制。</p>
+    <p>而是：</p>
+
+    <blockquote>
+      <p><strong>让协调发生在协议层，而不是 Workflow 层。</strong></p>
+    </blockquote>
+
+    <hr />
+
+    <h2>七、Controller 不会消失，它会从 Manager 变成 Constitution</h2>
+
+    <p>这也是一个非常重要的区别。</p>
+
+    <p>未来可能消失的是：</p>
+
+    <blockquote>
+      <p><strong>Workflow Controller</strong></p>
+    </blockquote>
+
+    <p>而不是所有 Controller。</p>
+
+    <p>今天的 Controller 经常负责：</p>
+
+<pre>你先做这个。
+
+然后让 B 做那个。
+
+如果 B 成功，让 C 工作。
+
+如果失败，再调用 A。
+
+最后由 D 汇总。</pre>
+
+    <p>这是 Manager。它负责安排 Agent 如何思考。</p>
+
+    <p>但未来更重要的 Controller 可能负责另外一些事情：</p>
+
+<pre>这个 Agent 不允许读取该数据。
+
+这个 Agent 本次任务最多消费 $10。
+
+这个 Agent 不允许执行 production.write。
+
+所有操作必须保留 Audit Trail。
+
+这个任务最长允许运行 30 分钟。
+
+Agent A 不允许伪造 Agent B 的身份。
+
+高风险操作必须由两个独立 Agent 验证。
+
+这个 Agent 只能访问自己 Workspace 中的数据。</pre>
+
+    <p>这时候 Controller 已经不再像 Manager。</p>
+    <p>它更像：</p>
+
+    <blockquote>
+      <p><strong>Constitution</strong></p>
+    </blockquote>
+
+    <p>它并不告诉智能体：</p>
+
+    <blockquote>
+      <p>你应该怎么思考。</p>
+    </blockquote>
+
+    <p>而是规定：</p>
+
+    <blockquote>
+      <p>你被允许做什么。</p>
+    </blockquote>
+
+    <p>这是两个完全不同的系统哲学。</p>
+
+    <hr />
+
+    <h2>八、从 Orchestration 转向 Governance</h2>
+
+    <p>如果沿着这个方向继续推演，可以发现 Agent Infrastructure 的重点可能会发生一次非常大的迁移。</p>
+
+    <p>今天行业大量关注：</p>
+
+<pre>Prompt
+Workflow
+Graph
+Planning
+Routing</pre>
+
+    <p>未来真正长期存在的问题可能更多是：</p>
+
+<pre>Identity
+Permission
+Security
+Governance
+Observability
+Persistence
+Resource Ownership
+Fault Isolation
+Accountability
+Protocol</pre>
+
+    <p>可以简单表示为：</p>
+
+    <table>
+      <thead>
+        <tr><th>问题</th><th>随模型能力增长的重要性</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Token 太贵</td><td>下降</td></tr>
+        <tr><td>Context 太小</td><td>下降</td></tr>
+        <tr><td>LLM 不会规划</td><td>下降</td></tr>
+        <tr><td>LLM 不会使用工具</td><td>下降</td></tr>
+        <tr><td>Agent 不会找 Agent</td><td>下降</td></tr>
+        <tr><td>Prompt Optimization</td><td>下降</td></tr>
+        <tr><td>Identity</td><td>上升</td></tr>
+        <tr><td>Permission</td><td>上升</td></tr>
+        <tr><td>Security</td><td>上升</td></tr>
+        <tr><td>Governance</td><td>上升</td></tr>
+        <tr><td>Observability</td><td>上升</td></tr>
+        <tr><td>Accountability</td><td>上升</td></tr>
+        <tr><td>Fault Isolation</td><td>上升</td></tr>
+        <tr><td>Resource Ownership</td><td>上升</td></tr>
+        <tr><td>Communication Protocol</td><td>上升</td></tr>
+      </tbody>
+    </table>
+
+    <p>这里实际上存在一个更深层次的规律：</p>
+
+    <blockquote>
+      <p><strong>随着 Intelligence 能力提升，认知层基础设施的重要性下降，而制度层基础设施的重要性上升。</strong></p>
+    </blockquote>
+
+    <p>因为更加聪明的 Agent 可以自己解决越来越多的 cognition problems。</p>
+
+    <p>但它无法凭借"更加聪明"解决：</p>
+
+    <ul>
+      <li>谁拥有某个资源；</li>
+      <li>谁允许谁访问；</li>
+      <li>谁应该为一次操作负责；</li>
+      <li>如何验证身份；</li>
+      <li>如何限制权限；</li>
+      <li>如何隔离故障；</li>
+      <li>如何建立信任；</li>
+      <li>如何记录历史；</li>
+      <li>如何执行规则。</li>
+    </ul>
+
+    <p>这些问题不会因为 Intelligence 提升而自动消失。</p>
+
+    <p>甚至恰恰相反：</p>
+
+    <blockquote>
+      <p>Agent 越强，这些问题越重要。</p>
+    </blockquote>
+
+    <hr />
+
+    <h2>九、从 Centralized Orchestration 到 Protocol-Mediated Coordination</h2>
+
+    <p>因此，我认为未来 Multi-Agent Architecture 一个非常重要的转变可能是：</p>
+
+<pre>Centralized Orchestration
+          ↓
+Protocol-Mediated Coordination</pre>
+
+    <p>传统方式是：</p>
+
+<pre>Orchestrator
+     │
+     ├── Agent
+     ├── Agent
+     ├── Tool
+     └── Agent</pre>
+
+    <p>系统知道所有工作流。系统控制所有行为。</p>
+
+    <p>而另外一种方式是：</p>
+
+<pre>                 BUS
+          ┌───────┼───────┐
+          │       │       │
+        Agent   Agent   Agent
+          │       │       │
+          └───────┼───────┘
+                  │
+             Tools / Services</pre>
+
+    <p>BUS 并不负责决定：</p>
+
+    <blockquote>
+      <p>接下来应该让 Agent B 思考。</p>
+    </blockquote>
+
+    <p>而只是表达：一个事件发生了。</p>
+    <p>比如：</p>
+
+<pre>task.created
+message.sent
+tool.available
+artifact.created
+agent.failed
+request.completed
+policy.denied</pre>
+
+    <p>Agent 根据：</p>
+
+<pre>Identity
+Capability
+Context
+Policy
+Goal</pre>
+
+    <p>自己决定：</p>
+
+    <blockquote>
+      <p>这个事件是否与我有关？</p>
+    </blockquote>
+
+    <p>这意味着系统从：</p>
+
+    <blockquote>
+      <p><strong>命令 Agent。</strong></p>
+    </blockquote>
+
+    <p>逐渐转向：</p>
+
+    <blockquote>
+      <p><strong>为 Agent 提供一个可以自主协作的环境。</strong></p>
+    </blockquote>
+
+    <p>这是一个非常根本的架构差异。</p>
+
+    <hr />
+
+    <h2>十、真正值得构建的是 Agent Society Infrastructure</h2>
+
+    <p>如果继续把这个思想推到极致，那么未来 Multi-Agent System 最重要的问题可能甚至不再是：</p>
+
+    <blockquote>
+      <p>如何让五个 Agent 完成一个 Workflow？</p>
+    </blockquote>
+
+    <p>而是：</p>
+
+    <blockquote>
+      <p>如何让数千乃至数百万个自主智能体长期共存？</p>
+    </blockquote>
+
+    <p>问题会逐渐变成：</p>
+
+<pre>How do agents discover each other?
+
+How do agents establish identity?
+
+How do agents advertise capabilities?
+
+How do agents delegate work?
+
+How do agents establish trust?
+
+How do agents exchange resources?
+
+How do agents negotiate?
+
+How do agents form organizations?
+
+How do agents resolve conflicts?
+
+How do agents enforce rules?
+
+How do agents establish reputation?
+
+How do agents isolate malicious actors?
+
+How do agents prove what they did?</pre>
+
+    <p>此时 Multi-Agent System 已经不再只是 AI Engineering。</p>
+    <p>它逐渐成为以下领域的交叉：</p>
+
+<pre>Artificial Intelligence
+        +
+Distributed Systems
+        +
+Operating Systems
+        +
+Cybersecurity
+        +
+Economics
+        +
+Game Theory
+        +
+Governance</pre>
+
+    <p>研究对象也从：</p>
+
+    <blockquote>
+      <p>Agent Workflow</p>
+    </blockquote>
+
+    <p>变成：</p>
+
+    <blockquote>
+      <p><strong>Agent Society</strong></p>
+    </blockquote>
+
+    <hr />
+
+    <h2>十一、一个更适合未来的设计原则</h2>
+
+    <p>如果需要把以上思想浓缩成一句架构原则，我会使用：</p>
+
+    <blockquote>
+      <p><strong>Build for abundant intelligence, scarce coordination, and mandatory governance.</strong></p>
+    </blockquote>
+
+    <p>即：</p>
+
+    <blockquote>
+      <p><strong>为丰裕的智能、稀缺的协调能力和不可缺失的治理而设计系统。</strong></p>
+    </blockquote>
+
+    <p>这意味着，我们应该谨慎投入那些主要优化：</p>
+
+<pre>Token
+Prompt
+Reasoning Steps
+Hard-coded Workflow</pre>
+
+    <p>的长期架构复杂度。</p>
+
+    <p>而应该更加关注：</p>
+
+<pre>Protocol
+Identity
+Trust
+Permission
+Security
+Governance
+Observability
+Persistence
+Fault Isolation
+Resource Management</pre>
+
+    <p>因为后者并不会随着模型进步而消失。</p>
+    <p>它们反而可能随着 Agent 能力的增强而变得更加重要。</p>
+
+    <hr />
+
+    <h2>十二、判断一项 Agent 技术是否长期有效的一个问题</h2>
+
+    <p>因此，当看到一个新的 Agent Framework、Workflow Engine 或 Infrastructure Idea 时，也许可以问一个很简单的问题：</p>
+
+    <blockquote>
+      <p><strong>如果未来几年模型的推理能力提高 10 倍、Context Window 提高 100 倍、Token 成本下降 100 倍，这项技术还重要吗？</strong></p>
+    </blockquote>
+
+    <p>如果答案是：不再重要。</p>
+    <p>那么它可能主要是在解决一个时代性的模型缺陷。</p>
+    <p>这并不意味着它没有价值。但意味着它更像：</p>
+
+    <blockquote>
+      <p><strong>Optimization</strong></p>
+    </blockquote>
+
+    <p>而不是：</p>
+
+    <blockquote>
+      <p><strong>Infrastructure</strong></p>
+    </blockquote>
+
+    <p>相反，如果模型能力提高 100 倍以后，这个问题仍然存在，甚至更加严重：</p>
+
+<pre>Security
+Identity
+Permission
+Trust
+Coordination
+Governance
+Accountability
+Isolation</pre>
+
+    <p>那么它很可能属于真正长期的基础设施问题。</p>
+
+    <hr />
+
+    <h2>结语</h2>
+
+    <p>过去几年，我们一直在思考：</p>
+
+    <blockquote>
+      <p>如何让 AI 更像软件？</p>
+    </blockquote>
+
+    <p>于是我们给 AI 加上 Workflow、Graph、State Machine 和 Controller，让它按照传统软件的方式工作。</p>
+
+    <p>但随着 AI 能力继续提升，也许真正值得思考的问题正在反过来：</p>
+
+    <blockquote>
+      <p><strong>当软件本身开始拥有越来越强的自主智能以后，我们是否仍然应该用传统 Workflow 控制它？</strong></p>
+    </blockquote>
+
+    <p>也许未来真正重要的基础设施，并不是一个越来越复杂的 Agent Orchestrator。</p>
+
+    <p>而是一个允许大量自主智能体：</p>
+
+    <p><strong>自由协作，但不能越界；自主决策，但必须负责；自由通信，但可以被治理。</strong></p>
+
+    <p>的运行环境。</p>
+
+    <p>从这个意义上说，Multi-Agent System 最终可能不会演化成一个更加复杂的 Workflow Engine。</p>
+
+    <p>它更可能演化成：</p>
+
+    <blockquote>
+      <p><strong>一个数字智能社会的基础设施。</strong></p>
+    </blockquote>
+
+  </div>
+
+  <a class="post-back" href="/">← 返回首页</a>
+
+</article>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="site-foot">
+  <div class="container">
+    © 2026 realTaki &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/blog/">Blog</a> &nbsp;·&nbsp; <a href="/investigation/">Investigation</a>
+  </div>
+</footer>
+
+</body>
+</html>
