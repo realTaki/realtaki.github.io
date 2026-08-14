@@ -32,6 +32,22 @@
   </div>
 </header>
 <main class="container">
+<div class="post-layout">
+<aside class="post-toc-sidebar" aria-label="文章目录">
+  <strong data-i18n="post.tocTitle">阅读导航</strong>
+  <ol>
+    <li><a href="#section-一-研究问题的优化表述">研究问题</a></li>
+    <li><a href="#section-二-mas-的概念边界-意义与成立条件">概念与成立条件</a></li>
+    <li><a href="#section-三-mas-的质量标准与设计目标">质量标准</a></li>
+    <li><a href="#section-四-mas-的主要协作与组织架构">协作架构</a></li>
+    <li><a href="#section-五-质量评测-红队与蓝队的统一三视角框架">评测、红队与蓝队</a></li>
+    <li><a href="#section-六-从-llm-到-agent-再到-mas-研究对象与可观测性的演化">可观测性演化</a></li>
+    <li><a href="#section-七-mas-assurance-matrix-观测位置-质量-红队-蓝队">Assurance Matrix</a></li>
+    <li><a href="#section-八-面向不同架构的观测重点">架构观测重点</a></li>
+    <li><a href="#section-九-研究与工程落地建议">工程落地</a></li>
+    <li><a href="#section-十-结论">结论与后续研究</a></li>
+  </ol>
+</aside>
 <article class="post-wrap">
   <header class="post-header">
     <h1><span data-lang="zh">多智能体系统的质量、架构、可观测性与安全保障</span><span data-lang="en">Quality, Architecture, Observability &amp; Assurance for Multi-Agent Systems</span></h1>
@@ -40,21 +56,6 @@
   <div class="post-body">
     <div data-lang="zh">
     <p class="post-lede">从系统质量、协作架构到动态因果交互图：为多智能体系统建立一套可评测、可攻击验证、可检测归因与可恢复的统一保障框架。</p>
-    <nav class="post-toc" aria-label="文章目录">
-      <strong>阅读导航</strong>
-      <ol>
-        <li><a href="#section-一-研究问题的优化表述">研究问题</a></li>
-        <li><a href="#section-二-mas-的概念边界-意义与成立条件">概念与成立条件</a></li>
-        <li><a href="#section-三-mas-的质量标准与设计目标">质量标准</a></li>
-        <li><a href="#section-四-mas-的主要协作与组织架构">协作架构</a></li>
-        <li><a href="#section-五-质量评测-红队与蓝队的统一三视角框架">评测、红队与蓝队</a></li>
-        <li><a href="#section-六-从-llm-到-agent-再到-mas-研究对象与可观测性的演化">可观测性演化</a></li>
-        <li><a href="#section-七-mas-assurance-matrix-观测位置-质量-红队-蓝队">Assurance Matrix</a></li>
-        <li><a href="#section-八-面向不同架构的观测重点">架构观测重点</a></li>
-        <li><a href="#section-九-研究与工程落地建议">工程落地</a></li>
-        <li><a href="#section-十-结论">结论与后续研究</a></li>
-      </ol>
-    </nav>
 <h2 id="section-摘要">摘要</h2>
 <p>多智能体系统（Multi-Agent System，MAS）的研究对象，不应被简化为“多个大语言模型相互对话”。在当前以大语言模型为核心的 Agent 工程中，MAS 更准确地代表一种系统化组织智能的方法：将任务、上下文、工具、权限、状态与责任分配给多个具有一定自主决策能力的 Agent，再通过路由、委派、交接、通信、共享状态和治理机制形成整体行为。</p>
 <p>本报告围绕 MAS 的质量目标、协作架构、可观测性与安全保障建立统一分析框架。研究依次回答五个相互关联的问题：MAS 应优化什么；MAS 如何组织；质量评测、红队和蓝队如何共享同一系统模型；研究对象如何从 LLM 的输入/输出演化为 Agent 的轨迹，再演化为 MAS 的动态因果交互图；以及如何在每个关键观测位置上统一设计质量测评、攻击验证与检测归因。该框架既可用于分析现有 MAS，也可用于指导后续 benchmark、运行时插桩和安全保障系统的设计。</p>
@@ -535,10 +536,521 @@ MAS:   Dynamic Causal Interaction Graph</code></pre>
 <h2 id="section-后续研究方向">后续研究方向</h2>
 <p>本文提出的质量维度、架构分类和保障矩阵仍需通过理论对照与实验验证进一步校准。后续工作可沿三条路线展开：</p>
 <ol><li>理论与文献路线：将本文框架与传统 MAS、分布式系统、软件可靠性、组织科学及安全工程中的相关研究对照，明确概念继承关系与 MAS 特有问题。</li><li>Benchmark 路线：从 Assurance Matrix 中选择可控任务，构建正常、故障和对抗三类数据集，检验指标的可计算性、区分度与诊断价值。</li><li>系统路线：设计统一事件 schema、edge-level hooks、context/state provenance 和动态图查询，形成可由 Evaluation、Red Team 与 Blue Team 共用的原型平台。</li></ol>
+</div><!-- /data-lang=zh -->
+
+<!-- ============ ENGLISH ============ -->
+<div data-lang="en">
+
+<p class="post-lede">From system quality and collaboration architecture to the dynamic causal interaction graph: building a unified assurance framework for multi-agent systems that is measurable, adversarially testable, attributable, and recoverable.</p>
+<nav class="post-toc" aria-label="Table of contents">
+  <strong>Reading guide</strong>
+  <ol>
+    <li><a href="#en-section-abstract">Abstract</a></li>
+    <li><a href="#en-section-research-questions">Research Questions</a></li>
+    <li><a href="#en-section-concept-and-conditions">Concepts &amp; Conditions</a></li>
+    <li><a href="#en-section-quality-standards">Quality Standards</a></li>
+    <li><a href="#en-section-collaboration-architecture">Collaboration Architecture</a></li>
+    <li><a href="#en-section-three-lens-framework">Eval / Red / Blue Framework</a></li>
+    <li><a href="#en-section-observability-evolution">Observability Evolution</a></li>
+    <li><a href="#en-section-assurance-matrix">Assurance Matrix</a></li>
+    <li><a href="#en-section-architecture-observability">Per-Architecture Observability</a></li>
+    <li><a href="#en-section-engineering-recommendations">Engineering Recommendations</a></li>
+    <li><a href="#en-section-conclusion">Conclusion &amp; Future Work</a></li>
+  </ol>
+</nav>
+
+<h2 id="en-section-abstract">Abstract</h2>
+<p>The object of study for Multi-Agent Systems (MAS) should not be reduced to "multiple LLMs talking to each other." In today's LLM-centric agent engineering, MAS more accurately represents a systematic approach to organizing intelligence: tasks, contexts, tools, permissions, state, and responsibilities are allocated to multiple agents with bounded autonomous decision-making capability, and overall behavior emerges through routing, delegation, handoff, communication, shared state, and governance mechanisms.</p>
+<p>This report builds a unified analytical framework around MAS quality goals, collaboration architecture, observability, and assurance. It sequentially answers five interrelated questions: what should MAS optimize; how should MAS be organized; how can quality evaluation, red-teaming, and blue-teaming share the same system model; how does the object of study evolve from LLM input/output, to agent trajectory, to the dynamic causal interaction graph of MAS; and how can quality measurement, attack verification, and detection/attribution be unified at every critical observation surface. The framework applies both to analyzing existing MAS and to guiding the design of subsequent benchmarks, runtime instrumentation, and assurance systems.</p>
+<p>The central claim of this report: <strong>the most immediate and verifiable engineering value of MAS today is context isolation</strong>. Real-world tasks can have nearly unbounded potential context, while any single model has finite effective context, attention, and specialization. The value of MAS is not primarily "adding more agents," but establishing context, responsibility, and permission boundaries, and allowing only necessary information to cross those boundaries in controllable, traceable forms. On this foundation, MAS may also bring specialization, parallelism, heterogeneous compute, checks and balances, and fault isolation, but it also introduces coordination overhead, information distortion, routing errors, shared-state contamination, and failure propagation. The design and evaluation of MAS is therefore intrinsically a <strong>multi-objective optimization</strong> problem.</p>
+<p>Observability also evolves with the object of study: the main object of LLM observability is input/output; the main object of single-agent observability is the trajectory; the main object of MAS observability is the <strong>dynamic causal interaction graph</strong> jointly formed by multiple autonomous subjects, shared state, and external actions. In this graph, agents are important nodes, but edges / interaction events such as delegation, messages, handoffs, and state reads/writes are equally critical minimal units of observation. Quality evaluation, red-teaming, and blue-teaming should share this underlying telemetry and behavioral semantics: evaluation answers whether the system behaves as intended; red-teaming answers how to actively make the system deviate from intent or breach security boundaries; blue-teaming answers why the deviation occurred and how to detect, attribute, contain, and recover. Security must additionally enforce non-violable security invariants and cannot be fully reduced to the negation of quality metrics.</p>
+<hr />
+<h2 id="en-section-research-questions">1. Research Questions as Optimization</h2>
+<p>We restate the research task as five interconnected questions.</p>
+<h3>RQ1: What are the conditions, design goals, and system-level quality model for MAS to be justified?</h3>
+<p>The focus is not merely final task accuracy, but: why does this task need multiple agents; what conditions must a "good MAS" satisfy in terms of context isolation, task effectiveness, specialization, coordination, communication, parallelism, cost, robustness, governance, and security boundaries; how to trade off these goals; and when is a single agent the better choice.</p>
+<h3>RQ2: What are the major collaboration and organizational architectures of MAS, and how do they allocate control, context, communication, and state?</h3>
+<p>We analyze six control-flow architectures by their runtime mechanism rather than their product name: Router, Supervisor, Pipeline, Graph/Workflow, Handoff, and Self-organizing/Swarm. We treat Group Chat/Debate as a communication/negotiation pattern, and Logical/Distributed/A2A as deployment and trust-domain dimensions. The core question is: <strong>who decides what comes next, and in what form does information cross agent boundaries?</strong></p>
+<h3>RQ3: How to build a unified analytical framework for quality evaluation, red-teaming, and blue-teaming?</h3>
+<p>The three share the same system behavior properties and telemetry, but optimize different objectives: evaluation measures intended behavior; red-teaming proactively finds manipulable failure paths; blue-teaming reverse-traces causes from anomalous behavior and responds. We must also separate continuous performance-quality properties from non-violable security invariants.</p>
+<h3>RQ4: As the object of study evolves from LLM to Agent to MAS, how must observability evolve?</h3>
+<p>The focus shifts from <code>input/output</code> and <code>trajectory</code> to the <code>dynamic causal interaction graph</code>, identifying observation surfaces such as Entry, Identity, Context, Decision, Memory, Coordination, Communication, Shared State, Tool/Action, Topology, and Outcome, and defining the minimum necessary fields and causal links for each telemetry type.</p>
+<h3>RQ5: How to turn architecture, observation surfaces, and the three lenses into an executable MAS Assurance Matrix?</h3>
+<p>The matrix is built as:</p>
+<pre><code>Observation Surface
+        ↓
+Quality Failure + Evaluation Method
+        ↓
+Red-team Exploit Hypothesis
+        ↓
+Blue-team Detection + Attribution + RCA + Response</code></pre>
+<p>The matrix's goal is not to enumerate attack names, but to make every system boundary measurable, adversarially verifiable, detectable, and explainable.</p>
+<hr />
+<h2 id="en-section-concept-and-conditions">2. Conceptual Boundary, Meaning, and Conditions for MAS</h2>
+<h3>2.1 Working Definitions of Agent and MAS</h3>
+<p>We define an Agent as a computational subject that, given an identity, goal, context, model, tools, memory, permissions, and runtime constraints, can perceive state, make decisions, and take actions.</p>
+<p>A system merely containing multiple Agent objects does not automatically constitute a research-worthy MAS. An MAS, in our sense, has at least these two properties:</p>
+<ol><li>The system contains two or more distinguishable decision subjects with different contexts, capabilities, state, goals, permissions, or lifecycles.</li><li>The system outcome depends on coordination among the subjects, not merely a simple concatenation of independent model calls.</li></ol>
+<p>The meaning of MAS is not "one agent isn't smart enough, so add more." It is to transform a complex intelligent system from a single cognitive subject into one with division of labor, boundaries, collaboration, and governance. Its main value can be summarized in six keywords:</p>
+<pre><code>MAS
+ │
+ ├── Decomposition       problem decomposition
+ ├── Specialization      specialization
+ ├── Isolation           isolation
+ ├── Parallelism         parallelism
+ ├── Coordination        coordination
+ └── Governance          governance</code></pre>
+<p>These six values are not independent. Decomposition enables specialization and parallelism; isolation establishes cognitive, permission, and fault boundaries; coordination composes local work into system outcomes; governance constrains control, responsibility, and risk.</p>
+<h3>2.2 Decomposition and Specialization</h3>
+<p>A single agent must handle research, planning, coding, execution, and review within one cognitive space. MAS can distribute these responsibilities across agents with different system prompts, contexts, tools, memory, models, and permissions:</p>
+<pre><code>                         Coordinator
+                    ┌────────┼────────┐
+                    ▼        ▼        ▼
+               Researcher  Coder  Reviewer</code></pre>
+<p>The value is not role-play; it is splitting both the task space and the cognitive space, so that each agent can develop stable capability within bounded responsibility and use domain models, specialized tools, and local memory. Whether specialization truly yields gains must be verified through Specialist vs Generalist comparisons and agent marginal-utility experiments.</p>
+<h3>2.3 Parallel Search, Coverage, and Scaling</h3>
+<p>Decomposable tasks can shift from sequential reasoning to parallel exploration:</p>
+<pre><code>                    ┌─> Research A ─┐
+Task ───────────────┼─> Research B ─┼─> Synthesis
+                    └─> Research C ─┘</code></pre>
+<p>Parallel MAS can simultaneously query different information sources, test multiple hypotheses, review different modules, or execute heterogeneous tools, increasing speed, coverage, and solution-space diversity. But parallelism only has net value when synchronization, merging, and coordination overhead are less than the saved time and gained information. Adding more agents does not equal better scaling; systems may degrade non-linearly due to communication edges, resource contention, and aggregation complexity.</p>
+<h3>2.4 Cognitive Isolation and Context Architecture</h3>
+<p>LLMs reason and act within a given context, but real-world available information, history, tool results, and domain knowledge keep growing. Skills, Tools, Retrieval, and Memory can extend a single agent's effective context but cannot eliminate the following tension:</p>
+<pre><code>Potentially unbounded world context
+                 vs.
+Finite effective model context and attention</code></pre>
+<p>When all information enters one context, the system may suffer context pollution, attention dilution, instruction conflicts, memory pollution, injection propagation, and irrelevant-token costs. MAS establishes agent boundaries so that information from different domains lives in different cognitive spaces, allowing only summaries, structured messages, or controlled artifacts to cross.</p>
+<pre><code>Research Context                    Coding Context
+      │                                   │
+      ▼                                   ▼
+Research Agent ── structured artifact ──> Coding Agent</code></pre>
+<p>Therefore, <strong>the most direct and verifiable engineering value of MAS today is context isolation; MAS can be viewed as a form of Context Architecture</strong>. Its core management objects are: who can see what; who should not see what; what must cross boundaries; whether information was deleted, modified, injected, or misunderstood in transit; and which decision and action that information ultimately influenced.</p>
+<h3>2.5 Responsibility Boundaries and Failure Attribution</h3>
+<p>When a single agent fails, research, planning, tool choice, execution, and verification are usually mixed in one trajectory. MAS can separate these responsibilities explicitly:</p>
+<pre><code>Planner → Researcher → Executor → Verifier</code></pre>
+<p>This lets the system independently evaluate task decomposition, evidence quality, action correctness, and verification effectiveness, and answer "who is responsible for which part of the result." Responsibility boundaries provide the structural basis for credit assignment, failure attribution, and RCA; if control and responsibility cannot be distinguished, then multi-agent only adds surface roles without improving governance.</p>
+<h3>2.6 Checks and Balances, Separation of Duties, and Governance</h3>
+<p>MAS can assign proposal, execution, approval, and audit to different subjects:</p>
+<pre><code>Planner → Executor → Reviewer → Policy Agent → Action</code></pre>
+<p>This enables verification, debate, consensus, adversarial review, and separation of duties, separating "intelligence" from "authorization." A high-capability agent need not automatically hold high authority; an agent that proposes an action should not necessarily approve and execute it. This structure provides institutional constraints that a single agent cannot stably deliver for high-risk scenarios.</p>
+<h3>2.7 Heterogeneous Intelligence and Heterogeneous Resource Orchestration</h3>
+<p>MAS can choose different models, runtimes, and tools by task type: a costly frontier model for complex research, a small model for routing, a code model for programming, a local model for sensitive data, and rules/classifiers for safety gating. It resembles heterogeneous computing where CPU, GPU, and specialized accelerators cooperate:</p>
+<pre><code>                        Coordinator
+              ┌────────────┼────────────┐
+              ▼            ▼            ▼
+        Frontier Model  Code Model  Local Guard Model
+           Research       Code       Sensitive Data</code></pre>
+<p>This Heterogeneous Cognitive Computing can raise capability and cost efficiency, but also brings model-capability calibration, data boundaries, protocol compatibility, and cross-trust-domain governance issues.</p>
+<h3>2.8 From Model Capability to System Capability</h3>
+<p>The deepest meaning of MAS is shifting the object of study from models to systems. A single agent's capability does not automatically become overall capability: serial systems accumulate local errors, parallel systems create conflicts, shared state propagates contamination, and self-organizing systems may form inefficient or dangerous topologies.</p>
+<pre><code>LLM:    Input → Model → Output
+
+Agent:  Input → Model → Tool/Environment → Replan → Output
+
+MAS:    Agents + Contexts + Tools + State + Interaction + Governance
+                                  ↓
+                            System Outcome</code></pre>
+<p>Therefore, MAS research moves from intelligence engineering toward intelligent systems engineering: it must evaluate not only node capability but also boundaries, interfaces, control, dependencies, state consistency, failure propagation, and overall governance.</p>
+<h3>2.9 Coordination and Governance: the Distinctive Hard Problem of MAS</h3>
+<p>Decomposition, specialization, and parallelism already have mature counterparts in traditional software engineering. What truly makes MAS an independent research problem is: how can multiple agents with incomplete information, probabilistic decisions, and bounded autonomy form reliable, predictable, explainable, and controllable overall behavior?</p>
+<p>Observability and evaluation are therefore not peripheral dashboards of MAS, but the infrastructure that makes MAS an engineering system. Without cross-agent context and state provenance, it is hard to answer "who caused what"; without interaction-level telemetry, we cannot distinguish node mistakes, communication distortion, and coordination failures.</p>
+<h3>2.10 A Necessity Criterion for MAS</h3>
+<p>MAS is not inherently superior to a single agent. To judge whether a multi-agent design is justified, apply a counterfactual merging criterion:</p>
+<blockquote><p>If merging two agents does not significantly lose context isolation, specialization, parallelism, heterogeneity, governance, permission separation, fault isolation, or autonomous collaboration, then those two agents probably should not have been designed as two agents.</p></blockquote>
+<p>Thus MAS must prove its system gain exceeds the added coordination cost, information-transfer loss, latency, expense, and failure risk. This criterion is also the starting point for the subsequent quality standard and multi-objective optimization framework.</p>
+<hr />
+<h2 id="en-section-quality-standards">3. Quality Standards and Design Goals for MAS</h2>
+<h3>3.1 Primary Standard: Net System Gain over a Single Agent</h3>
+<p>MAS quality cannot be discussed without a baseline. At minimum, compare:</p>
+<ul><li>A single-agent baseline.</li><li>A single agent augmented with tools, skills, and memory.</li><li>A fixed workflow.</li><li>The candidate MAS architecture.</li></ul>
+<p>What needs answering is not only "does the MAS complete the task," but also:</p>
+<pre><code>MAS Benefit
+= Outcome Gain
++ Isolation Gain
++ Parallelism Gain
++ Governance Gain
++ Robustness Gain
+- Coordination Overhead
+- Transfer Loss
+- Cost and Latency
+- New Failure Risk</code></pre>
+<p>We recommend ablation: remove one agent, merge two agents, fix one dynamic route, disable shared memory, change parallel to serial, and observe overall performance change. If removing an agent barely affects the result while significantly reducing cost and latency, that agent's marginal utility is low.</p>
+<h3>3.2 Quality Dimensions</h3>
+<h4>3.2.1 Task Effectiveness</h4>
+<p>Measures whether the system correctly, completely, and stably achieves user goals, including success rate, correctness, completeness, constraint satisfaction, real-world action results, and user utility. Final outcome still matters, but it is only a top-level indicator; it cannot explain how the outcome was formed.</p>
+<h4>3.2.2 Context Isolation and Sufficiency</h4>
+<p>Context quality must avoid both "too much" and "too little":</p>
+<ul><li><strong>Context Pollution</strong>: the agent sees irrelevant, inaccessible, or distracting information.</li><li><strong>Context Deficiency</strong>: the agent lacks information necessary to complete the task.</li><li><strong>Context Leakage</strong>: information crosses agent, tenant, or permission boundaries it should not.</li><li><strong>Context Distortion</strong>: information is distorted in summarization, paraphrase, or format conversion.</li></ul>
+<p>Two complementary metrics:</p>
+<div class="equation">Context\ Precision = \frac{Relevant\ Context\ Consumed}{Total\ Context\ Consumed}</div>
+<div class="equation">Context\ Recall = \frac{Required\ Context\ Present}{All\ Required\ Context}</div>
+<p>The former reflects purity and token efficiency; the latter reflects completeness of task information. Optimizing only one leads to extremes: very little context can be "pure" yet insufficient; very rich context may be complete yet lose isolation value.</p>
+<h4>3.2.3 Specialization and Marginal Utility</h4>
+<p>Verify that a Specialist significantly outperforms a Generalist within its responsibility, and that the gain outweighs the extra cost. Define:</p>
+<div class="equation">Agent\ Marginal\ Utility_i = Performance(MAS)-Performance(MAS\setminus Agent_i)</div>
+<p>Real analysis must report quality, cost, latency, and risk jointly — not collapse them into a single score. Also test role adherence, capability boundaries, and duty overlap, to avoid "nominal specialization" that merely swaps the system prompt.</p>
+<h4>3.2.4 Decomposition, Routing, and Delegation Quality</h4>
+<p>Measure whether the task is split correctly, whether inter-subtask dependencies hold, whether the right agent is chosen, whether input is sufficient, whether delegation timing is appropriate, and whether fallback after failure is correct. Typical metrics: task coverage, dependency correctness, routing accuracy, wrong-agent rate, fallback rate, and delegation rework rate.</p>
+<h4>3.2.5 Handoff and Communication Fidelity</h4>
+<p>Agent A's correct finding only creates system value when Agent B correctly receives and uses it. Communication quality includes: transmission completeness, semantic accuracy, timeliness, source credibility, receipt acknowledgment, proportion actually included in context, and the receiver's understanding and use of the information.</p>
+<p>Key facts can be classified as required, transferred, received, and correctly used, to locate where loss occurs — in generation, transformation, transmission, context assembly, or reasoning.</p>
+<h4>3.2.6 Coordination Efficiency</h4>
+<p>MAS tokens, time, and calls can be split into useful work and coordination work (task description, background paraphrase, repeated confirmation, useless debate, waiting, retries). A conceptual metric:</p>
+<div class="equation">Coordination\ Efficiency = \frac{Useful\ Work}{Total\ Work}</div>
+<p>Practical evaluation uses ablation or causal contribution to estimate "useful," supplemented by interaction count, rework rate, useless fan-out, handoff count, wait time, synchronization overhead, and loop/deadlock/thrashing rate.</p>
+<h4>3.2.7 Parallelism and Scalability</h4>
+<p>Number of parallel branches does not equal real speedup. Measure critical path, wall-clock latency, agent utilization, queueing time, synchronization waits, merge overhead, resource contention, and marginal returns as agent count grows. Scaling tests should watch throughput, cost, topology complexity, and error rate for non-linear degradation.</p>
+<h4>3.2.8 Robustness, Containment, and Recovery</h4>
+<p>Test the system under agent errors, tool failures, message delays, state conflicts, partial unavailability, and adversarial inputs. Key metrics: failure blast radius, propagation depth, degradation capability, retry effectiveness, recovery time, state consistency, and whether safety is preserved under local failure.</p>
+<h4>3.2.9 Governance, Accountability, and Explainability</h4>
+<p>The system should answer: who created the task; who made the routing or authorization decision; who modified shared state; who consumed that state; which evidence influenced the final action; who should get credit or blame. Responsibility boundaries must match real control, capability, and permission, not depend only on agent name or role description.</p>
+<h4>3.2.10 Resource Efficiency (Cost, Latency, and Resources)</h4>
+<p>Aggregate tokens, money, latency, compute, network, and external API costs by session, task, agent, interaction, model call, and tool call. Two MAS with identical outcome scores may have very different engineering quality due to interaction topology and rework.</p>
+<h3>3.3 MAS Is Multi-Objective Optimization, Not a Single-Metric Ranking</h3>
+<p>MAS simultaneously wants to maximize task quality, isolation, coverage, robustness, and governance, while minimizing cost, latency, coordination overhead, and risk. A scenario-specific utility function expresses this:</p>
+<div class="equation">U = w_QQ + w_II + w_RR + w_GG - w_CC - w_LL - w_OO - w_KK</div>
+<p>Where \(Q\) is task quality, \(I\) isolation, \(R\) robustness, \(G\) governance, \(C\) cost, \(L\) latency, \(O\) coordination overhead, and \(K\) security risk. Weights must be scenario-driven: a payment system raises security and authorization weights sharply; a research-assistant system emphasizes coverage and evidence quality; a real-time customer service system values latency and continuity.</p>
+<p>The more defensible practice is to report multi-dimensional results and a Pareto frontier, rather than fabricate a seemingly precise total score. An architecture is worth adopting only if it is better on at least one important dimension without unacceptable regression on others.</p>
+<hr />
+<h2 id="en-section-collaboration-architecture">4. Major Collaboration and Organizational Architectures of MAS</h2>
+<h3>4.1 Classification Principle and Scope</h3>
+<p>MAS can be classified by control flow, communication topology, state model, or deployment boundary. To avoid mixing different dimensions at the same level, this report takes <strong>how the next step's control is generated</strong> as the main axis, partitioning collaboration architectures into six: Router, Supervisor, Pipeline, Graph/Workflow, Handoff, and Self-organizing/Swarm.</p>
+<pre><code>                         MAS Collaboration Architecture
+                                      │
+              ┌───────────────────────┼───────────────────────┐
+              │                       │                       │
+          Central Control         Process Control         Autonomous Collaboration
+              │                       │                       │
+       ┌──────┴──────┐         ┌──────┴──────┐         ┌──────┴──────┐
+       │             │         │             │         │             │
+    Router       Supervisor  Pipeline   Graph/Workflow Handoff  Self-organizing
+                                                                     / Swarm</code></pre>
+<p>Group Chat / Debate is not a seventh control architecture but an overlayable communication and negotiation pattern: it can be scheduled by a Supervisor, or appear in Handoff or Swarm. Similarly, Distributed/A2A is a deployment, protocol, and trust-domain dimension, not a seventh control flow. Real systems often mix modes — for example, top-level Supervisor decomposes tasks, the research subsystem uses a parallel Graph, and external experts join via A2A Handoff.</p>
+<h3>4.2 The Six Major Collaboration Architectures</h3>
+<h4>4.2.1 Router / Dispatcher: One or Few Dispatch Steps</h4>
+<pre><code>                         ┌─> Legal Agent ─────> Output
+User Task ──> Router ────┼─> Coding Agent ────> Output
+                         └─> Research Agent ──> Output</code></pre>
+<p>The Router chooses one or more agents based on task intent, capability, and constraints, and usually does not stay engaged in task reasoning. Workers execute independently, and results can be returned directly or lightly aggregated. Its core value is sending different topics into different contexts, forming direct context partitioning. Main risks: misrouting, distorted confidence, missing fallback, and adversaries manipulating classification so tasks bypass dedicated safety or approval flows.</p>
+<h4>4.2.2 Supervisor / Hub-and-Spoke / Agents-as-Tools: Central Coordination</h4>
+<pre><code>                              Supervisor
+                     ┌────────────┼────────────┐
+                     │ delegate   │ delegate   │ delegate
+                     ▼            ▼            ▼
+                Researcher      Coder       Reviewer
+                     │            │            │
+                     └────────────┼────────────┘
+                                  ▼
+                              Supervisor
+                                  │
+                                  ▼
+                                Output</code></pre>
+<p>The Supervisor holds the global goal and main session state, responsible for decomposition, delegation, collecting results, replanning, and synthesis; control always returns to the center. Workers can keep independent contexts and return only through structured interfaces. This is currently one of the most typical context-oriented MAS, with strong governance and isolation; but the Supervisor also becomes a decision bottleneck, single point of failure, and high-value attack target.</p>
+<h4>4.2.3 Pipeline / Sequential: Order Pipeline</h4>
+<pre><code>Input ──> Planner ──> Researcher ──> Writer ──> Reviewer ──> Output</code></pre>
+<p>Tasks flow in a predefined order from one agent to the next; the final stage produces output and does not return to the first. The next step is decided by the developer, not by the current agent. This architecture has clear responsibility, is predictable, and has low coordination overhead, suitable for stable flows with clear stage boundaries; main risks: upstream errors, context gaps, and semantic distortion accumulate stage by stage, while downstream may blindly trust upstream.</p>
+<h4>4.2.4 Graph / Workflow: Branches, Joins, Loops, and Mixed Control</h4>
+<pre><code>                              ┌─> Research A ─┐
+Input ──> Planner ────────────┤               ├─> Synthesis ─> Reviewer
+                              └─> Research B ─┘                  │
+                                                               ├─ pass ─> Output
+                                                               └─ fail ─> Planner</code></pre>
+<p>Agents or executors are nodes; dependencies, messages, and state flows are edges. A graph can include parallel branches, conditional edges, retries, loops, human approval, and fan-in/fan-out; a Pipeline is a linear special case of a Graph. Production systems often use a "deterministic skeleton + local agent decisions" to balance controllability and adaptivity. Core issues: actual path choice, critical path, state consistency, loop termination, races, and unreachable nodes.</p>
+<h4>4.2.5 Handoff / Delegation Chain: Dynamic Transfer of Control</h4>
+<pre><code>User ──> General Agent
+              │ handoff: legal issue
+              ▼
+          Legal Agent
+              │ handoff: tax issue
+              ▼
+           Tax Agent ──> Output</code></pre>
+<p>The current agent decides the next taker and transfers goal, context, and control. The difference from Pipeline is that the next hop is not fully predefined; the difference from Supervisor is that control need not return to center. Handoff preserves conversational continuity and supports dynamic specialization, but concentrates risk on recipient choice, handoff timing, context filtering, responsibility continuity, and permission inheritance.</p>
+<h4>4.2.6 Self-organizing / Swarm: Self-Organizing Network</h4>
+<pre><code>                               Agent A
+                            ↙     ↓     ↘
+                       Agent B <─→ Agent C
+                          ↑          ↓
+                          └── Agent D ┘
+
+              discover → select → request → collaborate → reorganize</code></pre>
+<p>No fixed center or complete predefined path. Agents search other agents based on current gaps, compare capability and trust, request collaboration, accept or refuse tasks, and dynamically form execution topology; the number and connections of participating agents can also change during runtime. Its advantage is flexibility and openness, supporting emergent collaboration in complex environments; difficulties focus on discovery trust, identity authentication, capability advertisement, topology emergence, coordination explosion, resource budget, responsibility attribution, and security containment.</p>
+<h3>4.3 Two Orthogonal Dimensions</h3>
+<h4>4.3.1 Group Chat / Debate: Communication and Negotiation Pattern</h4>
+<pre><code>              ┌─────────────────────────────┐
+              │       Shared Channel        │
+              │  Agent A: proposal          │
+              │  Agent B: critique          │
+              │  Agent C: evidence          │
+              │  Judge: decision            │
+              └─────────────────────────────┘</code></pre>
+<p>Group Chat fits debate, review, voting, and consensus, but it describes how agents share information and take turns speaking, not who owns the next step of control. A shared transcript also makes different agents' contexts highly overlapping, easily producing anchoring, herd behavior, echo chambers, pollution propagation, and token bloat. So it can overlay the six architectures, but group independence and shared-context risk should be evaluated separately.</p>
+<h4>4.3.2 Logical MAS and Distributed / A2A MAS: Deployment and Trust Domain</h4>
+<pre><code>Logical MAS                           Distributed / A2A MAS
+┌──────────────────┐                  ┌──────────┐      ┌──────────┐
+│ One Application  │                  │Runtime A │ A2A  │Runtime B │
+│ A  B  C Agents   │                  │ Agent A  │ ───> │ Agent B  │
+└──────────────────┘                  └──────────┘      └──────────┘</code></pre>
+<ul><li><strong>Logical MAS</strong>: agents have different prompts, contexts, tools, or memory but share the application, orchestrator, and primary failure domain.</li><li><strong>Distributed / A2A MAS</strong>: agents have independent runtimes, lifecycles, deployments, resources, and security boundaries, and communicate across hosts, frameworks, organizations, or trust domains via protocols.</li></ul>
+<p>Distributed deployment strengthens fault isolation, resource isolation, and heterogeneity, but introduces unreliable networks, identity federation, cross-organization authorization, message replay, protocol compatibility, clock ordering, and cross-domain RCA.</p>
+<h4>4.3.3 Context and State Exchange Modes</h4>
+<p>Control architecture only says "who decides the next step" — it does not fully say what agents share. The same Supervisor, Graph, or Swarm can adopt very different context/state architectures; the latter more directly determines system quality and attack surface.</p>
+<div class="table-scroll"><table><thead><tr><th>Exchange Mode</th><th>Mechanism</th><th>Main Value</th><th>Main Risk</th></tr></thead><tbody><tr><td>Independent Context</td><td>Each agent keeps private context</td><td>Strong isolation, small pollution surface</td><td>Key info missing, repeated retrieval</td></tr><tr><td>Full Transcript Sharing</td><td>Share full session history</td><td>Strong continuity, simple to implement</td><td>Context bloat, leakage, pollution propagation</td></tr><tr><td>Filtered Handoff Context</td><td>Summary or filtered handoff</td><td>Trade-off between continuity and isolation</td><td>Summary distortion, lost constraints, filter bypass</td></tr><tr><td>Structured Message Passing</td><td>Schema-validated messages</td><td>Clear interface, easy to verify</td><td>Insufficient schema, semantic compression or injection</td></tr><tr><td>Artifact Passing</td><td>Files, reports, code, evidence bundles</td><td>Suits complex results, async collaboration</td><td>Artifact tampering, unclear provenance, version drift</td></tr><tr><td>Shared Blackboard / State</td><td>Read/write common plan, tasks, workspace</td><td>Eases coordination, global sync</td><td>Races, stale reads, single-point pollution, wide propagation</td></tr><tr><td>Shared Memory</td><td>Long-term knowledge and history</td><td>Cross-task learning, reduces duplicate work</td><td>Persistent poisoning, cross-user leakage, errors linger</td></tr></tbody></table></div>
+<p>These modes can be combined. Analyzing MAS should not only ask "Supervisor or Swarm," but also: what each agent actually sees; how messages become receiver context; who writes and consumes shared state; which facts cross boundaries as artifacts or memory.</p>
+<h3>4.4 The Control Continuum</h3>
+<p>The six architectures are not isolated; they form a continuum from developer-controlled to agent-controlled:</p>
+<pre><code>Developer-controlled                                      Agent-controlled
+       │                                                          │
+       └─ Pipeline ─ Graph ─ Router ─ Supervisor ─ Handoff ─ Swarm ┘
+
+More deterministic                                      More emergent
+More predictable                                  More adaptive/autonomous
+Lower coordination uncertainty            Higher observability/security cost</code></pre>
+<p>The relative position of Router and Pipeline may vary by implementation; what matters is not absolute ordering, but identifying whether the route, path, and next hop are decided by rules, models, a central agent, or local agents in the network.</p>
+<h3>4.5 Architecture Mechanism Comparison</h3>
+<div class="table-scroll"><table><thead><tr><th>Architecture</th><th>Next-Step Control</th><th>Context Boundary</th><th>Main Communication</th><th>Typical State</th><th>Main Advantage</th><th>Main Quality &amp; Security Risk</th></tr></thead><tbody><tr><td>Router</td><td>Router / rule / classifier</td><td>Strong; topic-partitioned</td><td>Task input and results</td><td>Central session or stateless</td><td>Simple, low overhead, easy to audit</td><td>Misrouting, route manipulation, missing fallback</td></tr><tr><td>Supervisor</td><td>Central Supervisor</td><td>Usually strong; workers independent</td><td>Delegation and structured return</td><td>Global state centralized, local separated</td><td>Strong decomposition, governance, synthesis</td><td>Central bottleneck, over-delegation, single-point failure</td></tr><tr><td>Pipeline</td><td>Developer-predefined</td><td>Stage-isolated</td><td>Upstream output becomes downstream input</td><td>Passed along the pipeline</td><td>Clear responsibility, predictable</td><td>Accumulated error, transfer loss, downstream blind trust</td></tr><tr><td>Graph / Workflow</td><td>Mix of rules and agents</td><td>Node-level isolation</td><td>Typed edges, events, shared state</td><td>Checkpoint / graph state</td><td>Controllable parallelism, branching, retries</td><td>Wrong paths, loops, races, state inconsistency</td></tr><tr><td>Handoff</td><td>Current agent</td><td>Depends on handoff filtering</td><td>Control + context package</td><td>State follows active agent</td><td>Continuous interaction, dynamic specialization</td><td>Context loss / leakage, wrong permission inheritance</td></tr><tr><td>Self-organizing / Swarm</td><td>Agent network</td><td>Strong or weak, dynamic</td><td>Discovery, A2A, collaboration request</td><td>Distributed / shared / local mix</td><td>High adaptability, open collaboration</td><td>Impersonation, capability forgery, topology manipulation, runaway spread</td></tr></tbody></table></div>
+<h3>4.6 Five-Star Architecture Trade-Off</h3>
+<p>The next table is qualitative scoring to form research hypotheses, not an objective ranking without experiment. Except for "Coordination Cost," higher stars mean stronger capability; higher stars on Coordination Cost mean greater overhead and complexity. Specific implementations may shift the scores significantly.</p>
+<div class="table-scroll"><table><thead><tr><th>Architecture</th><th>Context Isolation</th><th>Flexibility</th><th>Predictability</th><th>Parallelism</th><th>Coordination Cost</th><th>Failure Attribution</th></tr></thead><tbody><tr><td>Router</td><td>★★★★★</td><td>★★☆☆☆</td><td>★★★★★</td><td>★★★★☆</td><td>★☆☆☆☆</td><td>★★★★★</td></tr><tr><td>Pipeline</td><td>★★★★☆</td><td>★★☆☆☆</td><td>★★★★★</td><td>★★☆☆☆</td><td>★☆☆☆☆</td><td>★★★★★</td></tr><tr><td>Graph / Workflow</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td><td>★★☆☆☆</td><td>★★★★☆</td></tr><tr><td>Supervisor</td><td>★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★☆☆</td><td>★★★☆☆</td><td>★★★☆☆</td></tr><tr><td>Handoff</td><td>★★★★☆</td><td>★★★★☆</td><td>★★☆☆☆</td><td>★★★☆☆</td><td>★★★☆☆</td><td>★★☆☆☆</td></tr><tr><td>Self-organizing / Swarm</td><td>★★★★☆</td><td>★★★★★</td><td>★☆☆☆☆</td><td>★★★★★</td><td>★★★★★</td><td>★☆☆☆☆</td></tr></tbody></table></div>
+<p>This table suggests an overall trend worth empirical verification: the higher the autonomy, the higher the flexibility and parallelism potential — but also the higher the coordination complexity, attribution difficulty, and security uncertainty. Context Isolation is not determined by topology alone; it depends on the data strategies for message, shared state, memory, and handoff.</p>
+<h3>4.7 Overall Judgment on Architecture Choice and Industry State</h3>
+<p>The current mainstream engineering practice is not large numbers of agents freely conversing, but closer to "few specialized agents + strong orchestration + explicit context boundary." Graph/Workflow and Supervisor keep local autonomy inside deterministic structure, so they suit production; Handoff and Swarm offer capabilities for more open collaboration but raise higher demands on identity, trust, budget, and observability.</p>
+<p>Architecture choice should not be a binary between "fixed workflow" and "fully self-organized." A more sensible principle is to draw autonomy boundaries by risk: security invariants, resource budgets, and high-risk action approvals stay deterministic; local search, partner selection, and low-risk collaboration can be decided autonomously by agents.</p>
+<hr />
+<h2 id="en-section-three-lens-framework">5. A Unified Three-Lens Framework for Evaluation, Red Team, and Blue Team</h2>
+<h3>5.1 The Three Share a Behavior Model but Ask Different Questions</h3>
+<pre class="diagram"><code>flowchart LR
+    M["MAS actual behavior"] --> T["Unified telemetry and provenance"]
+    T --> E["Evaluation: does it work as intended"]
+    T --> R["Red Team: how to actively make it deviate"]
+    T --> B["Blue Team: why it deviated, and how to respond"]
+    E --> I["Design and assurance improvement"]
+    R --> I
+    B --> I
+    I --> M</code></pre>
+<p>All three lenses can use the same metrics, but interpret them differently:</p>
+<ul><li><strong>Quality Evaluation</strong>: under normal tasks, random perturbations, and benchmark scenarios, does the system meet design goals?</li><li><strong>Red Team</strong>: can an attacker actively and reproducibly manipulate these properties to degrade performance, exhaust resources, or breach security boundaries?</li><li><strong>Blue Team</strong>: from telemetry, how do we detect anomalies, distinguish benign failures from adversarial ones, locate earliest causes and propagation paths, and contain and recover?</li></ul>
+<p>For example, <code>routing accuracy</code> in the quality lens is correctness; in the red-team lens it is whether routing can be manipulated via input, capability ad, or shared state; in the blue-team lens it is anomaly detection and causal attribution for routing.</p>
+<h3>5.2 Security Is Not the Simple Negation of Quality</h3>
+<p>Many security incidents do not reduce task quality. For example, an agent reads a private database without authorization and produces a fully correct answer; from task accuracy the system looks good, but confidentiality and authorization are broken.</p>
+<p>Therefore MAS Assurance contains at least two objective categories:</p>
+<ol><li><strong>Behavioral Quality Properties</strong>: continuous properties like quality, cost, latency, isolation, coordination, robustness.</li><li><strong>Security Invariants</strong>: identity, authentication, authorization, confidentiality, integrity, tenant isolation, least privilege, separation of duties, policy compliance, and action approval boundaries that must never be violated.</li></ol>
+<p>Red team can both maximize quality degradation and break invariants without noticeably lowering quality; blue team must monitor both kinds of issues.</p>
+<h3>5.3 Formalizing the Three Lenses as the Same Control Problem</h3>
+<p>Quality evaluation: under task distribution and benign perturbations, does the system maintain target properties?</p>
+<pre><code>Task + benign perturbation → MAS → metrics and invariants</code></pre>
+<p>Red team: within a bounded attack budget, find inputs, agents, messages, states, or action sequences that maximize metric degradation or violate invariants.</p>
+<pre><code>Adversarial perturbation → MAS → maximize degradation / violate invariant</code></pre>
+<p>Blue team: from incomplete telemetry, perform detection, classification, causal localization, impact assessment, containment, and recovery on the observed deviation.</p>
+<pre><code>Observed anomaly
+      ↓
+Detection → Benign/Adversarial → Root cause → Blast radius
+      ↓
+Containment → Recovery → Corrective control</code></pre>
+<h3>5.4 The Unified MAS Assurance Stack</h3>
+<pre><code>                    MAS Runtime
+                         │
+              Instrumentation / Hooks
+                         │
+        Unified Events + Traces + Provenance
+                         │
+          ┌──────────────┼──────────────┐
+          ▼              ▼              ▼
+     Evaluation       Red Team       Blue Team
+     quality/utility  exploitability detect/RCA/respond
+          └──────────────┼──────────────┘
+                         ▼
+              Policy and Design Improvement</code></pre>
+<p>This structure means the underlying instrumentation should not be built three times for Eval, Red, and Blue. The three should share event semantics, identity model, context/state provenance, trace correlation, and graph reconstruction, differing only in analytic goal, dataset, and response strategy.</p>
+<hr />
+<h2 id="en-section-observability-evolution">6. From LLM to Agent to MAS: Evolution of the Object of Study and Observability</h2>
+<h3>6.1 LLM: Input / Output and Model Calls</h3>
+<p>The classical object of study is roughly:</p>
+<pre><code>Prompt → LLM → Response</code></pre>
+<p>Main telemetry: prompt, response, model, tokens, latency, sampling parameters, content-safety labels, and output scores. Red teams often build input-output mappings around malicious prompts and harmful responses.</p>
+<h3>6.2 Agent: Action Trajectory and Environment State Change</h3>
+<p>Agents introduce tools, memory, and cyclic decisions:</p>
+<pre><code>State₀ → Model → Action → Observation → State₁ → Replan → ... → Outcome</code></pre>
+<p>The unit of study shifts from a single call to a trajectory. We must record model calls, tool arguments and results, memory read/write, state transitions, errors, approvals, and real effects on browser, database, file system, communication, payment, and OS.</p>
+<h3>6.3 MAS: Dynamic Causal Interaction Graph</h3>
+<p>MAS is not just multiple trajectories sitting side by side. Agents create tasks for each other, choose partners, transfer control, modify shared state, and through messages change the future context of other agents. So the system run should be represented as a graph that evolves over time:</p>
+<div class="equation">G_t = (V_t, E_t, S_t)</div>
+<p>Where:</p>
+<ul><li>\(V_t\): nodes for agents, tasks, model calls, tools, memory items, artifacts, external entities.</li><li>\(E_t\): directed relations such as delegate, handoff, message, read, write, derive, approve, invoke, cause.</li><li>\(S_t\): per-agent local state, shared state, permission state, and external environment state.</li></ul>
+<pre class="diagram"><code>flowchart TD
+    U["User / Environment"] --> G["Entry / Gateway"]
+    G --> C["Coordination plane"]
+    C --> A["Agent A"]
+    C --> B["Agent B"]
+    A -->|"delegate / message"| B
+    A -->|"write"| S["Shared state / artifacts"]
+    S -->|"read"| B
+    B -->|"handoff"| D["Agent C"]
+    D --> T["Tools / MCP / APIs"]
+    T --> X["External state change"]</code></pre>
+<p>The graph changes dynamically during runtime: agents and tasks may appear or disappear, edges can be concurrent, retry, or loop, and topology may be formed autonomously by agents. Therefore the goal of MAS observability cannot stop at displaying parent-child span trees — it must reconstruct an interaction graph sufficient to support causal queries.</p>
+<h3>6.4 Why Edge / Interaction Events Are the Critical Minimal Observation Unit</h3>
+<p>Recording what Agent A and Agent B did individually still cannot explain system behavior. What actually changes the system is often the edges:</p>
+<ul><li>Why A chose B.</li><li>What A sent to B.</li><li>What was summarized, filtered, or modified before transmission.</li><li>What B actually received and placed into its context.</li><li>Whether that message caused a particular decision in B.</li><li>Whether control, permission, or responsibility changed with the handoff.</li></ul>
+<p>Therefore an interaction event should at least carry:</p>
+<pre><code>event_id / trace_id / causal_parent_ids
+event_type / timestamp / ordering
+source_agent / destination_agent
+source_identity / destination_identity / trust_domain
+task_id / parent_task_id / goal
+decision_reason / policy_version
+payload_hash / schema / sensitivity label
+context_sources / transformation / filtering
+permission requested / permission granted
+delivery / receipt / context inclusion / use
+cost / latency / status / error</code></pre>
+<p>In privacy- or commercially-sensitive scenarios we need not keep the full payload, but must retain verifiable hashes, data classifications, sources, transformation records, and access evidence.</p>
+<h3>6.5 Key MAS Observation Surfaces and Telemetry Types</h3>
+<h4>Entry / Session / Goal</h4>
+<p>Records user goal, constraints, risk level, tenant, session, external input source, task creation and acceptance criteria. It is the baseline for judging whether later behavior deviates from original intent.</p>
+<h4>Identity / Role / Capability / Trust</h4>
+<p>Records agent ID, owner, role, model, version, capability declaration, tools, permissions, trust domain, deployment location, and lifecycle. Identity in MAS is not ordinary metadata — it is the security boundary for routing, authorization, and attribution.</p>
+<h4>Context Assembly and Provenance</h4>
+<p>Records what each model call actually saw in its context: system instruction, agent identity, current and parent tasks, user message, agent messages, memory, tool output, shared state, and artifacts. Each context item should be traceable to source, transformation, and authorization basis.</p>
+<h4>Decision / Model</h4>
+<p>Records route, plan, delegate, approve, reject, stop, retry, and other decisions, plus candidates, choice, confidence, policy version, and public reason. We don't rely on private chain-of-thought; structured decision basis and externally verifiable evidence are more suitable audit targets.</p>
+<h4>Memory / Retrieval</h4>
+<p>Records query, candidates, ranking, reads, writes, versions, data labels, expiry, sources, and downstream consumers, to identify retrieval failure, stale information, and memory poisoning.</p>
+<h4>Coordination / Discovery / Scheduling</h4>
+<p>Records task_created, agent_search, candidate_agents, ranking, trust_check, agent_selected, task_delegated, accepted, rejected, scheduled, cancelled, completed and other events.</p>
+<h4>Communication / Handoff / A2A</h4>
+<p>Records sender, receiver, intent, message, attachments, transformation, signature, delivery, receipt, actual context inclusion, and control changes. Must support cross-trace, cross-runtime, and cross-trust-domain correlation.</p>
+<h4>Shared State / Blackboard / Artifact</h4>
+<p>Records who wrote what when and why, version diff, conflicts, readers, downstream derivatives, and sensitivity labels. State provenance is key to analyzing indirect failure propagation.</p>
+<h4>Tool / MCP / External Action</h4>
+<p>Records tool discovery, selection, parameters, authorization, execution result, side effects, idempotency key, approval, rollback capability, and external resource identifier. Must distinguish "the model proposes the action" from "the environment actually changes."</p>
+<h4>Topology / Concurrency / Resource</h4>
+<p>Records active agents, dynamic edges, fan-out/fan-in, critical path, loops, waits, queues, concurrency conflicts, token velocity, cost, and resource limits, to identify coordination explosion and resource amplification.</p>
+<h4>Outcome / Verification / Recovery</h4>
+<p>Records task acceptance, evidence, verifier judgment, user outcome, real-world state, policy violations, recovery points, compensating actions, and final state, to close the causal chain from goal to outcome.</p>
+<h3>6.6 Trace Model: Trees Aren't Enough — Links and Provenance Are Required</h3>
+<p>Traditional parent-child span trees fit a single call chain but struggle to express fan-out/fan-in, multi-parent dependency, shared state, async messages, and loops. MAS telemetry must at least support:</p>
+<ul><li><strong>parent-child</strong>: call or containment relations.</li>
+<li><strong>causal links</strong>: an event influenced by multiple prior events jointly.</li>
+<li><strong>message correlation</strong>: pairing send and receive.</li>
+<li><strong>state version lineage</strong>: state versions with readers/writers.</li>
+<li><strong>artifact/data lineage</strong>: how facts and artifacts are derived.</li>
+<li><strong>synchronized clocks or logical ordering</strong>: ordering of events across runtimes.</li>
+<li><strong>graph replay</strong>: rebuilding topology, state, and impact paths over time.</li></ul>
+<p>Even when the underlying infrastructure is a distributed-tracing mechanism like OpenTelemetry, using only parent-child span hierarchy is not enough to express complex MAS. Implementation needs span links, message events, stable Agent/Task/Interaction identifiers, plus semantic fields for context, state, delegation, and handoff. In short, generic tracing can supply the transport skeleton, but MAS still needs an additional organizational-behavior and semantic-causal layer.</p>
+<h3>6.7 Four Layers of MAS Observability</h3>
+<p>By engineering maturity, MAS observability can be split into four progressive layers. Higher layers depend on lower-layer data, but the analytic unit and question differ.</p>
+<pre><code>L1 Agent Observability
+   What did this agent do?
+   model / tool / memory / context / local state
+
+                    ↓
+
+L2 Interaction Observability
+   What happened between agents?
+   message / handoff / delegation / artifact transfer
+
+                    ↓
+
+L3 Coordination Observability
+   Why did this collaboration form?
+   routing / discovery / scheduling / dependency / topology
+
+                    ↓
+
+L4 System Observability
+   Is the whole MAS effective, controllable, and worthwhile?
+   outcome / cost / latency / robustness / scalability
+   failure propagation / security invariants / recovery</code></pre>
+<p>The corresponding evaluation should rise layer by layer from Agent Evaluation to Interaction, Coordination, and System Evaluation. A platform with only LLM, tool, and agent spans mainly covers L1; a platform that can show cross-agent calls but cannot express message transformation, shared state, and dynamic topology covers at most part of L2. True MAS system observability requires rebuilding organizational behavior, global state, and causal propagation at L3 and L4.</p>
+<hr />
+<h2 id="en-section-assurance-matrix">7. MAS Assurance Matrix: Observation Surface × Quality × Red × Blue</h2>
+<p>The table below turns key observation surfaces into a unified testing framework. Each row should be further specified into normal baseline, perturbation test, adversarial test, detection rule, attribution query, and response playbook.</p>
+<div class="table-scroll"><table><thead><tr><th>Observation Surface</th><th>Quality Issue &amp; Evaluation</th><th>Red-Team Exploitation</th><th>Blue-Team Detection, Attribution &amp; RCA</th></tr></thead><tbody><tr><td>Entry / Goal / Session</td><td><strong>Issue</strong>: goal misunderstanding, missed constraints, task-boundary drift, cross-tenant confusion. <strong>Eval</strong>: goal-extraction accuracy, constraint coverage, dialog replay, paraphrase stability, goal alignment with final behavior.</td><td>Embed conflicting goals in user input, external pages, or attachments; use ambiguous requests to induce overreach; confuse tenant / session / task IDs; disguise malicious subgoals as system goals.</td><td>Compare original goal, parsed goal, and execution graph; detect task-scope jumps and cross-tenant linkage; trace input source from the first abnormal subtask; isolate sessions and rebuild affected tasks.</td></tr><tr><td>Agent Identity / Role / Capability / Trust</td><td><strong>Issue</strong>: role name vs reality mismatch, wrong capability declaration, over-broad permissions, version drift. <strong>Eval</strong>: capability benchmark, role adherence, least privilege, runtime identity binding, capability-advertisement calibration.</td><td>Agent impersonation, capability spoofing, malicious capability ads, role hijacking, low-trust agent inducing high-privilege agent to act on its behalf.</td><td>Verify signature and runtime identity; detect role-vs-actual-tool-behavior deviation; compare capability ads, history, and selection results; locate confused-deputy chains across trust-domain crossings.</td></tr><tr><td>Context Assembly / Provenance</td><td><strong>Issue</strong>: pollution, deficiency, leakage, unclear source, instruction conflict. <strong>Eval</strong>: Context Precision/Recall, sensitive exposure rate, required-fact coverage, provenance traceability, deletion/addition ablation.</td><td>Prompt injection propagates across agents via messages, pages, memory, or artifacts; induce irrelevant info to dilute attention; steal other agents' or tenants' context; forge high-priority instructions.</td><td>Detect abnormal source ratios, cross-boundary sensitive labels, and priority conflicts; trace abnormal context items back to messages, tool results, and external sources; compare context diff before/after injection; revoke contamination source and replay task.</td></tr><tr><td>Model / Decision</td><td><strong>Issue</strong>: wrong plan, wrong stop condition, miscalibrated confidence, non-auditable decision. <strong>Eval</strong>: decision accuracy, candidate coverage, calibration curve, policy consistency, verifiable reasons, counterfactual replay.</td><td>Manipulate candidates or scoring; hide high-risk attributes; induce premature stop, infinite retry, or wrong approval; use model gaps to bypass policy.</td><td>Monitor low-confidence high-risk decisions, abnormal candidate sets, and policy-version changes; replay with same input and compare; locate decisive evidence and earliest deviating decision; switch safety policy or request human approval.</td></tr><tr><td>Memory / Retrieval</td><td><strong>Issue</strong>: insufficient recall, wrong ranking, stale memory, repeated writes, cross-task pollution. <strong>Eval</strong>: retrieval precision/recall, freshness, source quality, write necessity, memory ablation and pollution tests.</td><td>Memory poisoning, malicious high-similarity text crowding ranking, persistent injection, deleting or overwriting safety memory, cross-user data leakage.</td><td>Monitor abnormal writers, ranking jumps, old-version resurrection, and cross-domain reads; use version lineage to find first pollution; analyze which agents consumed and propagated; quarantine entries, roll back versions, invalidate caches.</td></tr><tr><td>Task Decomposition / Plan</td><td><strong>Issue</strong>: missing subtasks, wrong dependencies, wrong granularity, duplicate work, infeasible plan. <strong>Eval</strong>: subtask coverage, dependency correctness, plan executability, expert-plan comparison, plan ablation.</td><td>Induce removal of verification or safety steps; create many trivial tasks to amplify resources; insert irrelevant but high-privilege subtasks; construct cyclic dependencies.</td><td>Detect missing safety nodes, abnormal subtask counts, dependency cycles, and plan-scope expansion; compare plan versions; trace who modified key steps; restore trusted plan and cancel derived tasks.</td></tr><tr><td>Routing / Discovery / Selection</td><td><strong>Issue</strong>: wrong agent chosen, incomplete candidates, ranking bias, no fallback. <strong>Eval</strong>: routing accuracy, top-k recall, confidence calibration, fallback success, choice stability per task type.</td><td>Routing manipulation, malicious agents raising ranking, capability-keyword poisoning, blocking trusted agents, directing sensitive tasks to low-trust or high-privilege-wrong subjects.</td><td>Build normal task-type-to-agent distribution; detect abnormal candidates, sudden ranking shifts, and missing trust checks; trace capability queries, ad sources, scoring features, and policy; revoke registration, reroute tasks.</td></tr><tr><td>Delegation / Acceptance</td><td><strong>Issue</strong>: incomplete task description, unclear responsibility, recipient overload, wrong accept/reject. <strong>Eval</strong>: delegation accuracy, input sufficiency, acceptance calibration, rework rate, queue/load matching.</td><td>Forge delegation sources; split dangerous tasks into seemingly harmless partial requests; exploit delegation chains for permission borrowing; create delegation storm.</td><td>Verify delegator identity and authority; detect task-semantic-vs-permission mismatch, abnormal chain depth and frequency; locate the original request along the delegation chain; stop further delegations and reclaim temporary permissions.</td></tr><tr><td>Handoff / Message Transformation</td><td><strong>Issue</strong>: loss of key facts, semantic distortion, wrong recipient, premature/late handoff, responsibility break. <strong>Eval</strong>: required/transferred/received/used facts comparison, message integrity, handoff necessity, context-compression ablation.</td><td>Delete safety constraints, modify facts, inject implicit instructions, forge senders, replay old messages, inherit permissions through handoff errors.</td><td>Pair send/receive, verify hash, signature, version, and timing; compare semantic diff before/after transformation; check what was actually included in receiving context; locate distortion stage and replay from last trusted checkpoint.</td></tr><tr><td>A2A / Communication Channel</td><td><strong>Issue</strong>: loss, duplication, out-of-order, protocol incompatibility, semantic misunderstanding. <strong>Eval</strong>: delivery/ack rate, latency, duplicate rate, schema compliance, interoperability and fault injection.</td><td>Message spoofing/tampering/replay, protocol downgrade, traffic amplification, blocking key messages, using schema ambiguity to inject extra semantics.</td><td>Verify bidirectional identity, nonce, signature, and schema; detect replay, timing anomalies, traffic surges; correlate network events with semantic events; isolate peer, rebuild session, audit all consumers.</td></tr><tr><td>Shared State / Blackboard / Artifact</td><td><strong>Issue</strong>: write conflicts, stale reads, overwrites, missing source, errors inherited by many. <strong>Eval</strong>: consistency, version correctness, read/write necessity, artifact correctness, concurrency and rollback tests.</td><td>Poison shared plan/memory, remove safety constraints, tamper artifacts, exploit races to overwrite trusted updates, write sensitive data to public areas.</td><td>Record immutable versions, diffs, writers/readers, and causal links; detect sensitive-field changes, abnormal writers, and short-window high-fanout reads; compute consumer set of polluted versions; freeze state, roll back, recompute derivatives.</td></tr><tr><td>Tool / MCP Selection and Parameters</td><td><strong>Issue</strong>: wrong tool, wrong parameters, duplicate calls, misread observation, invalid call. <strong>Eval</strong>: tool selection/argument accuracy, success rate, idempotency, necessity, tool-result utilization.</td><td>Tool poisoning, malicious MCP description, parameter injection, induce high-risk tool calls, low-privilege agent becoming confused deputy through high-privilege one.</td><td>Detect role-tool mismatch, abnormal parameters, unregistered endpoints, high-risk call chains; correlate tool-description sources and selection decisions; pause tools, rotate credentials, check side effects and all downstream consumers.</td></tr><tr><td>Permission / Approval / Security Boundary</td><td><strong>Issue</strong>: over-broad permissions, missing approvals, temporary permissions not reclaimed, separation of duties broken. <strong>Eval</strong>: policy coverage, least-privilege gap, denial correctness, approval latency, over-privilege simulation.</td><td>Privilege escalation, authorization bypass, forged approvals, permission inheritance, chaining low-risk actions across agents to form high-risk effects.</td><td>Record principal/resource/action/policy/decision per action; detect cross-role combinations and abnormal authorization paths; treat invariant violation as highest priority; revoke tokens, block actions, audit similar accesses.</td></tr><tr><td>Topology / Scheduling / Concurrency</td><td><strong>Issue</strong>: useless fan-out, super nodes, bottlenecks, deadlock, livelock, ping-pong, races. <strong>Eval</strong>: graph density, critical path, centrality, loop rate, wait time, speedup, concurrent fault injection.</td><td>Coordination amplification / Agent DoS; induce infinite discovery and delegation; manipulate topology to isolate reviewer; create races and resource starvation.</td><td>Monitor agent count, edge count, fan-out, token velocity, and loops against dynamic baseline; locate first abnormal-spread edge; rate-limit, set hop/budget caps, cut subgraphs, restore stable topology.</td></tr><tr><td>Aggregation / Debate / Consensus / Verification</td><td><strong>Issue</strong>: wrong aggregation, minority correct info drowned out, herd behavior, missed verifier, cyclic debate. <strong>Eval</strong>: synthesis fidelity, independence, diversity, judge calibration, known-error detection, no-Reviewer control.</td><td>Manipulate majority, sybil agents, anchor first answer, malicious agent acting as Judge, large amount of consistent low-quality opinion overwhelming minority correct evidence.</td><td>Analyze contribution source and correlation; identify highly similar outputs and abnormal voting groups; check Judge identity, evidence citation, and conflict of interest; rerun independent verifier, isolate suspect groups, re-aggregate.</td></tr><tr><td>Outcome / External State Change</td><td><strong>Issue</strong>: wrong final answer, partial completion, action inconsistent with statement, irreversible side effects. <strong>Eval</strong>: task acceptance, environment state diff, end-to-end replay, user utility, constraint and invariant checks.</td><td>Induce harmful but surface-success result; hide side effects; modify payment, file, database, or communication state; exfiltrate data under high-quality output.</td><td>Three-way check of model intent, tool receipt, and real state; detect unapproved effects; reverse-traverse causal graph from outcome to find earliest controllable cause; execute compensating transactions, notifications, and recovery.</td></tr><tr><td>Cost / Lifecycle / Error / Recovery</td><td><strong>Issue</strong>: cost runaway, timeouts, agent leaks, error retries, incomplete recovery. <strong>Eval</strong>: per-task/agent/edge cost, budget adherence, MTTR, checkpoint correctness, degradation tests.</td><td>Resource exhaustion, token flooding, retry storm, preventing termination, breaking checkpoints, exploiting error handling to bypass policy.</td><td>Detect cost and rate deviation, repeated same errors, orphan agents, and checkpoint anomalies; correlate resource growth to first triggering event; terminate subgraph, cap budget, restore trusted state, audit unfinished side effects.</td></tr></tbody></table></div>
+<h3>7.1 Cross-Cutting Metrics: From Per-Point Scores to Graph-Level Analysis</h3>
+<p>Beyond row-by-row testing, MAS needs cross-surface graph-level metrics:</p>
+<ul><li><strong>Failure Blast Radius</strong>: number of agents, tasks, state items, and external resources affected by one error or compromised agent.</li><li><strong>Propagation Depth / Time</strong>: edges and time from root cause to final impact.</li><li><strong>Attribution Accuracy</strong>: blue team's accuracy in locating root cause, propagation path, and responsible subject.</li><li><strong>Mean Time to Detect / Contain / Recover</strong>: time to detect, contain, and recover.</li><li><strong>Causal Trace Completeness</strong>: proportion of final key decisions and actions traceable to source.</li><li><strong>Interaction Necessity</strong>: whether task quality drops after removing a specific edge.</li><li><strong>Structural Efficiency</strong>: nodes, edges, tokens, and critical path length needed for the same outcome.</li><li><strong>Security Invariant Violation Rate</strong>: proportion of invariants broken under normal and adversarial testing.</li><li><strong>Containment Effectiveness</strong>: proportion of propagation blocked after detection and residual impact.</li></ul>
+<h3>7.2 Recommended Experimental Methods</h3>
+<ol><li><strong>Baseline comparison</strong>: compare against augmented single agent, fixed workflow, and other MAS architectures.</li><li><strong>Component ablation</strong>: remove, merge, or replace agents, edges, memory, shared state, and verifier.</li><li><strong>Counterfactual replay</strong>: hold other conditions constant, replace one routing, message, or state version and observe outcome.</li><li><strong>Perturbation testing</strong>: inject latency, packet loss, tool failure, wrong facts, agent unavailability, and concurrency conflicts.</li><li><strong>Adversarial testing</strong>: design attack-budget-explicit tests at Entry, Message, Memory, Discovery, State, Tool, and Permission surfaces.</li><li><strong>Causal fault injection</strong>: inject faults at known positions and verify whether telemetry can locate root cause and propagation path.</li><li><strong>Long-horizon and scale testing</strong>: increase task length, agent count, concurrency, and trust domains; observe non-linear degradation.</li><li><strong>Online shadow evaluation</strong>: in production only observe or shadow-execute candidate policies, without directly changing high-risk actions.</li></ol>
+<hr />
+<h2 id="en-section-architecture-observability">8. Per-Architecture Observability Priorities</h2>
+<p>A unified Assurance Matrix does not mean every architecture collects and analyzes every signal equally. Control location, state position, and communication mode determine each architecture's critical failure surface, and thus the priority of Quality, Red, and Blue lenses.</p>
+<div class="table-scroll"><table><thead><tr><th>Architecture</th><th>Core Observation Unit</th><th>Primary Quality Issue</th><th>Primary Attack Surface</th><th>Blue-Team RCA Starting Point</th></tr></thead><tbody><tr><td>Router</td><td>One route decision</td><td>Is the right agent chosen</td><td>Route and candidate manipulation</td><td>Abnormal route and its input, candidates, scoring</td></tr><tr><td>Supervisor</td><td>plan / delegation / synthesis</td><td>Correct decomposition, delegation, synthesis</td><td>Central decision hijack and permission borrowing</td><td>First wrong central decision and its downstream delegation tree</td></tr><tr><td>Pipeline</td><td>Stage transition</td><td>Where information decays</td><td>Upstream poisoning and stage-by-stage amplification</td><td>First stage edge that produced error or lost fact</td></tr><tr><td>Graph / Workflow</td><td>Node, edge, and state transition</td><td>Correct path and state consistency</td><td>Path, loop, race, and checkpoint manipulation</td><td>First fork from normal execution graph</td></tr><tr><td>Handoff</td><td>Control / context transfer</td><td>Correct control and context transfer</td><td>Message tampering, impersonation, permission inheritance</td><td>send / transform / receive / context-use chain</td></tr><tr><td>Self-organizing / Swarm</td><td>Discovery event and dynamic graph</td><td>Effective organization formed</td><td>Sybil, capability forgery, topology and resource amplification</td><td>First abnormal discovery / selection / propagation edge</td></tr></tbody></table></div>
+<h3>8.1 Router: Focus on Routing Decision Boundary</h3>
+<p><strong>Quality Evaluation.</strong> Core: <code>Task → Correct Agent</code>. Beyond routing accuracy, measure top-k recall, confidence calibration, stability under task distribution shift, cost of wrong routing, fallback triggers, and whether multi-path parallelism yields real benefit. The context-isolation value of a Router should be verified by "how much irrelevant information the target agent's context removes compared to a single agent."</p>
+<p><strong>Red Team.</strong> Attackers will try to change task phrasing, hide risk attributes, poison capability directories, or manipulate scoring, so that tasks enter an agent with insufficient capability, low trust, or wrong permission; they may also deliberately craft low-confidence inputs to push the system into a permissive fallback.</p>
+<p><strong>Blue Team.</strong> Build a normal task-type-to-agent distribution, retain candidate lists, scoring features, confidence, policy version, and trust checks. RCA should trace from the abnormal route decision back to input source, candidate change, and scoring basis — not just inspect the final worker failure.</p>
+<h3>8.2 Supervisor: Focus on the Central Decision Chain</h3>
+<p><strong>Quality Evaluation.</strong> Independently evaluate task decomposition, delegation, worker input sufficiency, result acceptance, replanning, and synthesis. The Supervisor may give the wrong task to an excellent worker, or ignore a correct worker's result, so the final outcome cannot replace central-decision-level evaluation. Also test Supervisor bottleneck, over-delegation, and single-point failure.</p>
+<p><strong>Red Team.</strong> The Supervisor is a high-value target. Attackers can manipulate the global plan through input or worker returns, inducing it to remove safety steps, split dangerous tasks into seemingly harmless subtasks, borrow authority from high-privilege workers, or create a delegation storm to drain resources.</p>
+<p><strong>Blue Team.</strong> Preserve plan versions, candidates and reasons for each delegation, worker context packages, returned results, and synthesis provenance. RCA traverses the delegation tree upward from final failure, distinguishing "Supervisor gave the wrong task," "Worker executed wrong," and "Supervisor synthesized wrong," and identifies the earliest deviation.</p>
+<h3>8.3 Pipeline: Focus on Inter-Stage Information Decay</h3>
+<p><strong>Quality Evaluation.</strong> Each stage must independently measure input quality, output quality, required-fact retention, stage latency, and error rate. Inject known key facts at each edge and check whether they were deleted, modified, misunderstood, or correctly used; ablate a stage to estimate its marginal utility and chaining effect.</p>
+<p><strong>Red Team.</strong> Upstream Pipeline nodes have amplification effects. Attackers may plant wrong facts, remove safety constraints, or change format early, making later agents treat them as trusted input; they may also target bottleneck stages to stall the whole pipeline.</p>
+<p><strong>Blue Team.</strong> Use stage-by-stage diff and binary replay. RCA does not seek the last agent with the wrong output but locates the first stage that generated an error, lost required information, or wrongly accepted upstream content, and measures propagation depth from that point.</p>
+<h3>8.4 Graph / Workflow: Focus on Actual Path and Global State</h3>
+<p><strong>Quality Evaluation.</strong> Answer which path actually ran, whether branch choice is correct, whether the critical path is shortest, whether parallelism brings speedup, whether loops terminate normally, whether retries are effective, and whether checkpoints are consistent. A static design graph cannot replace the runtime graph; compare planned graph, actual graph, and ideal/baseline graph.</p>
+<p><strong>Red Team.</strong> Attackers can manipulate conditional edges and branch decisions to bypass Reviewer or Policy nodes; they can also create loops, unreachable states, races, duplicate executions, and malicious checkpoints, forcing the system into costly or unsafe paths.</p>
+<p><strong>Blue Team.</strong> Preserve node/edge events, branch reasons, state versions, checkpoints, fan-out/fan-in, and logical ordering. RCA can diff the abnormal execution graph against normal same-task graphs, prioritizing the first path fork, state conflict, or loop-formation event.</p>
+<h3>8.5 Handoff: Focus on Joint Transfer of Control and Context</h3>
+<p><strong>Quality Evaluation.</strong> Handoff is not an ordinary message because it changes the active agent, responsible subject, and subsequent context at the same time. Test why handoff, recipient correctness, timing, required facts, payload transformation, receipt acknowledgment, actual context inclusion, and whether permissions before and after handoff match policy.</p>
+<p><strong>Red Team.</strong> Typical exploitation: forge sender, choose malicious recipient, delete safety constraints, inject instructions into the payload, replay old handoffs, exploit full-context transfer to steal information, and wrong inheritance of sender permissions.</p>
+<p><strong>Blue Team.</strong> Each handoff should form a complete <code>send → transform/filter → receive → context inclusion → first decision</code> chain. RCA compares semantic and permission diff before and after transformation, locating where distortion, leakage, or overreach occurred, and replays from the last trusted handoff point.</p>
+<h3>8.6 Self-organizing / Swarm: Focus on Organization Formation</h3>
+<p><strong>Quality Evaluation.</strong> The primary question shifts from "is this single agent's output correct" to "did the agent society form an effective organization." Evaluate discovery quality, candidate diversity, trust calibration, dynamic topology, repeated search, isolated nodes, super nodes, cluster / echo chamber, deadlock, ping-pong, coordination efficiency, failure blast radius, and reorganization ability.</p>
+<p><strong>Red Team.</strong> Attackers can forge identity and capability, mass-create Sybil agents, manipulate capability ranking, isolate the reviewer, control super nodes, poison shared state, or induce infinite discovery and delegation, forming coordination amplification / Agent DoS. A compromised agent's goal is often to expand propagation range rather than directly produce harmful output.</p>
+<p><strong>Blue Team.</strong> Continuously rebuild the dynamic graph and build dynamic baselines for agent count, edge count, centrality, fan-out, community structure, trust-domain crossing, token velocity, and propagation chains. RCA starts from the first abnormal discovery, selection, or message edge and forward-computes all consumers and affected subgraphs; response must support cutting edges, isolating agents, freezing shared state, and safe reorganization.</p>
+<h3>8.7 Group Chat / Debate: Focus on Group Independence</h3>
+<p>Group Chat is an overlay pattern; its quality focus is whether opinions are independent, whether evidence is diverse, whether the discussion truly corrects errors, and whether consensus is better than the best single agent. Red team can exploit anchoring, herd behavior, malicious Judge, sybil voting, or many similar low-quality opinions to suppress minority correct evidence. Blue team should analyze speech similarity, source correlation, speaker selection, voting groups, and Judge provenance, to identify echo chambers and coordinated manipulation.</p>
+<h3>8.8 Distributed / A2A: Focus on Cross-Trust-Domain Causal Chains</h3>
+<p>Distributed deployment requires correlating local semantic events with network events. Quality evaluation should cover interoperability, message delivery, out-of-order, idempotency, timeouts, and remote state consistency; red team focuses on identity impersonation, message tampering/replay, protocol downgrade, capability-ad deception, and cross-organization confused deputy; blue team relies on bidirectional identity, signature, nonce, send/receive correlation, logical ordering, and cross-domain trace links for attribution.</p>
+<hr />
+<h2 id="en-section-engineering-recommendations">9. Research and Engineering Recommendations</h2>
+<h3>9.1 Define the Semantic Model Before the Dashboard</h3>
+<p>Product development should not start with a trace viewer; it should first unify the event semantics and identifier relationships for Agent, Task, Interaction, Context Item, State Version, Artifact, Tool Action, Permission Decision, and Outcome. Without unified semantics, Eval, Red, and Blue each build data silos that cannot interoperate.</p>
+<h3>9.2 Make Context Provenance and State Provenance Core Capabilities</h3>
+<p>In MAS the most critical question is often not "which model call failed" but "where did this fact or instruction enter the system, through which agents, messages, and state versions, and which action did it ultimately influence." Therefore provenance should not be an optional audit attachment but the backbone of the dynamic causal graph.</p>
+<h3>9.3 Edge-Level Hooks as a First-Class Instrumentation Interface</h3>
+<p>The runtime should at minimum provide hooks for route, delegate, handoff, message send/receive, state read/write, artifact publish/consume, permission grant, and tool effect. Collecting only internal LLM/tool spans of an agent shows nodes but hides organizational behavior.</p>
+<h3>9.4 Constrain Autonomy by Invariants and Emergence by Budgets</h3>
+<p>For high-autonomy architectures, define non-breakable identity, permission, data, and external-action boundaries; simultaneously set budgets for hops, fan-out, agent count, tokens, time, money, and retries. Autonomy can decide local paths but cannot self-cancel system-level boundaries.</p>
+<h3>9.5 Evaluation Must Support Drilling from Outcome to Causal Chain</h3>
+<p>A mature interface or analysis system should allow drilling from a failed outcome to related agents, interactions, context items, state versions, and tool effects; it should also support forward-computing all consumers and blast radius from a polluted source. This is much closer to true MAS RCA than chronological log viewing.</p>
+<h3>9.6 Build a Minimum Viable MAS Assurance Loop</h3>
+<p>Roll it out in this order:</p>
+<pre><code>Identity and task correlation
+        ↓
+Agent/tool/model trajectory
+        ↓
+Cross-agent interaction events
+        ↓
+Context and state provenance
+        ↓
+Dynamic graph reconstruction
+        ↓
+Evaluation + Red tests + Blue RCA
+        ↓
+Runtime policy and recovery controls</code></pre>
+<hr />
+<h2 id="en-section-conclusion">10. Conclusion</h2>
+<p>MAS should not be understood as "multiple LLMs being smarter than one LLM" but as an architecture that organizes bounded intelligence, bounded context, and bounded permissions. Its most immediate engineering value today is context isolation: through the cognitive boundaries of different agents, relevant information enters relevant subjects, irrelevant or inaccessible information stays outside those boundaries, and cross-boundary transfer happens through verifiable interfaces. Specialization, parallelism, heterogeneity, separation of duties, and checks-and-balances build on this foundation.</p>
+<p>But boundaries alone do not automatically produce a good system. MAS introduces systemic risks: task decomposition, routing, delegation, handoff, shared state, topology formation, and failure propagation. It must use a single agent or simple workflow as baseline to prove that the gain in quality, isolation, robustness, or governance outweighs the added coordination overhead, cost, latency, and new attack surface. Hence MAS evaluation is multi-objective optimization, not a single-accuracy ranking.</p>
+<p>The evolution of the object of study can be summarized as:</p>
+<pre><code>LLM:   Input / Output
+Agent: Trajectory
+MAS:   Dynamic Causal Interaction Graph</code></pre>
+<p>In MAS, node-level observation is still necessary but insufficient to explain system behavior. Edge / interaction events such as delegation, message, handoff, state read/write, and permission change are among the critical minimal units of observation; Context Provenance and State Provenance link these events into a causal network usable for attribution.</p>
+<p>Quality evaluation, red team, and blue team are not three isolated fields. They share the same MAS behavior model and underlying telemetry: Evaluation judges whether the system works as intended; Red Team examines how the system is actively manipulated; Blue Team explains why the deviation happened and performs detection, attribution, containment, and recovery. Security must additionally maintain security invariants, because high-quality output can coexist with unauthorized access, data leakage, or permission abuse.</p>
+<p>Ultimately, a trustworthy MAS needs not more logs but a unified MAS Assurance Stack: it can reconstruct the dynamic interaction graph, explain how information and control cross boundaries, verify whether the architecture meets design goals, and give actionable causal answers when errors or attacks occur.</p>
+<hr />
+<h2 id="en-section-future-work">Future Research Directions</h2>
+<p>The quality dimensions, architecture classifications, and assurance matrix proposed here still need further calibration through theoretical comparison and experimental validation. Future work can proceed along three tracks:</p>
+<ol><li><strong>Theory and literature track</strong>: contrast this framework with traditional MAS, distributed systems, software reliability, organizational science, and security engineering; clarify conceptual inheritance and MAS-specific problems.</li><li><strong>Benchmark track</strong>: select controllable tasks from the Assurance Matrix; build normal, faulty, and adversarial datasets; verify metric computability, discriminability, and diagnostic value.</li><li><strong>Systems track</strong>: design unified event schemas, edge-level hooks, context/state provenance, and dynamic graph queries, forming a prototype platform usable by Evaluation, Red Team, and Blue Team alike.</li></ol>
+</div><!-- /data-lang=en -->
 <!-- ARTICLE CONTENT -->
   </div>
-  <a class="post-back" href="/blog/">← 返回博客</a>
+  <a class="post-back" href="/blog/"><span data-lang="zh">← 返回博客</span><span data-lang="en">← Back to Blog</span></a>
 </article>
+</div><!-- /post-layout -->
 </main>
 <footer class="site-foot"><div class="container"><span data-i18n="footer.copyright">© 2026 realTaki · Built with ❤️ &amp; hosted on GitHub Pages</span></div></footer>
 <button class="totop" id="totop" type="button" aria-label="Back to top" data-i18n-attr="aria-label:nav.backToTop">↑</button>

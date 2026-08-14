@@ -55,6 +55,7 @@
       'blog.title':                 '博客 · realTaki',
       'blog.description':           'realTaki 的写作:AI · 系统设计 · 工程随笔',
       'blog.post.back':             '← 返回首页',
+      'mas.metaDescription':        '多智能体系统的质量、架构、可观测性与安全保障：概念框架与研究议程。',
 
       /* ========== INVESTIGATION ========== */
       'nav.tabs.aria':              '页面内导航',
@@ -240,6 +241,7 @@
       'blog.title':                 'Blog · realTaki',
       'blog.description':           'Writing on AI, system design, and engineering notes',
       'blog.post.back':             '← Back to home',
+      'mas.metaDescription':        'Quality, architecture, observability and assurance for multi-agent systems: a conceptual framework and research agenda.',
 
       /* ========== INVESTIGATION ========== */
       'nav.tabs.aria':              'Page navigation',
