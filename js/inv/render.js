@@ -49,29 +49,9 @@ function renderStats() {
     products:         String(s.productCount),
     productParents:   i18n.t('hero.inv.stat.productsDelta', { n: s.productParentCount }),
     yearSpan:         `${s.yearSpan.first} — ${s.yearSpan.last}`,
-    starCount:        () => StarStore ? String(StarStore.getStarred().size) : '0',
-
-    insight1Title: i18n.t('insight1.title', { first: s.yearSpan.first, to: s.yearSpan.last }),
-    insight1Body:  s.fundedCount
-      ? i18n.t('insight1.body', { years: yearText, n: s.fundedCount, total: s.totalFunding })
-      : i18n.t('insight1.body.empty'),
-
-    insight2Title: s.acquisitionCount
-      ? i18n.t('insight2.title', { n: s.acquisitionCount })
-      : i18n.t('insight2.title.empty'),
-    insight2Body:  s.acquisitionCount
-      ? i18n.t('insight2.body', { list: acqList, years: acqYears.join(' / '), total: s.acquiredTotal })
-      : i18n.t('insight2.body.empty'),
-
-    insight3Title: hi ? i18n.t('insight3.title', { name: hi.name }) : i18n.t('insight3.title.empty'),
-    insight3Body:  hi
-      ? i18n.t('insight3.body', { parts: [
-          hi.location && hi.location !== '—' ? i18n.t('insight.body.location', { v: hi.location }) : '',
-          hf ? i18n.t('insight.body.funding', { label: hf.label, amount: hf.amount, stage: hf.stage }) : '',
-          leadInvestors ? i18n.t('insight.body.investors', { v: leadInvestors }) : '',
-          hi.products && hi.products.length ? i18n.t('insight.body.products', { n: hi.products.length }) : ''
-        ].filter(Boolean).join(',') })
-      : i18n.t('insight3.body.empty')
+    starCount:        () => StarStore ? String(StarStore.getStarred().size) : '0'
+    // (Insight 卡渲染已移除 — 三条洞察现在是 /blog/insight-*/ 下的独立博客文章。
+    //  顶部 hero stat 卡仍来自 data-stat 注入,见上方的 lede / total / openSource / funding / products。)
   };
 
   document.querySelectorAll('[data-stat]').forEach(el => {

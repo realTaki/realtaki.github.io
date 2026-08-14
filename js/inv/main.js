@@ -97,51 +97,5 @@ document.addEventListener('lang:changed', () => {
   }
 });
 
-/* ============== 3. 页面导航 (Investigation / Insights) ============== */
-// Lightweight hash-based two-tab switcher.
-// URL hash is decoupled from internal page id: '#data' -> investigation page,
-// '#insights' -> insights page. Keeps the URL clean (avoids "/investigation/#investigation").
-const PAGES = ['investigation', 'insights'];
-const HASH_FOR_PAGE = { investigation: 'data', insights: 'insights' };
-const PAGE_FOR_HASH = { data: 'investigation', insights: 'insights' };
-
-function getRouteFromHash() {
-  const raw = (location.hash || '').replace(/^#/, '').toLowerCase();
-  return PAGE_FOR_HASH[raw] || 'investigation';
-}
-
-function applyPage(page) {
-  const safe = PAGES.includes(page) ? page : 'investigation';
-  document.querySelectorAll('.page').forEach(el => {
-    el.hidden = el.dataset.page !== safe;
-  });
-  document.querySelectorAll('.page-switch').forEach(tab => {
-    const match = tab.dataset.page === safe;
-    tab.setAttribute('aria-selected', match ? 'true' : 'false');
-    tab.setAttribute('tabindex', match ? '0' : '-1');
-  });
-  const wantHash = HASH_FOR_PAGE[safe] || safe;
-  // Compare only the path portion; i18n.js may have appended `?lang=…` to the
-  // hash, which must be preserved across tab switches.
-  const currentPath = (location.hash || '').replace(/^#/, '').split('?')[0];
-  if (currentPath !== wantHash) {
-    const query = (location.hash || '').split('?')[1] || '';
-    history.replaceState(null, '', '#' + wantHash + (query ? '?' + query : ''));
-  }
-  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-}
-
-function bindTabs() {
-  document.querySelectorAll('.page-switch').forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      const page = tab.dataset.page;
-      if (!PAGES.includes(page)) return;
-      e.preventDefault();
-      applyPage(page);
-    });
-  });
-  window.addEventListener('hashchange', () => applyPage(getRouteFromHash()));
-}
-
-bindTabs();
-applyPage(getRouteFromHash());
+// (Investigation / Insights 双 tab 切换已移除 — Insight 长文现作为独立博客文章
+//  在 /blog/insight-*/ 下。本页只渲染 Data。page-switch / bindTabs 等逻辑已删除。)
