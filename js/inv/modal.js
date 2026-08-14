@@ -200,115 +200,12 @@ function closeModal() {
   if (mBody) mBody.classList.remove('article-mode');
 }
 
-/* ================================================================
-   长文洞察 — insights 页面卡片点击打开
-   复用同一套 modal DOM,内容换成 article 渲染。
-   ================================================================ */
-function openArticle(slug) {
-  const a = articles && articles[slug];
-  if (!a) return;
-
-  mName.textContent = a.title;
-  mTypeBadge.innerHTML = `<span class="type-badge type-co">${i18n.t('modal.article.badge', { eyebrow: a.eyebrow })}</span>`;
-  mTagline.textContent = a.deck;
-  mBody.innerHTML = '';
-  mBody.classList.add('article-mode');
-
-  // Eyebrow
-  const eyebrow = document.createElement('div');
-  eyebrow.className = 'article-eyebrow';
-  eyebrow.textContent = a.eyebrow;
-  mBody.appendChild(eyebrow);
-
-  // Deck
-  const deck = document.createElement('p');
-  deck.className = 'article-deck';
-  deck.textContent = a.deck;
-  mBody.appendChild(deck);
-
-  // Byline
-  const byline = document.createElement('div');
-  byline.className = 'article-byline';
-  byline.textContent = a.byline;
-  mBody.appendChild(byline);
-
-  // Stats row
-  if (a.stats && a.stats.length) {
-    const stats = document.createElement('div');
-    stats.className = 'article-stats';
-    stats.innerHTML = a.stats.map(s => `
-      <div class="article-stat">
-        <div class="article-stat-value">${articleEs(s.value)}<span class="article-stat-suffix">${articleEs(s.suffix || '')}</span></div>
-        <div class="article-stat-label">${articleEs(s.label)}</div>
-      </div>
-    `).join('');
-    mBody.appendChild(stats);
-  }
-
-  // Sections
-  for (const sec of (a.sections || [])) {
-    const secEl = document.createElement('section');
-    secEl.className = 'article-section';
-    if (sec.h) {
-      const h = document.createElement('h3');
-      h.textContent = sec.h;
-      secEl.appendChild(h);
-    }
-    for (const p of (sec.paragraphs || [])) {
-      const para = document.createElement('p');
-      para.textContent = p;
-      secEl.appendChild(para);
-    }
-    mBody.appendChild(secEl);
-  }
-
-  // Callout
-  if (a.callout) {
-    const c = document.createElement('div');
-    c.className = `article-callout ${a.callout.kind === 'quote' ? 'article-callout-quote' : 'article-callout-stat'}`;
-    c.innerHTML = `
-      <div class="article-callout-text">${articleEs(a.callout.text)}</div>
-      ${a.callout.cite ? `<div class="article-callout-cite">${articleEs(a.callout.cite)}</div>` : ''}
-    `;
-    mBody.appendChild(c);
-  }
-
-  // Related companies
-  if (a.relatedCompanies && a.relatedCompanies.length) {
-    const wrap = document.createElement('div');
-    wrap.className = 'article-related';
-    wrap.innerHTML = `<div class="article-related-title">${i18n.t('modal.article.related')}</div>
-      <div class="article-related-tags">${a.relatedCompanies.map(name => {
-        const item = byName[name];
-        const cls = item ? 'article-related-tag' : 'article-related-tag muted';
-        const descText = item ? i18n.descFor(item).slice(0, 60) : '';
-        const title = item ? `${name} — ${descText}` : i18n.t('modal.article.notListed', { name });
-        const onclick = item ? `onclick="openModal('${articleEs(name).replace(/'/g, "\\'")}')"` : '';
-        return `<span class="${cls}" ${onclick} title="${articleEs(title)}">${articleEs(name)}</span>`;
-      }).join('')}</div>`;
-    mBody.appendChild(wrap);
-  }
-
-  modalBg.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  mBody.scrollTop = 0;
-}
+// (openArticle() 已删除 — 三条洞察现在是 /blog/insight-*/ 下的独立博客文章,
+//  不再通过 modal 渲染长文。.modal-body.article-mode 仍保留以避免陈旧引用风险。)
 
 // Expose closeModal to inline onclick in index.html (the close button).
 // Keeping this global avoids a second event listener + a separate click handler.
 window.closeModal = closeModal;
-window.openArticle = openArticle;
 
 modalBg.addEventListener('click', (e) => { if (e.target === modalBg) closeModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-/* Keyboard activation for insight cards (role="button" + tabindex=0):
-   Enter/Space opens the article when an insight card has focus. */
-document.addEventListener('keydown', (e) => {
-  if (e.key !== 'Enter' && e.key !== ' ') return;
-  const target = e.target;
-  if (target && target.dataset && target.dataset.article) {
-    e.preventDefault();
-    if (typeof openArticle === 'function') openArticle(target.dataset.article);
-  }
-});

@@ -628,13 +628,10 @@
       <span class="site-brand-dot"></span>
       <span class="brand-text">realTaki</span>
     </a>
-    <nav class="site-nav" role="navigation" data-i18n-attr="aria-label:nav.tabs.aria">
+    <nav class="site-nav" role="navigation">
       <a href="/" data-i18n="nav.home">Home</a>
       <a href="/blog/" data-i18n="nav.blog">Blog</a>
       <a href="/investigation/" class="active" data-i18n="nav.investigation">Investigation</a>
-      <span class="nav-sep" aria-hidden="true"></span>
-      <a class="page-switch" role="tab" href="#data" data-page="investigation" aria-selected="true" data-i18n="nav.tab.investigation">📊 Data</a>
-      <a class="page-switch" role="tab" href="#insights" data-page="insights" aria-selected="false" data-i18n="nav.tab.insights">💡 Insights</a>
       <button class="lang-toggle" type="button" aria-label="Switch language" data-i18n-attr="aria-label:lang.toggle.aria">
         <span class="lang-side" data-lang-side="zh" aria-pressed="true">中</span>
         <span class="lang-sep" aria-hidden="true"></span>
@@ -644,8 +641,8 @@
   </div>
 </header>
 
-<main class="page page-investigation" id="page-investigation" role="main" data-page="investigation">
-<header class="hero page-hero-investigation">
+<main class="page-investigation" id="page-investigation" role="main">
+<header class="hero">
   <div class="container">
     <span class="hero-eyebrow" data-i18n="hero.inv.eyebrow">2026 · Q3 SNAPSHOT</span>
     <h1 data-i18n="hero.inv.title">Agent Infra <span class="accent">Landscape</span></h1>
@@ -724,53 +721,7 @@
   </div>
 </section>
 </main>
-<!-- ============== /PAGE 1: INVESTIGATION ============== -->
-
-<!-- ============== PAGE 2: INSIGHTS ============== -->
-<main class="page page-insights" id="page-insights" role="main" data-page="insights" hidden>
-<header class="hero page-hero-insights">
-  <div class="container">
-    <span class="hero-eyebrow" data-i18n="hero.ins.eyebrow">2026 · Q3 SNAPSHOT</span>
-    <h1 data-i18n="hero.ins.title">Insights <span class="accent">—</span></h1>
-    <p class="lede" data-i18n="hero.ins.lede">从产品图谱、融资节奏与并购信号中提炼的三条趋势,帮你快速抓住 AI Infra / AI Security 赛道当前最值得关注的拐点。</p>
-    <div class="hero-meta">
-      <span><span data-i18n="hero.ins.meta.view">视角</span> <strong data-i18n="hero.ins.meta.viewVal">AI Infra × AI Security</strong></span>
-      <span>·</span>
-      <span><span data-i18n="hero.ins.meta.window">时间窗</span> <strong data-stat="yearSpan"></strong></span>
-      <span>·</span>
-      <span><span data-i18n="hero.ins.meta.source">来源</span> <strong data-i18n="hero.ins.meta.sourceVal">同源 items[] 数据派生</strong></span>
-    </div>
-  </div>
-</header>
-<section>
-  <div class="container">
-    <div class="insight-grid">
-      <div class="insight" data-article="guardrails" onclick="openArticle('guardrails')" role="button" tabindex="0">
-        <div class="ic ic-green">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h4 data-stat="insight1Title"></h4>
-        <p data-stat="insight1Body"></p>
-      </div>
-      <div class="insight" data-article="mna" onclick="openArticle('mna')" role="button" tabindex="0">
-        <div class="ic ic-warn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        </div>
-        <h4 data-stat="insight2Title"></h4>
-        <p data-stat="insight2Body"></p>
-      </div>
-      <div class="insight" data-article="virtue" onclick="openArticle('virtue')" role="button" tabindex="0">
-        <div class="ic ic-blue">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </div>
-        <h4 data-stat="insight3Title"></h4>
-        <p data-stat="insight3Body"></p>
-      </div>
-    </div>
-  </div>
-</section>
-</main>
-<!-- ============== /PAGE 2: INSIGHTS ============== -->
+<!-- (原 PAGE 2: INSIGHTS 整块已删除 — 三条洞察现在是 /blog/insight-*/ 下的独立博客文章) -->
 
 <footer class="site-foot">
   <div class="container">
@@ -805,7 +756,6 @@
 <script src="../js/inv/derived.js" onerror="console.error('[load fail] js/derived.js')"></script>
 <script src="../js/inv/star.js" onerror="console.error('[load fail] js/star.js')"></script>
 <script src="../js/inv/meta.js" onerror="console.error('[load fail] js/meta.js')"></script>
-<script src="../js/inv/articles.js" onerror="console.error('[load fail] js/articles.js — article modal disabled')"></script>
 <script src="../js/inv/modal.js" onerror="console.error('[load fail] js/modal.js')"></script>
 <script src="../js/inv/render.js" onerror="console.error('[load fail] js/render.js — page will render statically only')"></script>
 <script src="../js/inv/main.js" onerror="console.error('[load fail] js/main.js')"></script>
