@@ -58,4 +58,49 @@
   document.addEventListener('lang:changed', function (e) {
     if (e && e.detail && e.detail.lang) applyBilingualFilter(e.detail.lang);
   });
+
+  /* ── Sidebar TOC scroll-spy ──
+     When a `.post-toc-sidebar` is present, observe the sections it links to
+     and toggle `.is-active` on the link whose target is currently in view.
+     Stops watching once the user scrolls past the article to avoid pinning
+     the last entry forever. */
+  var toc = document.querySelector('.post-toc-sidebar');
+  if (toc && 'IntersectionObserver' in window) {
+    var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+    var linkByHash = {};
+    links.forEach(function (a) { linkByHash[a.getAttribute('href').slice(1)] = a; });
+
+    var headings = links
+      .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
+      .filter(Boolean);
+
+    if (headings.length) {
+      var activeHash = null;
+      function setActive(hash) {
+        if (hash === activeHash) return;
+        activeHash = hash;
+        links.forEach(function (a) { a.classList.remove('is-active'); });
+        if (hash && linkByHash[hash]) linkByHash[hash].classList.add('is-active');
+      }
+      // Use a top-root-margin so a heading becomes "active" ~25% from the top.
+      var io = new IntersectionObserver(function (entries) {
+        // Pick the topmost intersecting heading.
+        var visible = entries
+          .filter(function (e) { return e.isIntersecting; })
+          .sort(function (a, b) { return a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top; });
+        if (visible.length) {
+          setActive(visible[0].target.id);
+        }
+      }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+      headings.forEach(function (h) { io.observe(h); });
+
+      // If the user scrolls past the last heading, keep the last TOC entry highlighted.
+      window.addEventListener('scroll', function () {
+        var last = headings[headings.length - 1];
+        if (!last) return;
+        var rect = last.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.4) setActive(last.id);
+      }, { passive: true });
+    }
+  }
 })();

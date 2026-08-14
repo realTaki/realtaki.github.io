@@ -628,3 +628,101 @@ html[lang="en"]    [data-lang="zh"] { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* =================================================================
+   Long-form article (blog insight pages + investigation modal)
+   Originally lived inline in investigation/index.html;
+   extracted here so /blog/insight-*/ pages share the same look.
+   ================================================================= */
+.article-eyebrow {
+  display: inline-flex; font-size: 11px; font-weight: 700;
+  color: var(--b-blue); background: var(--primary-soft);
+  padding: 5px 10px; border-radius: 999px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin: 0 0 14px;
+}
+.article-deck {
+  font-size: 17px; line-height: 1.55; color: var(--c-ink2);
+  margin: 0 0 14px; font-weight: 500;
+}
+.article-byline {
+  font-size: 12px; color: var(--c-ink3);
+  padding-bottom: 18px; margin-bottom: 22px;
+  border-bottom: 1px solid var(--c-line-soft);
+}
+.article-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin: 0 0 28px;
+}
+.article-stat {
+  background: var(--c-bg); border: 1px solid var(--c-line);
+  border-radius: 12px; padding: 16px 18px;
+}
+.article-stat-value {
+  font-size: 26px; font-weight: 700; line-height: 1.1;
+  color: var(--c-ink); letter-spacing: -0.02em;
+}
+.article-stat-suffix {
+  font-size: 13px; font-weight: 500; color: var(--c-ink3);
+  margin-left: 4px;
+}
+.article-stat-label {
+  font-size: 11px; color: var(--c-ink3);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin-top: 6px; font-weight: 600;
+}
+.article-section {
+  margin: 0 0 26px;
+}
+.article-section h3 {
+  font-size: 18px; font-weight: 700; margin: 0 0 12px;
+  color: var(--c-ink); letter-spacing: -0.01em;
+}
+.article-section p {
+  font-size: 14.5px; line-height: 1.7; color: var(--c-ink2);
+  margin: 0 0 12px;
+}
+.article-callout {
+  margin: 28px 0; padding: 22px 26px;
+  border-radius: 14px; border: 1px solid var(--c-line);
+  background: var(--c-bg);
+}
+.article-callout-quote { border-left: 4px solid var(--b-blue); }
+.article-callout-stat { border-left: 4px solid var(--accent); }
+.article-callout-text {
+  font-size: 16px; line-height: 1.6; font-weight: 500;
+  color: var(--c-ink); margin: 0 0 8px;
+}
+.article-callout-cite {
+  font-size: 12px; color: var(--c-ink3); font-style: italic;
+}
+.article-related {
+  margin: 32px 0 8px; padding-top: 22px;
+  border-top: 1px solid var(--c-line-soft);
+}
+.article-related-title {
+  font-size: 11px; color: var(--c-ink3);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 10px; font-weight: 700;
+}
+.article-related-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.article-related-tag {
+  display: inline-flex; align-items: center;
+  padding: 5px 12px; background: var(--c-surface);
+  border: 1px solid var(--c-line); border-radius: 999px;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: all 0.15s ease;
+}
+.article-related-tag:hover {
+  background: var(--b-blue); color: white;
+  border-color: var(--b-blue); transform: translateY(-1px);
+}
+.article-related-tag.muted {
+  color: var(--c-ink3); cursor: default; opacity: 0.5;
+}
+.article-related-tag.muted:hover {
+  background: var(--c-surface); color: var(--c-ink3);
+  border-color: var(--c-line); transform: none;
+}
