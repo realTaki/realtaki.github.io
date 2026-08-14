@@ -11,6 +11,8 @@
 <style>
   /* Page-specific: tighten article-stat grid */
   .article-stats { margin-top: 8px; }
+  /* Live inside .post-layout — let the grid column drive width */
+  .post-wrap { max-width: 100%; margin: 0; padding: 0; }
 </style>
 </head>
 <body>
@@ -38,6 +40,26 @@
 
 <!-- ===== Article ===== -->
 <main class="container">
+<div class="post-layout">
+<aside class="post-toc-sidebar" aria-label="文章目录">
+  <strong><span data-lang="zh">阅读导航</span><span data-lang="en">Reading guide</span></strong>
+  <div data-lang="zh">
+    <ol>
+      <li><a href="#zh-why-virtue">为什么是 Virtue AI</a></li>
+      <li><a href="#zh-product-matrix">产品矩阵</a></li>
+      <li><a href="#zh-investor-structure">投资人结构</a></li>
+      <li><a href="#zh-outlook">判断与展望</a></li>
+    </ol>
+  </div>
+  <div data-lang="en">
+    <ol>
+      <li><a href="#en-why-virtue">Why Virtue AI</a></li>
+      <li><a href="#en-product-matrix">Product matrix</a></li>
+      <li><a href="#en-investor-structure">Investor structure</a></li>
+      <li><a href="#en-outlook">Outlook</a></li>
+    </ol>
+  </div>
+</aside>
 <article class="post-wrap">
 
   <header class="post-header">
@@ -54,12 +76,13 @@
     </p>
 
     <div class="article-byline">
-      <span data-lang="zh">整理自同源 items[] 数据 · 2026 Q3</span>
-      <span data-lang="en">Synthesized from the same items[] dataset · 2026 Q3</span>
+      <span data-lang="zh">🤖 由 AI 根据同源 items[] 调研数据聚合整理 · 作者不完全是 realTaki · 2026 Q3</span>
+      <span data-lang="en">🤖 Aggregated by AI from the same items[] research data · not solely authored by realTaki · 2026 Q3</span>
     </div>
 
     <div class="post-meta">
-      📅 2026-08-13 &nbsp;·&nbsp;
+      📅 2026-08-07 &nbsp;·&nbsp;
+      <span class="tag" style="background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);color:#b45309;">🤖 <span data-lang="zh">AI 聚合</span><span data-lang="en">AI-aggregated</span></span>
       <span class="tag">Virtue AI</span>
       <span class="tag">AI Security</span>
       <span class="tag pink">Insights</span>
@@ -88,13 +111,13 @@
     <div data-lang="zh">
 
       <div class="article-section">
-        <h2>为什么是 Virtue AI:把"研究"做成"产品"</h2>
+        <h2 id="zh-why-virtue">为什么是 Virtue AI:把"研究"做成"产品"</h2>
         <p>市场上大部分 AI 安全公司做的是"工程化" —— 把现有红队方法 / 评估框架打包成 SaaS。Virtue AI 的不同在于:它从一开始就有 Stanford / UIUC 联合研究做底,AutoRedTeamer 框架(阿斯顿大学 / 斯坦福 / Virtue AI 联合发表)直接转化为 DTAP (DecodingTrust Agent Platform) 产品。</p>
         <p>结果是他们在 Agent 场景下的攻击成功率比 baseline 高 20%,但是算力成本反而低 46% —— 这种"研究 → 指标 → 工程"的传导链路,在 AI 安全这个品类里非常少见,也是头部机构愿意给 A 轮估值溢价的根本原因。</p>
       </div>
 
       <div class="article-section">
-        <h2>产品矩阵:5 条线对应 5 个客户关键问题</h2>
+        <h2 id="zh-product-matrix">产品矩阵:5 条线对应 5 个客户关键问题</h2>
         <p>VirtueRed —— 算法化红队平台,覆盖 320+ 风险类别(幻觉、隐私泄露、越狱、prompt injection),100+ 攻击算法、600+ 攻击向量。直接卖给模型团队做上线前的回归测试。</p>
         <p>DTAP —— 可控、可交互的 AI Agent 红队评估平台,基于 AutoRedTeamer 框架,直接对应 Agent 治理这个新场景的痛点。</p>
         <p>VirtueGuard —— 实时多模态护栏,文本 / 图像 / 音频 / 视频 / 代码,90+ 语言,延迟 &lt;10ms。卖给应用层,作为用户输入和模型输出之间的最后一道门。</p>
@@ -103,13 +126,13 @@
       </div>
 
       <div class="article-section">
-        <h2>投资人结构:Lightspeed 领头 + 学术 + 产业三方</h2>
+        <h2 id="zh-investor-structure">投资人结构:Lightspeed 领头 + 学术 + 产业三方</h2>
         <p>Lightspeed Venture Partners 和 Walden Catalyst Ventures 联合领投,Prosperity7(阿美风投)跟投 —— 这是一个少见的"硅谷 VC + 学术权威 + 沙特主权基金"三方组合,对一家 2024 才出隐身模式的初创公司来说,意味着同时打通了学界信任、硅谷渠道和中东资金。</p>
         <p>个人投资者里 Lip-Bu Tan (Intel CEO)、Amarjit Gill、Chris Ré (Stanford 教授)三位是值得留意的信号 —— 前两者意味着产业级背书,Chris Ré 既是学术合伙人也是潜在客户推荐人。</p>
       </div>
 
       <div class="article-section">
-        <h2>判断:独立的窗口期大约还有 12–18 个月</h2>
+        <h2 id="zh-outlook">判断:独立的窗口期大约还有 12–18 个月</h2>
         <p>以当前融资节奏(Seed → A 14 个月)和产品矩阵成熟度,2026 H2 走向 B 轮几乎板上钉钉。但护栏赛道并购窗口已经打开(见观察 02),Virtue AI 的独立路线能否跑通,取决于:1) AgentSuite 能不能在 12 个月内拿到 3–5 个 Fortune 500 客户;2) 学术发布的产出节奏能不能继续保持(论文 → 指标 → 产品);3) 真正的差异点 —— DTAP 的 Agent 治理护城河能不能保持 18 个月不被云厂商 / LLM 平台复制。</p>
         <p>如果上面三点都能给出肯定答案,这家公司的上限是"独立平台上市";如果其中 1–2 点做不到,2027 进入并购候选池的概率非常高。</p>
       </div>
@@ -136,13 +159,13 @@
     <div data-lang="en">
 
       <div class="article-section">
-        <h2>Why Virtue AI: turning research into a product</h2>
+        <h2 id="en-why-virtue">Why Virtue AI: turning research into a product</h2>
         <p>Most AI-safety companies today do "engineering" — packaging existing red-team methodologies or evaluation frameworks into a SaaS. What sets Virtue AI apart is the foundation under the hood: a Stanford / UIUC joint research base, with the AutoRedTeamer framework (jointly published by Aston University, Stanford and Virtue AI) flowing directly into the DTAP (DecodingTrust Agent Platform) product.</p>
         <p>The result: their attack-success rate on agent scenarios is ~20% above baseline, while their compute cost runs ~46% lower. That "research → metric → engineering" pipeline is rare inside the AI-safety category, and it is the underlying reason top-tier institutions are willing to pay an A-round valuation premium.</p>
       </div>
 
       <div class="article-section">
-        <h2>The product matrix: 5 lines, 5 customer questions</h2>
+        <h2 id="en-product-matrix">The product matrix: 5 lines, 5 customer questions</h2>
         <p>VirtueRed — an algorithmic red-team platform covering 320+ risk categories (hallucination, privacy leakage, jailbreaks, prompt injection), 100+ attack algorithms, 600+ attack vectors. Sold directly to model teams as a pre-release regression test.</p>
         <p>DTAP — a controllable, interactive AI-agent red-team evaluation platform built on the AutoRedTeamer framework, addressing the pain points of agent governance as a new scenario.</p>
         <p>VirtueGuard — a real-time multimodal guardrail spanning text / image / audio / video / code, supporting 90+ languages, with sub-10ms latency. Sold to application teams as the last gate between user input and model output.</p>
@@ -151,13 +174,13 @@
       </div>
 
       <div class="article-section">
-        <h2>Investor structure: Lightspeed leads + academia + industry</h2>
+        <h2 id="en-investor-structure">Investor structure: Lightspeed leads + academia + industry</h2>
         <p>Lightspeed Venture Partners and Walden Catalyst Ventures co-led, with Prosperity7 (Aramco Ventures) participating — an unusual combination of "Silicon Valley VC + academic authority + Saudi sovereign fund". For a start-up that only emerged from stealth in 2024, that opens academic trust, Silicon Valley distribution and Middle Eastern capital at the same time.</p>
         <p>On the individual investor side, Lip-Bu Tan (Intel CEO), Amarjit Gill and Chris Ré (Stanford professor) are three notable signals. The first two signal industry-level endorsement, while Chris Ré is both an academic co-author and a likely customer referral channel.</p>
       </div>
 
       <div class="article-section">
-        <h2>Outlook: roughly a 12–18 month independent window</h2>
+        <h2 id="en-outlook">Outlook: roughly a 12–18 month independent window</h2>
         <p>Given the current funding pace (Seed → A in 14 months) and the maturity of the product matrix, a Series B in 2026 H2 is almost a given. But the guardrail M&amp;A window is already open (see Observation 02), so whether Virtue AI's independent path holds together depends on three things: (1) whether AgentSuite lands 3–5 Fortune 500 customers within 12 months; (2) whether the academic output cadence keeps up (paper → metric → product); (3) whether DTAP's agent-governance moat holds for 18 months without being copied by cloud providers or LLM platforms.</p>
         <p>If all three check out, the ceiling is "independent platform IPO"; if 1–2 of them don't, the probability of joining the 2027 acquisition candidate pool is very high.</p>
       </div>
@@ -185,6 +208,7 @@
   <a class="post-back" href="/blog/"><span data-lang="zh">← 返回博客</span><span data-lang="en">← Back to blog</span></a>
 
 </article>
+</div><!-- /post-layout -->
 </main>
 
 <!-- ===== Footer ===== -->

@@ -11,6 +11,8 @@
 <style>
   /* Page-specific: tighten article-stat grid */
   .article-stats { margin-top: 8px; }
+  /* Live inside .post-layout — let the grid column drive width */
+  .post-wrap { max-width: 100%; margin: 0; padding: 0; }
 </style>
 </head>
 <body>
@@ -38,6 +40,26 @@
 
 <!-- ===== Article ===== -->
 <main class="container">
+<div class="post-layout">
+<aside class="post-toc-sidebar" aria-label="文章目录">
+  <strong><span data-lang="zh">阅读导航</span><span data-lang="en">Reading guide</span></strong>
+  <div data-lang="zh">
+    <ol>
+      <li><a href="#zh-cases">两组对照</a></li>
+      <li><a href="#zh-why-q3">为什么是 Q3 之后</a></li>
+      <li><a href="#zh-next-wave">下一波:中型买家</a></li>
+      <li><a href="#zh-outlook">判断:并购条款</a></li>
+    </ol>
+  </div>
+  <div data-lang="en">
+    <ol>
+      <li><a href="#en-cases">Two cases</a></li>
+      <li><a href="#en-why-q3">Why Q3 and after</a></li>
+      <li><a href="#en-next-wave">Next wave</a></li>
+      <li><a href="#en-outlook">Outlook: terms shift</a></li>
+    </ol>
+  </div>
+</aside>
 <article class="post-wrap">
 
   <header class="post-header">
@@ -54,12 +76,13 @@
     </p>
 
     <div class="article-byline">
-      <span data-lang="zh">整理自同源 items[] 数据 · 2026 Q3</span>
-      <span data-lang="en">Synthesized from the same items[] dataset · 2026 Q3</span>
+      <span data-lang="zh">🤖 由 AI 根据同源 items[] 调研数据聚合整理 · 作者不完全是 realTaki · 2026 Q3</span>
+      <span data-lang="en">🤖 Aggregated by AI from the same items[] research data · not solely authored by realTaki · 2026 Q3</span>
     </div>
 
     <div class="post-meta">
-      📅 2026-08-13 &nbsp;·&nbsp;
+      📅 2026-08-07 &nbsp;·&nbsp;
+      <span class="tag" style="background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);color:#b45309;">🤖 <span data-lang="zh">AI 聚合</span><span data-lang="en">AI-aggregated</span></span>
       <span class="tag">AI Security</span>
       <span class="tag">M&amp;A</span>
       <span class="tag pink">Insights</span>
@@ -88,25 +111,25 @@
     <div data-lang="zh">
 
       <div class="article-section">
-        <h2>两组对照:Lakera vs Protect AI</h2>
+        <h2 id="zh-cases">两组对照:Lakera vs Protect AI</h2>
         <p>把两起并购并排看会非常有意思。Lakera 在 2024-07 完成 A 轮 $20M,2025-09 即被收购,作价 ~$300M —— 估值在 14 个月内翻了 ~15 倍。Protect AI 节奏更急:2024-12 落 B 轮 $60M,2025-04 就被收购,作价 ~$500M —— 8 个月、~8 倍。</p>
         <p>两个共同点:一是退出估值远高于最近一轮融资估值,说明战略买家在 LLM 安全领域愿意给出"未来 3 年现金流贴现"的溢价;二是两家被收购后都很快并入"大厂安全产品线" —— Lakera 去了 Palo Alto 路线,Protect AI 走的是传统 SOC 厂商通路,后者的并入方式意味着 LLM 治理会被默认绑进传统安全堆栈。</p>
       </div>
 
       <div class="article-section">
-        <h2>为什么是 2025 Q3 之后</h2>
+        <h2 id="zh-why-q3">为什么是 2025 Q3 之后</h2>
         <p>并购集中爆发在 2025 Q3 之后,直接和"大客户开始批量上线 LLM 应用"的时间表对齐。当 Fortune 500 客户开始把 LLM 接入到生产环境,合规、采购和法务才会真正和企业级安全厂商坐下来谈 —— 这时独立护栏公司的"小而美"反而成为被收购的理由,而不是阻碍。</p>
         <p>也因为 2025 年是大量 LLM 应用"真实出问题"的第一个完整年份:Air Canada chatbot 败诉、MCP 协议漏洞被披露、Agent 越权操作进入公共视野 —— 每一件都把"为什么需要 LLM 防护"从 PPT 拉到了真实事故。</p>
       </div>
 
       <div class="article-section">
-        <h2>可预见的下一波:中型买家接棒</h2>
+        <h2 id="zh-next-wave">可预见的下一波:中型买家接棒</h2>
         <p>2025 出钱的是 Palo Alto / 传统 SOC 厂商,2026 之后接力棒会到云厂商和 LLM 平台公司手里 —— AWS / Azure / GCP / OpenAI / Anthropic 都还没有正式的 LLM 防护产品线,这是 12–18 个月内最明显的并购窗口。</p>
         <p>对独立公司而言,这意味着两条路:要么尽快长到 A 轮以上、成为被并购候选;要么找到云厂商不会自己做的垂直场景(医疗 / 法律 / 金融 / EU AI Act),留在独立路线。中间态(B 轮 + 通用产品)会越来越难融资。</p>
       </div>
 
       <div class="article-section">
-        <h2>判断:并购不会停,但并购条款会变</h2>
+        <h2 id="zh-outlook">判断:并购不会停,但并购条款会变</h2>
         <p>接下来 18 个月还会看到 3–5 笔同类并购,但买方从"安全厂商"扩展到"云厂商 + LLM 平台",估值倍数会从目前的 8–15 倍向 5–8 倍靠拢 —— 因为买方自己也在做,溢价会让位给整合成本。</p>
         <p>对创始人意味着:如果你的退出路径是并购,2026 H2 / 2027 H1 是最好的窗口,拖到 2027 之后要么估值被打回来,要么被剩下 2–3 家头部收购方挑剩。</p>
       </div>
@@ -133,25 +156,25 @@
     <div data-lang="en">
 
       <div class="article-section">
-        <h2>Two cases side by side: Lakera vs Protect AI</h2>
+        <h2 id="en-cases">Two cases side by side: Lakera vs Protect AI</h2>
         <p>Placing the two acquisitions next to each other is illuminating. Lakera closed its $20M Series A in 2024-07 and was acquired in 2025-09 for ~$300M — a ~15x valuation flip in 14 months. Protect AI moved faster: a $60M Series B in 2024-12 was followed by an acquisition in 2025-04 at ~$500M — ~8x in 8 months.</p>
         <p>Two common threads. First, exit valuations sat well above the latest round, signalling that strategic buyers in LLM security are willing to pay a premium that prices in 3-year forward cash flow. Second, both companies were quickly folded into a major vendor's security product line — Lakera into Palo Alto's stack, Protect AI into a traditional SOC vendor's portfolio. The latter pattern implies LLM governance will be bundled by default into the traditional security stack.</p>
       </div>
 
       <div class="article-section">
-        <h2>Why Q3 2025 and after</h2>
+        <h2 id="en-why-q3">Why Q3 2025 and after</h2>
         <p>The acquisitions cluster right after 2025 Q3, aligning directly with the moment Fortune 500 buyers started shipping LLM applications into production. Compliance, procurement and legal teams only sit down with enterprise security vendors when the workload is already running in production — at which point the "small and focused" nature of an independent guardrail company becomes a reason to acquire rather than a blocker.</p>
         <p>2025 was also the first full year in which LLM applications actually misbehaved at scale: the Air Canada chatbot lawsuit, MCP protocol vulnerability disclosures, and public incidents of agent privilege escalation each dragged the "why we need LLM protection" question from PPT slides to real incident reports.</p>
       </div>
 
       <div class="article-section">
-        <h2>The next wave: mid-size buyers take over</h2>
+        <h2 id="en-next-wave">The next wave: mid-size buyers take over</h2>
         <p>The 2025 checks were written by Palo Alto and traditional SOC vendors; from 2026 the baton passes to cloud providers and LLM platform companies. AWS / Azure / GCP / OpenAI / Anthropic do not yet have a real LLM protection product line — that is the clearest 12–18 month acquisition window.</p>
         <p>For independents this implies two paths: either grow past Series A fast enough to become an acquisition target, or carve out a vertical the hyperscalers will not build (healthcare / legal / finance / EU AI Act) and stay independent. The middle — Series B plus a generic product — becomes increasingly hard to fund.</p>
       </div>
 
       <div class="article-section">
-        <h2>Outlook: M&A won't stop, but terms will shift</h2>
+        <h2 id="en-outlook">Outlook: M&A won't stop, but terms will shift</h2>
         <p>The next 18 months should bring 3–5 more deals of the same shape, but the buyer set widens from "security vendors" to "cloud providers + LLM platforms", and valuation multiples compress from today's 8–15x toward 5–8x — because buyers are also building, so the premium gives way to integration cost.</p>
         <p>For founders: if your exit is M&A, 2026 H2 / 2027 H1 is the best window. Push past 2027 and your multiple either resets downward or you end up sifted through by whichever 2–3 buyers remain.</p>
       </div>
@@ -179,6 +202,7 @@
   <a class="post-back" href="/blog/"><span data-lang="zh">← 返回博客</span><span data-lang="en">← Back to blog</span></a>
 
 </article>
+</div><!-- /post-layout -->
 </main>
 
 <!-- ===== Footer ===== -->

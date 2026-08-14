@@ -11,6 +11,8 @@
 <style>
   /* Page-specific: tighten article-stat grid for 3 long-value stats */
   .article-stats { margin-top: 8px; }
+  /* Live inside .post-layout — let the grid column drive width */
+  .post-wrap { max-width: 100%; margin: 0; padding: 0; }
 </style>
 </head>
 <body>
@@ -38,6 +40,26 @@
 
 <!-- ===== Article ===== -->
 <main class="container">
+<div class="post-layout">
+<aside class="post-toc-sidebar" aria-label="文章目录">
+  <strong><span data-lang="zh">阅读导航</span><span data-lang="en">Reading guide</span></strong>
+  <div data-lang="zh">
+    <ol>
+      <li><a href="#zh-rhythm">节奏判断</a></li>
+      <li><a href="#zh-stages">轮次与金额</a></li>
+      <li><a href="#zh-pivot">拐点:模型评估 → 治理</a></li>
+      <li><a href="#zh-outlook">判断:2026 H2 窗口</a></li>
+    </ol>
+  </div>
+  <div data-lang="en">
+    <ol>
+      <li><a href="#en-rhythm">Rhythm</a></li>
+      <li><a href="#en-stages">Stages and amounts</a></li>
+      <li><a href="#en-pivot">The pivot</a></li>
+      <li><a href="#en-outlook">2026 H2 outlook</a></li>
+    </ol>
+  </div>
+</aside>
 <article class="post-wrap">
 
   <header class="post-header">
@@ -54,12 +76,13 @@
     </p>
 
     <div class="article-byline">
-      <span data-lang="zh">整理自同源 items[] 数据 · 2026 Q3</span>
-      <span data-lang="en">Synthesized from the same items[] dataset · 2026 Q3</span>
+      <span data-lang="zh">🤖 由 AI 根据同源 items[] 调研数据聚合整理 · 作者不完全是 realTaki · 2026 Q3</span>
+      <span data-lang="en">🤖 Aggregated by AI from the same items[] research data · not solely authored by realTaki · 2026 Q3</span>
     </div>
 
     <div class="post-meta">
-      📅 2026-08-13 &nbsp;·&nbsp;
+      📅 2026-08-07 &nbsp;·&nbsp;
+      <span class="tag" style="background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);color:#b45309;">🤖 <span data-lang="zh">AI 聚合</span><span data-lang="en">AI-aggregated</span></span>
       <span class="tag">AI Security</span>
       <span class="tag">Funding</span>
       <span class="tag pink">Insights</span>
@@ -88,25 +111,25 @@
     <div data-lang="zh">
 
       <div class="article-section">
-        <h2>节奏判断:从"按年"到"按半年"</h2>
+        <h2 id="zh-rhythm">节奏判断:从"按年"到"按半年"</h2>
         <p>把 13 笔已披露融资按时间排序,可以看到一条清晰的两段式曲线:2024 全年仅 3 笔,代表事件是 Lakera、HiddenLayer、Prompt Security 进入 A 轮;2025 节奏几乎翻倍,3 笔新融资 + 2 笔并购重组;而 2026 才过去 7 个月,就已经落下 5 笔 —— 平均每月近 1 笔。</p>
         <p>这是一个结构性信号:头部 LLM 客户的采购周期已经下沉到模型层之上,客户问"你们怎么解决 prompt injection / 数据泄露 / 合规审计"的时间和决策路径都更短,创业公司的销售漏斗因此被压缩,反过来又逼着投资人在 6–9 个月内下注占位。</p>
       </div>
 
       <div class="article-section">
-        <h2>轮次与金额:种子轮体量被整体抬升</h2>
+        <h2 id="zh-stages">轮次与金额:种子轮体量被整体抬升</h2>
         <p>金额分布上,2024 的 Lakera (A, $20M) 与 HiddenLayer (A, $56M) 仍然守在传统 A 轮区间;到了 2025 中段,WitnessAI (Strategic, $58M) 和 Noma Security (B, $100M) 直接跳出传统轮次/金额配比,反映出战略买家和大型机构正在把 LLM 安全视为独立品类。</p>
         <p>2026 新一批公司无论是否披露具体业务,种子轮金额从 2024 的 $8M–$20M 抬到 $10M–$60M,Virtue AI (Seed+A, $30M)、Oak (Seed, $60M) 都不是"做翻译 / 做聊天"的体量 —— 投资人开始给护栏一个独立的估值锚。</p>
       </div>
 
       <div class="article-section">
-        <h2>被忽视的拐点:从模型评估 → Agent 治理</h2>
+        <h2 id="zh-pivot">被忽视的拐点:从模型评估 → Agent 治理</h2>
         <p>如果你只看募资数据,会以为这是一个关于"prompt injection 防火墙"的故事。但细看 13 家公司的产品矩阵,新的重心已经偏到 Agent 治理:HiddenLayer 的 MLDR、Virtue AI 的 AgentSuite、Holistic AI 的 Guardian Agents (Sentinel 观测 + Operative 干预)、Noma Security 的全生命周期风险治理 —— 都在解决"agent 出问题谁负责"这个问题。</p>
         <p>这意味着 2026 之后的护栏赛道,买家画像会从"安全团队"扩展到"基础架构 / 平台团队",gating agent 上生产会触发比 chat 一个 LLM 更复杂的合规问题,采购预算的归属也会跟着漂移。</p>
       </div>
 
       <div class="article-section">
-        <h2>判断:2026 H2 还有 3–5 笔窗口</h2>
+        <h2 id="zh-outlook">判断:2026 H2 还有 3–5 笔窗口</h2>
         <p>把节奏外推:按当前 5 笔/7 个月的节奏,2026 H2 再出 5–6 笔是合理预期。但轮次和金额结构会变化 —— 种子轮密度下降,A/B 轮占比上升,因为 2024 那批 A 轮公司面临 next-round 决策。</p>
         <p>需要警惕的是赛道拥挤:传统安全厂商 (CrowdStrike、Palo Alto、ZScaler) 都已经在 2025-2026 把 LLM 治理塞进主产品线,留给独立创业公司的窗口更接近"垂直场景 + 监管合规驱动"(例如医疗 / 金融 / EU AI Act),而不是"通用 LLM 防火墙"。</p>
       </div>
@@ -137,25 +160,25 @@
     <div data-lang="en">
 
       <div class="article-section">
-        <h2>Rhythm: from yearly to semi-yearly</h2>
+        <h2 id="en-rhythm">Rhythm: from yearly to semi-yearly</h2>
         <p>Sorting the 13 disclosed rounds by date reveals a clear two-phase curve: 2024 saw only 3 rounds, led by Lakera, HiddenLayer and Prompt Security entering Series A; 2025 nearly doubled the pace, with 3 new rounds plus 2 acquisitions and restructurings; and in just the first 7 months of 2026, 5 more rounds have already closed — nearly one per month.</p>
         <p>This is a structural signal: large enterprise LLM buyers are now buying above the model layer. Their procurement questions on prompt injection, data leakage and compliance audit are answered faster and routed through shorter decision paths; the start-up sales funnel compresses, and in turn investors feel pressure to commit within 6–9 months.</p>
       </div>
 
       <div class="article-section">
-        <h2>Stages and amounts: seed rounds expand</h2>
+        <h2 id="en-stages">Stages and amounts: seed rounds expand</h2>
         <p>On amounts, 2024's Lakera (A, $20M) and HiddenLayer (A, $56M) still sat inside a traditional Series A band; by mid-2025 WitnessAI (Strategic, $58M) and Noma Security (B, $100M) clearly broke out of the conventional stage × amount matrix, reflecting that strategic buyers and large institutions now treat LLM security as a category of its own.</p>
         <p>The 2026 cohort is no longer priced like a chatbot or translation wrapper — seed rounds run from $10M to $60M (Virtue AI Seed+A at $30M, Oak Seed at $60M). Investors have begun giving the guardrail space its own valuation anchor.</p>
       </div>
 
       <div class="article-section">
-        <h2>The overlooked pivot: from model evaluation to agent governance</h2>
+        <h2 id="en-pivot">The overlooked pivot: from model evaluation to agent governance</h2>
         <p>Funding data alone would tell a "prompt-injection firewall" story. But looking at the product matrices of the 13 companies, the center of gravity has moved toward agent governance: HiddenLayer's MLDR, Virtue AI's AgentSuite, Holistic AI's Guardian Agents (Sentinel for observability + Operative for intervention), and Noma Security's full lifecycle risk governance — all answer the same question: when an agent misbehaves, who is responsible?</p>
         <p>That means from 2026 onward the buyer persona in the guardrail track will widen from "security team" to "infrastructure / platform team". Gating agents from going to production triggers a more complex compliance workflow than deploying a chatbot, and the budget will follow the move.</p>
       </div>
 
       <div class="article-section">
-        <h2>Outlook: 3–5 more rounds in 2026 H2</h2>
+        <h2 id="en-outlook">Outlook: 3–5 more rounds in 2026 H2</h2>
         <p>Extrapolating the current 5-rounds-per-7-months pace, 5–6 more rounds in 2026 H2 is a reasonable expectation — but the stage and amount mix will shift: seed density drops while A/B share rises, because the 2024 A-round cohort now faces its next-round decision.</p>
         <p>One caution is crowding: traditional security vendors (CrowdStrike, Palo Alto, ZScaler) have all folded LLM governance into their main product lines through 2025–2026. The window left for independent start-ups is closer to "vertical + regulator-driven scenarios" (healthcare / finance / EU AI Act) than to "generic LLM firewalls".</p>
       </div>
@@ -187,6 +210,7 @@
   <a class="post-back" href="/blog/"><span data-lang="zh">← 返回博客</span><span data-lang="en">← Back to blog</span></a>
 
 </article>
+</div><!-- /post-layout -->
 </main>
 
 <!-- ===== Footer ===== -->

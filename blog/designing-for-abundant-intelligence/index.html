@@ -8,6 +8,10 @@
 <meta name="theme-color" content="#00aeec" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="stylesheet" href="../../style.css" />
+<style>
+  /* Live inside .post-layout — let the grid column drive width */
+  .post-wrap { max-width: 100%; margin: 0; padding: 0; }
+</style>
 </head>
 <body>
 
@@ -34,6 +38,46 @@
 
 <!-- ===== Article ===== -->
 <div class="container">
+<div class="post-layout">
+<aside class="post-toc-sidebar" aria-label="文章目录">
+  <strong><span data-lang="zh">阅读导航</span><span data-lang="en">Reading guide</span></strong>
+  <div data-lang="en">
+    <ol>
+      <li><a href="#en-intro">Introduction</a></li>
+      <li><a href="#en-two-kinds">Two kinds of AI innovation</a></li>
+      <li><a href="#en-mas-vs-workflow">MAS vs LLM Workflows</a></li>
+      <li><a href="#en-mas-as-internet">A true MAS ≈ the Internet</a></li>
+      <li><a href="#en-over-optimizing-tokens">Don't over-optimize tokens</a></li>
+      <li><a href="#en-coordination-stays">Coordination stays hard</a></li>
+      <li><a href="#en-talking-too-much">Agents talking too much</a></li>
+      <li><a href="#en-controller-constitution">Manager → Constitution</a></li>
+      <li><a href="#en-orchestration-governance">Orchestration → Governance</a></li>
+      <li><a href="#en-protocol-coordination">Centralized → Protocol</a></li>
+      <li><a href="#en-agent-society-infra">Agent Society Infrastructure</a></li>
+      <li><a href="#en-design-principle">A design principle</a></li>
+      <li><a href="#en-durability-test">Durability test</a></li>
+      <li><a href="#en-conclusion">Conclusion</a></li>
+    </ol>
+  </div>
+  <div data-lang="zh">
+    <ol>
+      <li><a href="#zh-intro">引言</a></li>
+      <li><a href="#zh-two-kinds">两类 AI 创新</a></li>
+      <li><a href="#zh-mas-vs-workflow">MAS vs LLM Workflow</a></li>
+      <li><a href="#zh-mas-as-internet">真正的 MAS ≈ 互联网</a></li>
+      <li><a href="#zh-over-optimizing-tokens">不要过度优化 Token</a></li>
+      <li><a href="#zh-coordination-stays">协调问题不会消失</a></li>
+      <li><a href="#zh-talking-too-much">Agent 说得太多</a></li>
+      <li><a href="#zh-controller-constitution">Manager → Constitution</a></li>
+      <li><a href="#zh-orchestration-governance">Orchestration → Governance</a></li>
+      <li><a href="#zh-protocol-coordination">Centralized → Protocol</a></li>
+      <li><a href="#zh-agent-society-infra">Agent Society Infra</a></li>
+      <li><a href="#zh-design-principle">设计原则</a></li>
+      <li><a href="#zh-durability-test">长期价值检验</a></li>
+      <li><a href="#zh-conclusion">结语</a></li>
+    </ol>
+  </div>
+</aside>
 <article class="post-wrap">
 
   <header class="post-header">
@@ -52,7 +96,7 @@
     <!-- ============ ENGLISH ============ -->
     <div data-lang="en">
 
-    <h2>Introduction</h2>
+    <h2 id="en-intro">Introduction</h2>
 
     <p>A large share of innovation in today's AI agent ecosystem is, fundamentally, trying to solve the same problem:</p>
 
@@ -88,7 +132,7 @@
 
     <hr />
 
-    <h2>1. Two Fundamentally Different Kinds of AI Innovation</h2>
+    <h2 id="en-two-kinds">1. Two Fundamentally Different Kinds of AI Innovation</h2>
 
     <p>We can roughly divide today's AI infrastructure innovations into two categories.</p>
 
@@ -165,7 +209,7 @@ Agent B</pre>
 
     <hr />
 
-    <h2>2. Many "Multi-Agent Systems" Are Actually LLM Workflows</h2>
+    <h2 id="en-mas-vs-workflow">2. Many "Multi-Agent Systems" Are Actually LLM Workflows</h2>
 
     <p>Many systems described today as multi-agent systems are, in a stricter sense, closer to:</p>
 
@@ -208,7 +252,7 @@ Agent B</pre>
 
     <hr />
 
-    <h2>3. A True Multi-Agent System May Look More Like the Internet</h2>
+    <h2 id="en-mas-as-internet">3. A True Multi-Agent System May Look More Like the Internet</h2>
 
     <p>If AI agents continue improving in reasoning, communication, and autonomous decision-making, future multi-agent systems may adopt a very different design philosophy.</p>
 
@@ -296,7 +340,7 @@ Resource</pre>
 
     <hr />
 
-    <h2>4. We Should Be Careful About Over-Optimizing Tokens</h2>
+    <h2 id="en-over-optimizing-tokens">4. We Should Be Careful About Over-Optimizing Tokens</h2>
 
     <p>Token optimization is an important part of building AI systems today.</p>
 
@@ -352,7 +396,7 @@ $ / Intelligence ↓</pre>
 
     <hr />
 
-    <h2>5. Abundant Intelligence Does Not Eliminate Coordination Problems</h2>
+    <h2 id="en-coordination-stays">5. Abundant Intelligence Does Not Eliminate Coordination Problems</h2>
 
     <p>There is, however, an important distinction.</p>
 
@@ -400,7 +444,7 @@ Attention Allocation</pre>
 
     <hr />
 
-    <h2>6. The Future Problem May Be the Opposite: Agents Talking Too Much</h2>
+    <h2 id="en-talking-too-much">6. The Future Problem May Be the Opposite: Agents Talking Too Much</h2>
 
     <p>Today, we worry that agents cannot communicate well enough.</p>
 
@@ -462,7 +506,7 @@ Coordination Efficiency</pre>
 
     <hr />
 
-    <h2>7. The Controller Will Not Disappear — It Will Evolve from Manager to Constitution</h2>
+    <h2 id="en-controller-constitution">7. The Controller Will Not Disappear — It Will Evolve from Manager to Constitution</h2>
 
     <p>This distinction is critical.</p>
 
@@ -532,7 +576,7 @@ This agent may only access resources inside its own workspace.</pre>
 
     <hr />
 
-    <h2>8. From Orchestration to Governance</h2>
+    <h2 id="en-orchestration-governance">8. From Orchestration to Governance</h2>
 
     <p>Following this line of reasoning, the center of gravity in agent infrastructure may shift significantly.</p>
 
@@ -614,7 +658,7 @@ Protocol</pre>
 
     <hr />
 
-    <h2>9. From Centralized Orchestration to Protocol-Mediated Coordination</h2>
+    <h2 id="en-protocol-coordination">9. From Centralized Orchestration to Protocol-Mediated Coordination</h2>
 
     <p>A major architectural transition may therefore be:</p>
 
@@ -691,7 +735,7 @@ Goal</pre>
 
     <hr />
 
-    <h2>10. What We May Really Need Is Agent Society Infrastructure</h2>
+    <h2 id="en-agent-society-infra">10. What We May Really Need Is Agent Society Infrastructure</h2>
 
     <p>If this idea is pushed far enough, the central problem of future multi-agent systems may no longer be:</p>
 
@@ -765,7 +809,7 @@ Governance</pre>
 
     <hr />
 
-    <h2>11. A Design Principle for the Future</h2>
+    <h2 id="en-design-principle">11. A Design Principle for the Future</h2>
 
     <p>If the argument above has to be compressed into a single architectural principle, I would use:</p>
 
@@ -799,7 +843,7 @@ Resource Management</pre>
 
     <hr />
 
-    <h2>12. A Simple Test for Whether an Agent Technology Is Durable</h2>
+    <h2 id="en-durability-test">12. A Simple Test for Whether an Agent Technology Is Durable</h2>
 
     <p>When evaluating a new agent framework, workflow engine, or infrastructure idea, one question may be especially useful:</p>
 
@@ -844,7 +888,7 @@ Isolation</pre>
 
     <hr />
 
-    <h2>Conclusion</h2>
+    <h2 id="en-conclusion">Conclusion</h2>
 
     <p>Over the past few years, much of the industry has been asking:</p>
 
@@ -881,7 +925,7 @@ Isolation</pre>
     <!-- ============ CHINESE ============ -->
     <div data-lang="zh">
 
-    <h2>引言</h2>
+    <h2 id="zh-intro">引言</h2>
 
     <p>今天 AI Agent 领域的大量创新，本质上都在解决一个共同的问题：</p>
 
@@ -917,7 +961,7 @@ Isolation</pre>
 
     <hr />
 
-    <h2>一、两类完全不同的 AI 创新</h2>
+    <h2 id="zh-two-kinds">一、两类完全不同的 AI 创新</h2>
 
     <p>可以粗略地把今天的 AI 基础设施创新分成两类。</p>
 
@@ -991,7 +1035,7 @@ Agent B</pre>
 
     <hr />
 
-    <h2>二、很多 Multi-Agent System，其实是 LLM Workflow</h2>
+    <h2 id="zh-mas-vs-workflow">二、很多 Multi-Agent System，其实是 LLM Workflow</h2>
 
     <p>今天很多被称为 Multi-Agent System 的产品，从严格意义上说，更接近：</p>
 
@@ -1030,7 +1074,7 @@ Agent B</pre>
 
     <hr />
 
-    <h2>三、真正的 Multi-Agent System 可能更接近互联网</h2>
+    <h2 id="zh-mas-as-internet">三、真正的 Multi-Agent System 可能更接近互联网</h2>
 
     <p>如果 AI Agent 的推理能力、通信能力和自主决策能力继续快速提高，那么未来的 Multi-Agent System 可能会采用完全不同的设计哲学。</p>
 
@@ -1118,7 +1162,7 @@ Resource</pre>
 
     <hr />
 
-    <h2>四、因此，我们也许不应该过度优化 Token</h2>
+    <h2 id="zh-over-optimizing-tokens">四、因此，我们也许不应该过度优化 Token</h2>
 
     <p>Token Optimization 是今天 AI 系统非常重要的一部分。</p>
 
@@ -1172,7 +1216,7 @@ $ / Intelligence ↓</pre>
 
     <hr />
 
-    <h2>五、但智能丰富，并不意味着 Multi-Agent Coordination 自动消失</h2>
+    <h2 id="zh-coordination-stays">五、但智能丰富，并不意味着 Multi-Agent Coordination 自动消失</h2>
 
     <p>这里需要一个非常重要的区分。</p>
 
@@ -1221,7 +1265,7 @@ Attention Allocation</pre>
 
     <hr />
 
-    <h2>六、未来甚至可能出现相反的问题：Agent 说得太多</h2>
+    <h2 id="zh-talking-too-much">六、未来甚至可能出现相反的问题：Agent 说得太多</h2>
 
     <p>今天，我们担心 Agent 不会沟通。</p>
 
@@ -1275,7 +1319,7 @@ Coordination Efficiency</pre>
 
     <hr />
 
-    <h2>七、Controller 不会消失，它会从 Manager 变成 Constitution</h2>
+    <h2 id="zh-controller-constitution">七、Controller 不会消失，它会从 Manager 变成 Constitution</h2>
 
     <p>这也是一个非常重要的区别。</p>
 
@@ -1342,7 +1386,7 @@ Agent A 不允许伪造 Agent B 的身份。
 
     <hr />
 
-    <h2>八、从 Orchestration 转向 Governance</h2>
+    <h2 id="zh-orchestration-governance">八、从 Orchestration 转向 Governance</h2>
 
     <p>如果沿着这个方向继续推演，可以发现 Agent Infrastructure 的重点可能会发生一次非常大的迁移。</p>
 
@@ -1424,7 +1468,7 @@ Protocol</pre>
 
     <hr />
 
-    <h2>九、从 Centralized Orchestration 到 Protocol-Mediated Coordination</h2>
+    <h2 id="zh-protocol-coordination">九、从 Centralized Orchestration 到 Protocol-Mediated Coordination</h2>
 
     <p>因此，我认为未来 Multi-Agent Architecture 一个非常重要的转变可能是：</p>
 
@@ -1501,7 +1545,7 @@ Goal</pre>
 
     <hr />
 
-    <h2>十、真正值得构建的是 Agent Society Infrastructure</h2>
+    <h2 id="zh-agent-society-infra">十、真正值得构建的是 Agent Society Infrastructure</h2>
 
     <p>如果继续把这个思想推到极致，那么未来 Multi-Agent System 最重要的问题可能甚至不再是：</p>
 
@@ -1574,7 +1618,7 @@ Governance</pre>
 
     <hr />
 
-    <h2>十一、一个更适合未来的设计原则</h2>
+    <h2 id="zh-design-principle">十一、一个更适合未来的设计原则</h2>
 
     <p>如果需要把以上思想浓缩成一句架构原则，我会使用：</p>
 
@@ -1615,7 +1659,7 @@ Resource Management</pre>
 
     <hr />
 
-    <h2>十二、判断一项 Agent 技术是否长期有效的一个问题</h2>
+    <h2 id="zh-durability-test">十二、判断一项 Agent 技术是否长期有效的一个问题</h2>
 
     <p>因此，当看到一个新的 Agent Framework、Workflow Engine 或 Infrastructure Idea 时，也许可以问一个很简单的问题：</p>
 
@@ -1652,7 +1696,7 @@ Isolation</pre>
 
     <hr />
 
-    <h2>结语</h2>
+    <h2 id="zh-conclusion">结语</h2>
 
     <p>过去几年，我们一直在思考：</p>
 
@@ -1690,6 +1734,7 @@ Isolation</pre>
   <a class="post-back" href="/" data-i18n="blog.post.back">← 返回首页</a>
 
 </article>
+</div><!-- /post-layout -->
 </div>
 
 <!-- ===== Footer ===== -->
