@@ -569,24 +569,6 @@
     border-radius: 4px; padding: 0 5px; font-weight: 700; }
   .ai-sec-tag:hover .badge-new { background: white; color: #e11d48; }
 
-  /* ============ PAGE-LEVEL TAB SWITCH (Data / Insights) ============ */
-  /* Lives inside .site-nav alongside the site-level links.
-     Active state uses aria-selected (mirrors home sec-tabs pattern). */
-  .page-switch {
-    position: relative;
-    padding: 7px 14px; border-radius: var(--radius-full);
-    font-size: 13px; font-weight: 500; color: var(--c-ink3);
-    text-decoration: none; transition: color 0.15s, background 0.15s;
-  }
-  .page-switch:hover { color: var(--c-ink); background: var(--c-line-soft); }
-  .page-switch[aria-selected="true"] {
-    color: var(--b-blue-deep); background: var(--primary-soft); font-weight: 700;
-  }
-  .page-switch[aria-selected="true"]::after {
-    content: ""; position: absolute; left: 14px; right: 14px; bottom: 2px;
-    height: 2px; border-radius: 2px; background: var(--b-blue);
-  }
-
   /* ============ MODEL INFRA 三层树 ============ */
   .infra-tree { display: grid; gap: 14px; }
   .infra-group { background: var(--c-surface); border: 1px solid var(--c-line);
@@ -633,11 +615,6 @@
   .infra-group.starred-group .infra-group-icon.starred-icon { background: #fef3c7; color: var(--accent); font-size: 16px; }
   .infra-group.starred-group .infra-group-count { background: #fef3c7; color: #b45309; }
   .infra-group.starred-group .infra-group-name { color: #b45309; }
-
-  /* ============ PAGES — show only the active one ============ */
-  .page[hidden] { display: none !important; }
-  .page-hero-investigation { margin-top: 0; }
-  .page-hero-insights { margin-top: 0; }
 </style>
 </head>
 <body>
