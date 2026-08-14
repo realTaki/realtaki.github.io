@@ -292,33 +292,6 @@
       'mod.desc.AI Lab':                   'Foundation-model vendors and AI platform parents; sub-products nested under products',
       'mod.desc.AI Security':              'LLM app defense and AI governance — capital accelerating through 2025-2026',
 
-      'hero.ins.eyebrow':           '2026 · Q3 SNAPSHOT',
-      'hero.ins.title':             'Insights <span class="accent">—</span>',
-      'hero.ins.lede':              'Three trends distilled from the product map, funding rhythm and M&A signals — to help you quickly spot the most noteworthy inflection points in the AI Infra / AI Security track right now.',
-      'hero.ins.meta.view':         'Perspective',
-      'hero.ins.meta.viewVal':      'AI Infra × AI Security',
-      'hero.ins.meta.window':       'Time window',
-      'hero.ins.meta.source':       'Source',
-      'hero.ins.meta.sourceVal':    'Derived from the same items[] dataset',
-
-      'insight1.title':             'Guardrail funding rhythm · {first}-{to}',
-      'insight1.body':              '{years}. {n} disclosed rounds totaling ${total}M — capital continues to flow into LLM application defense.',
-      'insight1.body.empty':        'No disclosed funding rounds yet.',
-      'insight2.title':             'Big tech on a buying spree · {n} acquisitions',
-      'insight2.title.empty':       'No acquisitions yet',
-      'insight2.body':              '{list} acquired in {years}, totaling ~${total}M in exits — top-of-funnel consolidation is clear.',
-      'insight2.body.empty':        'No completed acquisitions in the dataset yet.',
-      'insight3.title':             '{name} is worth watching',
-      'insight3.title.empty':       'No featured company',
-      'insight3.body':              '{parts}.',
-      'insight3.body.empty':        'Set HIGHLIGHT_NAME in meta.js to a company that exists in items[].',
-      'insight.body.location':      'HQ {v}',
-      'insight.body.funding':       '{label} raised ${amount}M ({stage})',
-      'insight.body.investors':     'Backed by {v}',
-      'insight.body.products':      'Product lineup of {n}',
-      'insight.acquired':           'acquired',
-      'insight.readMore':           'Read article →',
-
       'modal.intro':                'Overview',
       'modal.basicInfo':            'Basic info',
       'modal.parentCo':             'Parent company',
@@ -339,9 +312,6 @@
       'modal.viewOnGitHub':         'View on GitHub',
       'modal.fallback.google':      'Google search',
       'modal.fallback.noLinks':     'No direct link captured — try Google search for more.',
-      'modal.article.badge':        'Long read · {eyebrow}',
-      'modal.article.related':      'Related companies',
-      'modal.article.notListed':    '{name} — not listed',
       'modal.cell.company':         'Company',
       'modal.cell.focus':           'Focus',
       'modal.cell.location':        'Location',
@@ -411,14 +381,8 @@
 
       // Title
       try {
-        const t = dict[next]['site.title'] || dict[next]['home.title'];
+        const t = dict[next]['investigation.title'] || dict[next]['home.title'];
         if (t) document.title = t;
-      } catch (e) {}
-
-      // CSS custom property for pseudo-element translation
-      try {
-        const rm = dict[next]['insight.readMore'];
-        if (rm) document.documentElement.style.setProperty('--read-more-text', '"' + rm + '"');
       } catch (e) {}
 
       this.applyStatic();
