@@ -9,7 +9,9 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="stylesheet" href="../../style.css" />
 <style>
-  .post-wrap { max-width: 900px; }
+  /* Now lives inside .post-layout — strip outer margin/padding so the
+     layout grid controls spacing, and let the column width drive max-width. */
+  .post-wrap { max-width: 900px; margin: 0; padding: 0; }
   .post-body h4 { font-size: 16px; color: var(--c-ink); margin-top: 1.45em; }
   .post-lede { font-size: 18px; color: var(--c-ink2); line-height: 1.85; }
   .table-scroll { overflow-x: auto; margin: 1.5em 0; }
