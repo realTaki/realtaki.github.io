@@ -376,6 +376,137 @@ img { max-width: 100%; display: block; }
   filter: brightness(1.1); box-shadow: 0 14px 34px rgba(0, 174, 236, 0.42);
 }
 
+/* =================================================================
+   Blog post layout — sticky reading guide on the left.
+   Articles wrap in `.post-layout` containing `.post-toc-sidebar`
+   (the TOC) and `.post-wrap` (the article). On narrow screens the
+   sidebar collapses above the content.
+   ================================================================= */
+.post-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 760px);
+  gap: 52px;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 0 80px;
+  align-items: start;
+}
+
+.post-toc-sidebar {
+  position: sticky;
+  top: 88px;
+  max-height: calc(100vh - 108px);
+  overflow-y: auto;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+  font-size: 13px;
+  line-height: 1.6;
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-line) transparent;
+}
+.post-toc-sidebar::-webkit-scrollbar { width: 6px; }
+.post-toc-sidebar::-webkit-scrollbar-thumb {
+  background: var(--c-line); border-radius: 3px;
+}
+
+.post-toc-sidebar > strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--c-ink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--c-line-soft);
+}
+
+.post-toc-sidebar ol {
+  margin: 0; padding: 0;
+  list-style: none;
+  counter-reset: tocItem;
+}
+
+.post-toc-sidebar li {
+  counter-increment: tocItem;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.post-toc-sidebar li::before {
+  content: counter(tocItem, decimal-leading-zero);
+  color: var(--c-ink3);
+  font-variant-numeric: tabular-nums;
+  font-size: 10.5px;
+  margin-right: 7px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.post-toc-sidebar a {
+  color: var(--c-ink2);
+  text-decoration: none;
+  display: block;
+  padding: 4px 0 4px 9px;
+  margin-left: -9px;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  border-radius: 0 4px 4px 0;
+}
+
+.post-toc-sidebar a:hover {
+  color: var(--b-blue-deep);
+  border-left-color: var(--b-blue);
+  background: rgba(0, 174, 236, 0.05);
+}
+
+.post-toc-sidebar a.is-active {
+  color: var(--b-blue-deep);
+  border-left-color: var(--b-blue);
+  font-weight: 600;
+  background: rgba(0, 174, 236, 0.08);
+}
+
+/* When the post opt out of the sidebar (e.g. very short articles),
+   leave the old in-body TOC working — fall back to the existing rules. */
+.post-body .post-toc {
+  margin: 30px 0 38px;
+  padding: 20px 24px;
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+}
+.post-body .post-toc strong { display: block; margin-bottom: 8px; color: var(--c-ink); }
+.post-body .post-toc ol { columns: 2; column-gap: 34px; padding-left: 1.4em; margin: 0; }
+.post-body .post-toc li { break-inside: avoid; margin: 4px 0; font-size: 14px; }
+.post-body .post-toc a { color: var(--c-ink2); text-decoration: none; }
+.post-body .post-toc a:hover { color: var(--b-blue-deep); }
+
+@media (max-width: 1024px) {
+  .post-layout {
+    grid-template-columns: 1fr;
+    max-width: 760px;
+    gap: 0;
+    padding: 40px 0 60px;
+  }
+  .post-toc-sidebar {
+    position: static;
+    max-height: none;
+    margin-bottom: 32px;
+    padding: 16px 18px;
+  }
+  .post-toc-sidebar li { font-size: 13px; }
+  .post-toc-sidebar li::before { font-size: 11.5px; }
+}
+@media (max-width: 640px) {
+  .post-toc-sidebar { padding: 14px 16px; }
+}
+
 /* ── Bilingual post body ──
    The article body contains both EN and CN versions inline. The site-wide
    lang toggle sets <html lang="zh-CN"> or <html lang="en">, and that same
