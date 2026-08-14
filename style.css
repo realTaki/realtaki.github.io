@@ -236,6 +236,10 @@ img { max-width: 100%; display: block; }
   background: rgba(251, 114, 153, 0.14); color: var(--b-pink);
   border-color: rgba(251, 114, 153, 0.24);
 }
+.tag.amber {
+  background: rgba(245, 158, 11, 0.14); color: #b45309;
+  border-color: rgba(245, 158, 11, 0.40);
+}
 .tag.ghost { background: transparent; border-color: transparent; color: var(--c-ink3); padding-left: 0; }
 
 /* =================================================================

@@ -45,8 +45,8 @@
       'home.stats':                 '📊 数据中心',
       'home.tech':                  '🛠 装备栏 · 技术栈',
       'home.contact':               '📬 联系方式',
-      'home.postTitle':             'Designing for Abundant Intelligence',
-      'home.postDesc':              '不要围绕今天的大模型局限构建未来。中英双语长文。',
+      // (home.postTitle / home.postDesc removed — latest posts now auto-render
+      //  from js/blog-manifest.js + js/blog-render.js.)
       'home.contact.email':         '✉️ taki.wang@ualberta.ca',
       'home.contact.x':             '🐦 @realTaki42',
       'home.contact.gh':            '🐙 github.com/realTaki',
@@ -197,8 +197,8 @@
       'home.stats':                 '📊 Data Center',
       'home.tech':                  '🛠 Tech Stack',
       'home.contact':               '📬 Contact',
-      'home.postTitle':             'Designing for Abundant Intelligence',
-      'home.postDesc':              'Design for the future, not today\'s model limitations. Bilingual long read.',
+      // (home.postTitle / home.postDesc removed — latest posts now auto-render
+      //  from js/blog-manifest.js + js/blog-render.js.)
       'home.contact.email':         '✉️ taki.wang@ualberta.ca',
       'home.contact.x':             '🐦 @realTaki42',
       'home.contact.gh':            '🐙 github.com/realTaki',

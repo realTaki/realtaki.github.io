@@ -171,18 +171,10 @@
   </div>
 
   <h2 class="home-sec" data-i18n="home.posts">📝 最新文章</h2>
-  <div class="card-grid">
-    <a class="card home-card" href="/blog/designing-for-abundant-intelligence/">
-      <div class="card-title" data-i18n="home.postTitle">Designing for Abundant Intelligence</div>
-      <div class="card-desc" data-i18n="home.postDesc">不要围绕今天的大模型局限构建未来。中英双语长文。</div>
-      <div class="tags">
-        <span class="tag ghost">📅 2026-08-09</span>
-        <span class="tag">AI</span>
-        <span class="tag">Multi-Agent</span>
-        <span class="tag">系统设计</span>
-      </div>
-    </a>
-  </div>
+  <!-- Latest 3 posts are auto-rendered from js/blog-manifest.js.
+       To add a new post, append an entry in blog-manifest.js — no
+       edit to this file needed. -->
+  <div class="card-grid" data-blog-latest="3"></div>
 
   <h2 class="home-sec" data-i18n="home.contrib">🎬 我的投稿 · 参与的开源项目</h2>
   <div class="card-grid">
@@ -242,6 +234,11 @@
 
 <script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
+<!-- Blog post manifest + renderer. Auto-fills the
+     <div class="card-grid" data-blog-latest="3"> above.
+     Load order: i18n → app → manifest → renderer. -->
+<script src="js/blog-manifest.js"></script>
+<script src="js/blog-render.js"></script>
 
 </body>
 </html>
