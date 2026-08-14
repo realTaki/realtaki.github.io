@@ -210,13 +210,9 @@
       'mas.metaDescription':        'Quality, architecture, observability and assurance for multi-agent systems: a conceptual framework and research agenda.',
 
       /* ========== INVESTIGATION ========== */
-      'nav.tabs.aria':              'Page navigation',
-      'site.brand':                 'Agent-Product-Investigation',
       'site.brand.aria':            'realTaki · Home',
-      'nav.tab.investigation':      '📊 Data',
-      'nav.tab.insights':           '💡 Insights',
       'lang.toggle.aria':           'Switch language',
-      'site.title':                 'Agent-Product-Investigation · 2026 Q3',
+      'investigation.title':        'Agent-Product-Investigation · 2026 Q3',
 
       'hero.inv.eyebrow':           '2026 · Q3 SNAPSHOT',
       'hero.inv.title':             'Agent Infra <span class="accent">Landscape</span>',

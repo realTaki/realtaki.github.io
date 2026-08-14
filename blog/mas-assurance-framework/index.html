@@ -35,18 +35,35 @@
 <div class="post-layout">
 <aside class="post-toc-sidebar" aria-label="文章目录">
   <strong data-i18n="post.tocTitle">阅读导航</strong>
-  <ol>
-    <li><a href="#section-一-研究问题的优化表述">研究问题</a></li>
-    <li><a href="#section-二-mas-的概念边界-意义与成立条件">概念与成立条件</a></li>
-    <li><a href="#section-三-mas-的质量标准与设计目标">质量标准</a></li>
-    <li><a href="#section-四-mas-的主要协作与组织架构">协作架构</a></li>
-    <li><a href="#section-五-质量评测-红队与蓝队的统一三视角框架">评测、红队与蓝队</a></li>
-    <li><a href="#section-六-从-llm-到-agent-再到-mas-研究对象与可观测性的演化">可观测性演化</a></li>
-    <li><a href="#section-七-mas-assurance-matrix-观测位置-质量-红队-蓝队">Assurance Matrix</a></li>
-    <li><a href="#section-八-面向不同架构的观测重点">架构观测重点</a></li>
-    <li><a href="#section-九-研究与工程落地建议">工程落地</a></li>
-    <li><a href="#section-十-结论">结论与后续研究</a></li>
-  </ol>
+  <div data-lang="zh">
+    <ol>
+      <li><a href="#section-一-研究问题的优化表述">研究问题</a></li>
+      <li><a href="#section-二-mas-的概念边界-意义与成立条件">概念与成立条件</a></li>
+      <li><a href="#section-三-mas-的质量标准与设计目标">质量标准</a></li>
+      <li><a href="#section-四-mas-的主要协作与组织架构">协作架构</a></li>
+      <li><a href="#section-五-质量评测-红队与蓝队的统一三视角框架">评测、红队与蓝队</a></li>
+      <li><a href="#section-六-从-llm-到-agent-再到-mas-研究对象与可观测性的演化">可观测性演化</a></li>
+      <li><a href="#section-七-mas-assurance-matrix-观测位置-质量-红队-蓝队">Assurance Matrix</a></li>
+      <li><a href="#section-八-面向不同架构的观测重点">架构观测重点</a></li>
+      <li><a href="#section-九-研究与工程落地建议">工程落地</a></li>
+      <li><a href="#section-十-结论">结论与后续研究</a></li>
+    </ol>
+  </div>
+  <div data-lang="en">
+    <ol>
+      <li><a href="#en-section-abstract">Abstract</a></li>
+      <li><a href="#en-section-research-questions">Research Questions</a></li>
+      <li><a href="#en-section-concept-and-conditions">Concepts &amp; Conditions</a></li>
+      <li><a href="#en-section-quality-standards">Quality Standards</a></li>
+      <li><a href="#en-section-collaboration-architecture">Collaboration Architecture</a></li>
+      <li><a href="#en-section-three-lens-framework">Eval / Red / Blue Framework</a></li>
+      <li><a href="#en-section-observability-evolution">Observability Evolution</a></li>
+      <li><a href="#en-section-assurance-matrix">Assurance Matrix</a></li>
+      <li><a href="#en-section-architecture-observability">Per-Architecture Observability</a></li>
+      <li><a href="#en-section-engineering-recommendations">Engineering Recommendations</a></li>
+      <li><a href="#en-section-conclusion">Conclusion &amp; Future Work</a></li>
+    </ol>
+  </div>
 </aside>
 <article class="post-wrap">
   <header class="post-header">
@@ -542,22 +559,6 @@ MAS:   Dynamic Causal Interaction Graph</code></pre>
 <div data-lang="en">
 
 <p class="post-lede">From system quality and collaboration architecture to the dynamic causal interaction graph: building a unified assurance framework for multi-agent systems that is measurable, adversarially testable, attributable, and recoverable.</p>
-<nav class="post-toc" aria-label="Table of contents">
-  <strong>Reading guide</strong>
-  <ol>
-    <li><a href="#en-section-abstract">Abstract</a></li>
-    <li><a href="#en-section-research-questions">Research Questions</a></li>
-    <li><a href="#en-section-concept-and-conditions">Concepts &amp; Conditions</a></li>
-    <li><a href="#en-section-quality-standards">Quality Standards</a></li>
-    <li><a href="#en-section-collaboration-architecture">Collaboration Architecture</a></li>
-    <li><a href="#en-section-three-lens-framework">Eval / Red / Blue Framework</a></li>
-    <li><a href="#en-section-observability-evolution">Observability Evolution</a></li>
-    <li><a href="#en-section-assurance-matrix">Assurance Matrix</a></li>
-    <li><a href="#en-section-architecture-observability">Per-Architecture Observability</a></li>
-    <li><a href="#en-section-engineering-recommendations">Engineering Recommendations</a></li>
-    <li><a href="#en-section-conclusion">Conclusion &amp; Future Work</a></li>
-  </ol>
-</nav>
 
 <h2 id="en-section-abstract">Abstract</h2>
 <p>The object of study for Multi-Agent Systems (MAS) should not be reduced to "multiple LLMs talking to each other." In today's LLM-centric agent engineering, MAS more accurately represents a systematic approach to organizing intelligence: tasks, contexts, tools, permissions, state, and responsibilities are allocated to multiple agents with bounded autonomous decision-making capability, and overall behavior emerges through routing, delegation, handoff, communication, shared state, and governance mechanisms.</p>
