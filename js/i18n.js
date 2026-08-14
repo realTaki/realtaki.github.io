@@ -5,13 +5,15 @@
    - One engine shared by all pages.
    - Dictionary split into two sections:
        1. site   — nav, footer, homepage
-       2. inv    — investigation page (data tables, modal, insights)
+       2. inv    — investigation page (data tables, company modal)
    - Static strings in HTML tagged with data-i18n / data-i18n-attr.
    - JS code calls i18n.t(key, vars) for dynamic strings.
    - Persistence priority: URL hash > localStorage > <html lang>.
 
    Pages that don't need investigation strings simply don't use those
    keys — the dictionary size is irrelevant unless referenced.
+   Long-form insight articles live under /blog/insight-* as static
+   bilingual HTML and do not consume any i18n key.
    ================================================================ */
 (function () {
   const LANG_KEY = 'realtaki.lang';
